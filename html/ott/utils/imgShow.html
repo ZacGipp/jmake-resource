@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关于我们</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+        .container{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        img{
+            width: 100%;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!--此处src引号里面换为图片地址，必须是全地址-->
+        <img src="https://s3m.milkjpg.com/galileo/671801-4ab57b9fb1b0f414c4ebaeb3284d9237.jpg">
+    </div>
+</body>
+<script>
+    function setSize() {
+        var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var remSize;
+        remSize = ww / 32;
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return /*unescape(*/r[2]/*)*/;
+        }
+        return "";
+    }
+
+    function $(id) {
+        return document.querySelector(id);
+    }
+
+    // var imgUrl = getQueryString("img");
+    // if (imgUrl) {
+    //     var img = document.createElement("img");
+    //     img.src = decodeURIComponent(imgUrl);
+    //     $(".container").appendChild(img);
+    // }
+</script>
+</html>

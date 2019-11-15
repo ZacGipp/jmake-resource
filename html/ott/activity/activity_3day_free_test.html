@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>活动</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+        }
+        #activity {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            background: url("../../../img/ott/activity/3dayFree.jpg") no-repeat;
+            background-size: cover;
+        }
+
+        #activity-btn-container {
+            left: 50%;
+            width: 1px;
+            bottom: 1.6rem;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+        }
+        #activity-btn {
+            min-width: 11rem;
+            height: 2.2rem;
+            border: none;
+            border-radius: 4rem;
+            font-size: .9rem;
+            color: white;
+            outline: none;
+            background-image: -webkit-linear-gradient(left, #f03141, #f77f28);
+        }
+        #activity-btn.error {
+            background-image: -webkit-linear-gradient(left, #454545, #838383) !important;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="activity">
+        <div id="activity-btn-container">
+            <button id="activity-btn" onclick="activityClick()"></button>
+        </div>
+    </div>
+</body>
+<script>
+    var BTN_STATUS_ENABLE = 1;
+    var BTN_STATUS_DISABLE = 2;
+    // test
+    var domain = "bmstest.j-make.com.cn";
+    //pro
+    // var domain = "Portalmy.j-make.cn";
+    var id = getQueryString("id") || "";
+    var btnStatus = BTN_STATUS_DISABLE;
+    var activeBtn = document.querySelector("#activity-btn");
+
+    document.querySelector("#activity-btn").focus();
+
+    check();
+    // showBtnTxt("立即领取");
+    // btnStatus = BTN_STATUS_ENABLE;
+    // for local network
+    // function activityClick() {
+    //     var params = getQueryString("activeType");
+    //     window.JSCampaign && window.JSCampaign.getFreeVip && window.JSCampaign.getFreeVip(params);
+    // }
+
+    function check() {
+        showWait();
+        ajax({
+            url: "http://" + domain + "/activity/check/1234567?id=" + id,
+            type: "GET",
+            data: {},
+            dataType: "json",
+            success: function (response) {
+                if (typeof response === "string") {
+                    response = JSON.parse(response || "{}")
+                }
+                var status = response.status;
+                var msg = response.msg;
+                if (status === 1) {
+                    showBtnTxt("立即领取");
+                    btnStatus = BTN_STATUS_ENABLE;
+                } else {
+                    showError();
+                    showBtnTxt(msg);
+                }
+            },
+            fail: function (status) {
+                showError();
+                showBtnTxt("操作失败，请稍后重试");
+            }
+        });
+    }
+
+    function activityClick() {
+        if (btnStatus !== BTN_STATUS_ENABLE) {
+            return;
+        }
+        showWait();
+        btnStatus = BTN_STATUS_DISABLE;
+        ajax({
+            url: "http://" + domain + "/user/userActivation?id=" + id,
+            type: "GET",
+            data: {},
+            dataType: "json",
+            success: function (response) {
+                if (typeof response === "string") {
+                    response = JSON.parse(response || "{}")
+                }
+                var status = response.status;
+                var msg = response.msg;
+                if (status === 1) {
+                    showBtnTxt("领取成功");
+                } else {
+                    btnStatus = BTN_STATUS_ENABLE;
+                    showBtnTxt(msg);
+                }
+            },
+            fail: function (status) {
+                showError();
+                showBtnTxt("操作失败，请稍后重试");
+                setTimeout(function () {
+                    cleanError();
+                    showBtnTxt("立即领取");
+                    btnStatus = BTN_STATUS_ENABLE;
+                }, 3000);
+            }
+        });
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return /*unescape(*/r[2]/*)*/;
+        }
+        return "";
+    }
+
+    function ajax(options) {
+        options = options || {};
+        options.type = (options.type || "GET").toUpperCase();
+        options.dataType = options.dataType || "json";
+        var params = formatParams(options.data);
+        //创建xhr对象 - 非IE6
+        if (window.XMLHttpRequest) {
+            var xhr = new XMLHttpRequest();
+        } else { //IE6及其以下版本浏览器
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        //GET POST 两种请求方式
+        if (options.type == "GET") {
+            xhr.open("GET", options.url, true);
+            xhr.setRequestHeader("terminalType", "ottWeb");
+            xhr.send(null);
+        } else if (options.type == "POST") {
+            xhr.open("POST", options.url, true);
+            //设置表单提交时的内容类型
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.setRequestHeader("terminalType", "ottWeb");
+            xhr.send(params);
+        }
+        //接收
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) {
+                var status = xhr.status;
+                if (status >= 200 && status < 300) {
+                    options.success && options.success(xhr.responseText);
+                } else {
+                    options.fail && options.fail(status);
+                }
+            }
+        }
+    }
+    //格式化参数
+    function formatParams(data) {
+        var arr = [];
+        for (var name in data) {
+            arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+        }
+        arr.push(("v=" + Math.random()).replace(".",""));
+        return arr.join("&");
+    }
+    function showError() {
+        document.querySelector("#activity-btn").classList.add("error");
+    }
+    function cleanError() {
+        document.querySelector("#activity-btn").classList.remove("error");
+    }
+    function showWait() {
+        showBtnTxt("请稍等……");
+    }
+    function showBtnTxt(msg) {
+        activeBtn.innerHTML = msg;
+    }
+
+    function setSize() {
+        var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var remSize;
+        // 默认为宽度十分之一
+        // if (ww >= 768) {
+        remSize = ww / 32;
+        // } else {
+        //     remSize = ww / 10;
+        // }
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+</script>
+</html>

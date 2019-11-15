@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>活动</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="target-densitydpi=device-dpi,width=1024,user-scalable=no" name="viewport">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            position: relative;
+            overflow-x: hidden;
+            background-color: black;
+        }
+        #qa{
+            top: 0;
+            right: 0;
+            width: 30%;
+            height: 100%;
+            position: fixed;
+        }
+        #activityBtn {
+            width: 70%;
+            height: auto;
+            border: none;
+            background-size: cover;
+        }
+        #activityBtn img{
+            width: 100%;
+        }
+        #activityBtn:focus{
+            outline:none;
+        }
+    </style>
+</head>
+<body>
+    <img id="activityBtn" src="../../img/ott/ad/product1.JPG">
+    <!--<button id="activityBtn" onclick="activityClick()">
+
+    </button>-->
+    <img id="qa" src="../../img/ott/qa.png">
+</body>
+<script>
+    document.querySelector("#activityBtn").focus();
+    
+    function activityClick() {
+        var params = getQueryString("activeType");
+        window.JSCampaign && window.JSCampaign.getFreeVip && window.JSCampaign.getFreeVip(params);
+    }
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return /*unescape(*/r[2]/*)*/;
+        }
+        return "";
+    }
+</script>
+</html>

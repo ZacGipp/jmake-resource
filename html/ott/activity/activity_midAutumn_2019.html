@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>中秋活动</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      background: rgba(0, 0, 0, .2);
+    }
+
+    #activityBtn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -18%;
+      width: 36%;
+      border: none;
+      background: url("../../../img/ott/activity/midAutum.png") no-repeat;
+      background-size: cover;
+    }
+
+    #activityBtn:focus {
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+<button id="activityBtn" onclick="activityClick()"></button>
+</body>
+<script>
+
+  var btn = document.querySelector("#activityBtn");
+  var btnWidth = btn.clientWidth;
+  var height = btnWidth / (629 / 506);
+  btn.style.marginTop = -(height / 2) + 'px';
+  btn.style.height = height + 'px';
+
+  document.querySelector("#activityBtn").focus();
+
+  function activityClick(e) {
+
+    var json = {
+      pageCode: "0013",
+      pageName: "支付页面"
+    };
+
+    // type, targetJson, pageName
+    window.JSCampaign && window.JSCampaign.pageOpen && window.JSCampaign.pageOpen(
+            "pageOpen",
+            JSON.stringify(json),
+            ""
+    );
+  }
+
+  function getQueryString(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r !== null) {
+      return /*unescape(*/r[2]/*)*/;
+    }
+    return "";
+  }
+</script>
+</html>

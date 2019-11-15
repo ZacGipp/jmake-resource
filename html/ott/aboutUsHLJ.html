@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关于我们</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+
+        html {
+            background-image: url("../../img/ott/about-us.jpg");
+            background-size: cover;
+        }
+        .container{
+            display: flex;
+            justify-items: center;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+        p.content {
+            padding: 0 14%;
+            margin: .2rem 0;
+            text-indent: 1.4rem;
+            font-size: .66rem;
+            text-align: left;
+        }
+        p.title {
+            font-size: .7rem;
+            margin: 0 0 1.2rem 0;
+        }
+        p.info {
+            font-size: .42rem;
+            margin: .2rem 0 1rem 0;
+        }
+        p.info font{
+            margin: 0 .4rem;
+        }
+        hr{
+            width: 56%;
+            margin: .4rem auto .2rem auto;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <p class="title">关于我们</p>
+            <p class="content">金麦客是一款提供结合歌曲MV正版内容+K歌硬件专注于智能电视与OTT机顶盒互动娱乐平台，产品秉持把专业卡拉OK带回家经营理念。</p>
+            <p class="content">拥有超过50万首雷客正版、超清MV音乐歌曲资源；曲库拥有丰富歌曲分类、专题，如：抖音神曲、情歌对唱、京剧戏曲、经典老歌、演唱会等，每周更新超过3000首歌曲。</p>
+            <p class="content">曲库还汇集了当下综艺类全曲库如：中国好声音、我是歌手、围炉音乐会、中国梦之声等；其次歌星点歌汇集大陆、港台、日韩、欧美明星全曲曲库；推荐曲库包含广场舞曲、儿歌大全以及地方歌曲、红歌等，满足用户对音乐多元化的需求与喜好，为百万家庭带来全新视听盛宴。</p>
+
+        </div>
+    </div>
+</body>
+<script>
+    function setSize() {
+        var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var remSize;
+        // 默认为宽度十分之一
+        // if (ww >= 768) {
+            remSize = ww / 32;
+        // } else {
+        //     remSize = ww / 10;
+        // }
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+</script>
+</html>

@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>大转盘</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="target-densitydpi=device-dpi,width=1024,user-scalable=no" name="viewport">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            background-color: black;
+        }
+        button {
+            outline: none;
+        }
+        .focus-able:focus {
+            box-shadow: 0 0 2px 3px #29ffca;
+        }
+        .hide {
+            display: none!important;
+        }
+        #activity {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            background: url("../../../img/ott/activity/turntable/turntable_bg.jpg") no-repeat;
+            background-size: cover;
+        }
+        #record {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            background: url("../../../img/ott/activity/turntable/turntable_record_bg.png") no-repeat;
+            background-size: cover;
+        }
+
+        #record-btn-container {
+            left: 50%;
+            width: 1px;
+            bottom: 2.6rem;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+        }
+
+        #record-btn {
+            min-width: 4rem;
+            height: 1.2rem;
+            border: none;
+            border-radius: 4rem;
+            font-size: .46rem;
+            color: white;
+            outline: none;
+            background-image: -webkit-linear-gradient(left, #f03141, #f77f28);
+        }
+
+        #record-btn.error {
+            background-image: -webkit-linear-gradient(left, #454545, #838383) !important;
+        }
+
+        .function-container {
+            position: absolute;
+            left: 1rem;
+            bottom: 2rem;
+            height: 10.2rem;
+            width: 10rem;
+            background: url(../../../img/ott/activity/function_bg.png) no-repeat;
+            background-size: contain;
+        }
+
+        .winner-container {
+            position: absolute;
+            right: 1rem;
+            bottom: 2rem;
+            height: 10.2rem;
+            width: 10rem;
+            background: url(../../../img/ott/activity/winner_bg.png) no-repeat;
+            background-size: contain;
+        }
+
+        .start-btn {
+            top: 5%;
+            left: 5%;
+            border: none;
+            width: 90%;
+            height: 90%;
+            border-radius: 5px;
+            position: absolute;
+            background: url(../../../img/ott/activity/start_btn.png) no-repeat center;
+            background-size: contain;
+        }
+
+        .start-btn font {
+            left: 0;
+            bottom: .2rem;
+            width: 100%;
+            color: white;
+            position: absolute;
+            font-size: .3rem;
+        }
+
+        .turntable {
+            display: flex;
+            left: .5rem;
+            bottom: .64rem;
+            height: 7rem;
+            width: 8.9rem;
+            flex-wrap: wrap;
+            position: absolute;
+        }
+
+        .turntable .item {
+            position: relative;
+            flex: 0 0 33.33%;
+        }
+
+        .turntable .item span {
+            left: 3%;
+            top: 3%;
+            width: 93%;
+            height: 93%;
+            position: absolute;
+            -webkit-border-radius: .1rem;
+            -moz-border-radius: .1rem;
+            border-radius: .1rem;
+            background-color: white;
+        }
+
+        .turntable .item span i {
+            top: .1rem;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            text-align: center;
+            position: absolute;
+        }
+
+        .turntable .item span img {
+            height: 100%;
+        }
+
+        .turntable .item i {
+
+        }
+
+        .turntable .item p {
+            width: 100%;
+            margin: 0;
+            position: absolute;
+            text-align: center;
+            font-size: .3rem;
+            bottom: .2rem;
+        }
+        .msg{
+            left: 10%;
+            bottom: 6rem;
+            color: white;
+            height: 1.4rem;
+            font-size: .6rem;
+            min-width: 6rem;
+            text-align: center;
+            position: absolute;
+            line-height: 1.4rem;
+            transition: .5s all ease;
+            background-color: rgba(0, 0, 0, 0.7);
+            -webkit-border-radius: .2rem;
+            -moz-border-radius: .2rem;
+            border-radius: .2rem;
+        }
+        .turntable .active span{
+            background-color: yellow!important;
+        }
+
+        .button-msg-qrcode {
+            background: url("../../../img/ott/activity/turntable/qrcode_bg.png") no-repeat center;
+            background-size: contain;
+        }
+        .button-msg-qrcode img{
+            width: 80%;
+            margin-bottom: .8rem;
+        }
+        .fake-data-container{
+            top: 2.4rem;
+            width: 89%;
+            left: .46rem;
+            height: 7.1rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: .32rem;
+            position: absolute;
+        }
+        .fake-data {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transition: .5s all ease;
+        }
+        .fake-data p{
+            padding: .2rem;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .fake-data p{
+            display: flex;
+            padding: .2rem 0;
+        }
+        .fake-data p font:first-child{
+            flex: 0 0 24%;
+            padding-left: .2rem;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+        .fake-data p font:nth-child(2){
+            flex: 0 0 36%;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+        .fake-data p font:nth-child(3){
+            flex: 1 0 50%;
+            overflow: hidden;
+            -ms-text-overflow: ellipsis;
+            text-overflow: ellipsis;
+        }
+        .fake-data p:nth-child(2n) {
+            background-color: #e4e4e4;
+        }
+        .button-msg {
+            left: 50%;
+            top: 50%;
+            z-index: 10;
+            border: none;
+            width: 10rem;
+            height: 10rem;
+            margin-left: -5rem;
+            margin-top: -5rem;
+            position: absolute;
+            transition: .5s all ease;
+            background-color: transparent;
+        }
+        .button-msg img{
+            max-width: 100%;
+            max-height: 100%;
+        }
+        .mask{
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            position: absolute;
+            transition: .5s fade ease;
+            background-color: rgba(0, 0, 0, .6)
+        }
+
+        .record-container{
+            width: 58%;
+            left: 0;
+            top: 15%;
+            height: 62%;
+            padding-left: 1.4rem;
+            position: absolute;
+        }
+        .device-id{
+            font-size: .6rem;
+            color: white;
+        }
+        #record .item {
+            border: none;
+            display: block;
+            width: 100%;
+            float: left;
+            color: white;
+            font-size: 0.54rem;
+            position: relative;
+            padding-top: .2rem;
+            padding-left: 1.4rem;
+            text-align: left;
+            background-color: transparent;
+        }
+        #record .item:focus {
+            color: #f8f071;
+        }
+        #record i {
+            top: .1rem;
+            left: 0;
+            width: 1rem;
+            height: 1rem;
+            display: flex;
+            color: #a429f9;
+            font-size: .56rem;
+            justify-content: center;
+            align-items: center;
+            font-style: normal;
+            position: absolute;
+            background-color: white;
+            border-radius: 1rem;
+        }
+
+        #record .item:focus i{
+            background-color: #f8f071;
+        }
+        #record p {
+            margin: 0 0 .4rem 0;
+        }
+        #record font {
+            font-size: .48rem;
+        }
+        .record-content {
+            height: 100%;
+            overflow: auto;
+        }
+        .price-content {
+            bottom: 24%;
+            width: 100%;
+            color: white;
+            height: 2.4rem;
+            font-size: .8rem;
+            text-align: center;
+            position: absolute;
+            line-height: 1.6rem;
+            background: url(../../../img/ott/activity/turntable/price-name-bg.png) no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+<div id="activity">
+    <div class="function-container">
+        <div class="turntable">
+            <div class="item item-0">
+                <span>
+                    <i>
+                        <img src="../../../img/ott/activity/price-test1.png">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-1">
+                 <span>
+                    <i>
+                        <img src="../../../img/ott/activity/price-test2.png">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-2">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-7">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item">
+                <button class="start-btn focus-able" onclick="start()">
+                    <font></font>
+                </button>
+            </div>
+            <div class="item item-3">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-6">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-5">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+            <div class="item item-4">
+                 <span>
+                    <i>
+                        <img src="">
+                    </i>
+                    <p></p>
+                </span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="winner-container">
+        <div class="fake-data-container">
+            <div class="fake-data">
+                <!--<p>昵称 奖品名字 设备号</p>-->
+            </div>
+        </div>
+    </div>
+    <div id="record-btn-container" class="hide">
+        <button class="focus-able" id="record-btn" onclick="showRecord()">查看中奖记录</button>
+    </div>
+
+    <div class="msg hide">
+
+    </div>
+
+    <button class="button-msg button-msg-have-chance hide" onclick="hideChanceMsg()">
+        <img src="../../../img/ott/activity/turntable/have-chance.png">
+    </button>
+
+    <button class="button-msg button-msg-done-chance hide" onclick="alertQrCode()">
+        <img src="../../../img/ott/activity/turntable/done-chance.png">
+    </button>
+
+    <button class="button-msg button-msg-no-chance hide" onclick="alertQrCode()">
+        <img src="../../../img/ott/activity/turntable/no-chance.png">
+    </button>
+
+    <button class="button-msg button-msg-price hide" onclick="showRecord()">
+        <img src="../../../img/ott/activity/turntable/price-bg.png">
+        <div class="price-content">
+        </div>
+    </button>
+
+    <button class="button-msg button-msg-qrcode hide">
+        <img src="">
+    </button>
+
+
+    <span class="mask hide"/>
+</div>
+
+<div id="record">
+    <div class="record-container">
+        <!--<p class="device-id">设备ID：<font></font></p>-->
+
+        <div class="record-content">
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var msgtimer;
+    var runtimer;
+    var scrollTimer;
+    var clock;
+    var currentIndex = 0;
+    var isAlert = false;
+    var STATUS_NONE = 1;
+    var STATUS_STARTING = 2;
+    var STATUS_ENDING = 3;
+    var STATUS_END = 4;
+    // 随机时间
+    var RANDOM_COUNT = 10;
+    var FAKE_RANDOM_SPEED = 500;
+    var randomStartTime = 0;
+    var status = STATUS_NONE;
+    var deviceUuid = getQueryString("id") || "";
+    var activityUuid = getQueryString("activeType") || "";
+
+
+    // var domain = window.location.host;
+    var domain = "http://portalmy.j-make.cn";
+    // var domain = "http://bmstest.j-make.com.cn";
+    // var domain = "http://10.0.7.147:8080";
+    var API_PRICE_LIST = domain + "/luckyspin/list";
+    var API_PRICE_CHANCE = domain + "/luckyspin/chance";
+    var API_PRICE_JACKPOT = domain + "/luckyspin/jackpot";
+    var API_PRICE_MY_RECORD = domain + "/luckyspin/prizes";
+    var API_CHARGE_QRCODE = domain + "/luckyspin/qrcode";
+    var API_FAKE_DATA = domain + "/luckyspin/worldrecord";
+
+    // 奖品
+    var prizeData = [];
+
+    // 假数据
+    var fakeData = [];
+
+    // 抽奖次数
+    var pricesCount = [];
+
+    // 我的抽奖记录
+    var myRecords = [];
+
+    // 中奖uuid
+    var prizeUuid;
+    var prizeName;
+
+    var PAGE_TURNTABLE = 1;
+    var PAGE_RECORD = 2;
+    var currentPage = PAGE_TURNTABLE;
+
+    window.onhashchange = hashChange;
+    ini();
+    hashChange();
+    getPrices();
+    getPricesCount();
+    getMyRecord();
+    getChargeQrCode();
+    getFakeData();
+
+
+    // alertPrice();
+    //check();
+    // showBtnTxt("立即领取");
+    // btnStatus = BTN_STATUS_ENABLE;
+    // for local network
+
+    function ini() {
+        document.querySelector(".start-btn").onfocus = function () {
+            if (getHash() !== "doneChance" && getHash() !== "noneChance") {
+                hideChanceMsg();
+            }
+        }
+    }
+
+    function start() {
+        if (status !== STATUS_NONE) {
+            if (pricesCount.length <= 0) {
+                if (myRecords.length > 0) {
+                    alertDoneChance();
+                } else {
+                    alertNoChance();
+                }
+            } else if (!randomStartTime) {
+                status = STATUS_STARTING;
+                randomStartTime = Date.now();
+                run();
+                doTurntable();
+            }
+        }
+    }
+
+    function run() {
+        if (!runtimer) {
+            runtimer = setInterval(function () {
+                var randomRunTim = Date.now() - randomStartTime;
+                var speed = FAKE_RANDOM_SPEED * Math.sin((Math.abs(randomRunTim - RANDOM_COUNT * 1000 / 2)) / (RANDOM_COUNT * 1000 / 2));
+                if (Date.now() - clock < speed) {
+                    return;
+                }
+                var activeItem = document.querySelector(".active");
+                if (activeItem) {
+                    activeItem.classList.remove("active");
+                }
+                var inIndex = currentIndex++ % 8;
+                document.querySelector(".item-" + inIndex).classList.add("active");
+                clock = Date.now();
+
+                if (Date.now() - randomStartTime > RANDOM_COUNT * 1000 && prizeData[inIndex] && prizeUuid === prizeData[inIndex].uuid) {
+                    prizeName = prizeData[inIndex].prizeName;
+                    handleResult();
+                }
+            });
+        }
+    }
+
+    /**
+     * 获取奖品列表
+     * */
+    function getPrices() {
+        ajax({
+            url: API_PRICE_LIST,
+            data: {deviceUuid: deviceUuid, activityUuid: activityUuid},
+            success: function (response) {
+                response = JSON.parse(response);
+                prizeData = response.data || [];
+                for(var i = 0; i < prizeData.length; i++) {
+                    var imgUrl = prizeData[i].imgUrl;
+                    var prizeName = prizeData[i].prizeName;
+                    document.querySelector(".item-" + i + " img").src = imgUrl;
+                    document.querySelector(".item-" + i + " p").innerHTML = prizeName;
+                }
+            }
+        });
+    }
+
+    /**
+     * 抽奖次数
+     * */
+    function getPricesCount() {
+        ajax({
+            url: API_PRICE_CHANCE,
+            data: {deviceUuid: deviceUuid, activityUuid: activityUuid},
+            success: function (response) {
+                response = JSON.parse(response);
+                pricesCount = response.data || [];
+                document.querySelector(".start-btn font").innerHTML = "还剩下" + pricesCount.length + "次";
+                if (pricesCount.length > 0) {
+                    // alertHaveChance();
+                }
+            }
+        });
+    }
+
+    /**
+     * 获取支付二维码
+     * */
+    function getChargeQrCode() {
+        ajax({
+            url: API_CHARGE_QRCODE,
+            data: {deviceUuid: deviceUuid, activityUuid: activityUuid},
+            success: function (response) {
+                if (response.indexOf && response.indexOf("http://") === 0) {
+                    document.querySelector(".button-msg-qrcode img").src = response;
+                } else {
+                    document.querySelector(".button-msg-qrcode img").src = JSON.parse(response || '{}').data;
+                }
+
+            }
+        });
+    }
+
+    /**
+     * 获取我的记录
+     * */
+    function getMyRecord() {
+        ajax({
+            url: API_PRICE_MY_RECORD,
+            data: {page: 1, pageSize: 200, deviceUuid: deviceUuid, activityUuid: activityUuid},
+            success: function (response) {
+                response = JSON.parse(response);
+                myRecords = (response.data).result || [];
+                var content = '';
+                if (myRecords.length > 0) {
+                    document.querySelector("#record-btn-container").classList.remove("hide");
+                    for(var i = 0; i < myRecords.length; i++) {
+                        var uuid = myRecords[i].uuid;
+                        var claimStatus = myRecords[i].claimStatus;
+                        var prizeName = myRecords[i].prizeName;
+                        var updateTime = myRecords[i].updateTime;
+                        content += '<button class="item"><i>' + (i + 1) + '</i><p>' + updateTime.substr(0, 10) + ' &nbsp;&nbsp;&nbsp;&nbsp;中奖ID：<font>' + uuid + '</font></p><p>抽取奖品：' + prizeName + '</p><p>' + getPrizeStatus(claimStatus) + '</p></button>';
+                    }
+                }
+                document.querySelector(".record-content").innerHTML = content;
+                if (content) {
+                    focusElement(document.querySelector(".record-content button"));
+                }
+            }
+        });
+    }
+
+    /**
+     * 假数据
+     * */
+    function getFakeData() {
+        ajax({
+            url: API_FAKE_DATA,
+            data: {deviceUuid: deviceUuid, activityUuid: activityUuid},
+            success: function (response) {
+                // 重新获取抽奖次数
+                fakeData = (JSON.parse(response) || {}).data || [];
+                var fakeDataHtml = "";
+                for(var i = 0; i < fakeData.length; i++) {
+                    var deviceId = fakeData[i].deviceId;
+                    var prizeName = fakeData[i].prizeName;
+                    var username = fakeData[i].username;
+                    var hideLen = deviceId.length / 3;
+                    deviceId = deviceId.substr(0, hideLen) + "***" + deviceId.substr(hideLen * 2, hideLen);
+                    fakeDataHtml += '<p><font>' + username + '</font><font>' +prizeName + '</font><font>' + deviceId + '</font></p>';
+                }
+                document.querySelector(".fake-data").innerHTML = fakeDataHtml;
+                scrollFakeData();
+            }
+        });
+    }
+
+    /**
+     * 抽奖次数
+     * */
+    function doTurntable() {
+        ajax({
+            url: API_PRICE_JACKPOT,
+            data: {id: pricesCount[0], activityUuid: activityUuid},
+            success: function (response) {
+                // 重新获取抽奖次数
+                getPricesCount();
+                response = JSON.parse(response);
+                var status = response.status;
+                if (status === 1) {
+                    prizeUuid = response.data.prizeUuid;
+                } else {
+                    handleResult();
+                }
+            }
+        });
+    }
+
+    function handleResult() {
+        status = STATUS_END;
+        randomStartTime = 0;
+        clearInterval(runtimer);
+        runtimer = 0;
+        alertPrice();
+    }
+
+    /**
+     * 获得抽奖机会
+     * */
+    function alertHaveChance() {
+        if (isAlert) {
+            return;
+        }
+        isAlert = true;
+        var btn = document.querySelector(".button-msg-have-chance");
+        showMask();
+        btn.classList.remove("hide");
+        focusElement(btn);
+    }
+
+    /**
+     * 中奖
+     * */
+    function alertPrice() {
+        if (!prizeName) {
+            return;
+        }
+        document.querySelector(".price-content").innerHTML = prizeName;
+        var btn = document.querySelector(".button-msg-price");
+        showMask();
+        btn.classList.remove("hide");
+        focusElement(btn);
+    }
+
+    /**
+     * 抽奖机会用完
+     * */
+    function alertDoneChance() {
+        if (status === STATUS_STARTING) {
+            return;
+        }
+        var btn = document.querySelector(".button-msg-done-chance");
+        showMask();
+        btn.classList.remove("hide");
+        focusElement(btn);
+        if (getHash() !== "doneChance") {
+            window.location.hash = "doneChance";
+        }
+        btn.onblur = function () {
+            if (getHash() === "doneChance") {
+                focusElement(btn);
+            }
+        }
+    }
+
+    /**
+     * 没有抽奖机会
+     * */
+    function alertNoChance() {
+        if (status === STATUS_STARTING) {
+            return;
+        }
+        var btn = document.querySelector(".button-msg-no-chance");
+        showMask();
+        btn.classList.remove("hide");
+        focusElement(btn);
+        if (getHash() !== "noneChance") {
+            window.location.hash = "noneChance";
+        }
+
+        btn.onblur = function () {
+            if (getHash() === "noneChance") {
+                focusElement(btn);
+            }
+        }
+    }
+
+    /**
+     * 支付二维码
+     * */
+    function alertQrCode() {
+        var btn = document.querySelector(".button-msg-qrcode");
+        showMask();
+        btn.classList.remove("hide");
+        focusElement(btn);
+        // if (getHash() !== "qrcode") {
+        //     window.location.hash = "qrcode";
+        // }
+    }
+
+    function hideChanceMsg() {
+        hideMask();
+        document.querySelector(".button-msg-price").classList.add("hide");
+        document.querySelector(".button-msg-have-chance").classList.add("hide");
+        document.querySelector(".button-msg-done-chance").classList.add("hide");
+        document.querySelector(".button-msg-no-chance").classList.add("hide");
+        document.querySelector(".button-msg-qrcode").classList.add("hide");
+        focusElement(document.querySelector(".start-btn"));
+    }
+
+    function showMask() {
+        document.querySelector(".mask").classList.remove("hide");
+    }
+    function hideMask() {
+        document.querySelector(".mask").classList.add("hide");
+    }
+
+    function showRecord() {
+        if (status !== STATUS_STARTING) {
+            currentPage = PAGE_RECORD;
+            window.location.hash = "record";
+        }
+    }
+
+    function hashChange() {
+        hideChanceMsg();
+        var hash = getHash();
+        // if (hash === "qrcode") {
+        //     alertQrCode();
+        // } else
+        if (hash === "doneChance") {
+            alertDoneChance();
+        } else if (hash === "noneChance") {
+            alertNoChance();
+        }
+
+        if (hash === "record") {
+            document.querySelector("#activity").classList.add("hide");
+            document.querySelector("#record").classList.remove("hide");
+            // document.querySelector(".device-id font").innerHTML = decodeURIComponent(deviceUuid);
+            getMyRecord();
+        } else {
+            document.querySelector("#activity").classList.remove("hide");
+            document.querySelector("#record").classList.add("hide");
+            // document.querySelector(".start-btn").focus();
+        }
+        if (!hash) {
+            focusElement(document.querySelector(".start-btn"));
+            getPricesCount();
+        }
+    }
+
+    var styleTop = 0;
+    function scrollFakeData() {
+        var container = document.querySelector(".fake-data");
+        if (!scrollTimer) {
+            scrollTimer = setInterval(function () {
+                styleTop -= 10;
+                if (Math.abs(styleTop) + 100 >= container.scrollHeight) {
+                    container.style.top = "0px";
+                    styleTop = 0;
+                } else {
+                    container.style.top = styleTop + "px";
+                }
+            }, 1000);
+        }
+    }
+
+    function focusElement(el) {
+        setTimeout(function () {
+            el.focus();
+        }, 50);
+    }
+
+    function getHash() {
+        return window.location.hash.replace(/#/g, "");
+    }
+    function getPrizeStatus(claimStatus) {
+        // "claimStatus": 3, // 奖品领取状态：0-未抽奖，1-未中奖，2-已中奖未领取，3-已领取, 4-正在抽
+        switch (claimStatus) {
+            case 0:
+                return "未抽奖";
+            case 1:
+                return "未中奖";
+            case 2:
+                return "已中奖未领取";
+            case 3:
+                return "已领取";
+            case 4:
+                return "正在抽";
+            default:
+                return "未知状态";
+        }
+    }
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return /*unescape(*/r[2]/*)*/;
+        }
+        return "";
+    }
+
+    function ajax(options) {
+        options = options || {};
+        options.type = (options.type || "post").toUpperCase();
+        options.dataType = options.dataType || "json";
+        var params = formatParams(options.data);
+        //创建xhr对象 - 非IE6
+        if (window.XMLHttpRequest) {
+            var xhr = new XMLHttpRequest();
+        } else { //IE6及其以下版本浏览器
+            var xhr = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        //GET POST 两种请求方式
+        if (options.type === "GET") {
+            xhr.open("GET", options.url, true);
+            xhr.setRequestHeader("terminalType", "ottWeb");
+            xhr.send(null);
+        } else {
+            xhr.open("POST", options.url, true);
+            //设置表单提交时的内容类型
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.setRequestHeader("terminalType", "ottWeb");
+            xhr.send(params);
+        }
+        //接收
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                var status = xhr.status;
+                if (status >= 200 && status < 300) {
+                    options.success && options.success(xhr.responseText);
+                } else {
+                    options.fail && options.fail(status);
+                }
+            }
+        }
+    }
+
+    //格式化参数
+    function formatParams(data) {
+        var arr = [];
+        for (var name in data) {
+            arr.push(encodeURIComponent(name) + "=" + encodeURIComponent(data[name]));
+        }
+        // arr.push(("v=" + Math.random()).replace(".", ""));
+        return arr.join("&");
+    }
+
+    function msg(str) {
+        var msgPan = document.querySelector(".msg");
+        msgPan.innerHTML = str;
+        msgPan.classList.remove("hide");
+        if (msgtimer) {
+            clearTimeout(msgtimer);
+            msgtimer = "";
+        }
+        msgtimer = setTimeout(function () {
+            msgPan.classList.add("hide");
+            msgtimer = "";
+        }, 3000);
+    }
+
+    function setSize() {
+        var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var remSize;
+        // 默认为宽度十分之一
+        // if (ww >= 768) {
+        remSize = ww / 32;
+        // } else {
+        //     remSize = ww / 10;
+        // }
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+</script>
+</html>

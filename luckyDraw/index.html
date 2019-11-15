@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>大转盘抽奖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="container">
+    <div class="vip-detail">
+        <header class="vip-headImg"></header>
+        <div class="vip-crown"></div>
+        <div class="vip-content">
+            <div class="vip-status">VIP会员<font>未激活</font></div>
+            <div class="vip-date">截止有效期 : <font>2019-11-08 14:24:52</font></div>
+        </div>
+    </div>
+    <div class="turntable-container">
+        <div class="turntable_bg"></div>
+        <div class="turntable"></div>
+        <button class="draw-btn btn-listening" onclick="startDraw()">
+            <div class="processing hide">
+                <div>抽奖</div>
+                <font>剩余<font style="font-size: 41px;" class="draw-count">0</font>次</font>
+            </div>
+            <div class="ending">
+                <p>活动</p>
+                <p>已结束</p>
+            </div>
+        </button>
+    </div>
+    <div class="bottom-btns">
+        <button class="btn-listening" onclick="activityRule()">活动规则</button>
+        <button class="btn-listening" onclick="prizeOrder()">抽奖记录</button>
+    </div>
+    <div class="winner-container">
+        <div class="winner-list">
+            <!--<p>头像 昵称 奖品名字</p>-->
+        </div>
+    </div>
+</div>
+<section class="msg hide">
+    <header class="msg-title">标题</header>
+    <div class="msg-content">标题内容</div>
+    <button class="msg-btn btn-listening" onclick="msgClick()">立即订购</button>
+    <div class="msg-back"></div>
+</section>
+<div class="mask hide"></div>
+<img class="loading hide" src="./img/loading.gif"/>
+
+<script src="./js/utils.js"></script>
+<script src="./js/config.js"></script>
+<script src="./js/msg.js"></script>
+<script src="./js/turntable.js"></script>
+<script src="./js/btnClick.js"></script>
+<script type="text/javascript">
+
+	if (CONFIG.ID) {
+		init();
+	} else {
+		MSG.showMsg('错误提示', '参数错误：没有id！');
+	}
+
+	function init() {
+		MSG.setLoading(true);
+		window.onhashchange = hashChange;
+		// 刷新抽奖次数
+		TURNTABLE.refreshDrawCount();
+		// 抽奖按钮获取焦点
+		focusElement(CONFIG.el_drawBtn);
+		// 初始化大转盘
+		TURNTABLE.init(function () {
+			MSG.setLoading();
+		});
+		// 初始化按钮焦点状态监听
+		initBtnStatusListening();
+		// 轮播中奖名单
+		getRunData();
+	}
+
+	/**
+	 * 假数据
+	 * */
+	function getRunData() {
+		ajax({
+			url: CONFIG.API.WORLD_RECORD,
+			data: {id: CONFIG.ID, pageSize: 20},
+			success: function (response) {
+				var fakeData = response.data || [];
+				var fakeDataHtml = "";
+				for (var i = 0; i < fakeData.length; i++) {
+					var prizeName = '硬件优惠券20元';
+					var username = fakeData[i].nickName;
+					fakeDataHtml += '<p><font><img src="./img/head.png" alt=""></font><font>' + username + '</font><font>' + prizeName + '</font></p>';
+				}
+				CONFIG.el_winnerList.innerHTML = fakeDataHtml;
+				scrollRunData();
+			}
+		});
+	}
+
+	/**
+	 * 中奖名单轮播
+	 */
+	var scrollTimer = null;
+	var styleTop = 0;
+
+	function scrollRunData() {
+		if (!scrollTimer) {
+			scrollTimer = setInterval(function () {
+				styleTop -= 10;
+				if (Math.abs(styleTop) + 100 >= CONFIG.el_winnerList.scrollHeight) {
+					CONFIG.el_winnerList.style.top = "0px";
+					styleTop = 0;
+				} else {
+					CONFIG.el_winnerList.style.top = styleTop + "px";
+				}
+			}, 1000);
+		}
+	}
+
+	// 初始化按钮焦点状态监听
+	function initBtnStatusListening() {
+		for (var i = 0; i < CONFIG.el_btnListening.length; i++) {
+			btnListening(CONFIG.el_btnListening[i]);
+		}
+	}
+
+	function hashChange() {
+		var hash = getHash();
+		if (!hash) {
+			MSG.hideMsg();
+			focusElement(CONFIG.el_drawBtn);
+		}
+	}
+</script>
+</body>
+</html>

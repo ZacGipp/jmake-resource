@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>关于我们</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./style/aboutUs.css">
+</head>
+<body>
+<div class="container">
+    <div>
+        <p class="title">关于我们</p>
+        <p class="content">成都金麦客科技有限公司专注于家庭互联网娱乐平台开发及运营。公司以家庭K歌为核心，秉承“ 把专业卡拉OK带回家”的市场理念，专注于极致的用户体验、平台拥有超过30万首的正版MV  K歌曲库，所有曲库均来源于北京雷客天地科技有限公司。</p>
+        <p class="content">同时，金麦客与全国多家知名音响品牌强强联手打造多款K歌产品，让用户足不出户就能拥有KTV的体验。内容正规合法，旨在打造全新的家庭互联网娱乐平台。</p>
+        <p class="content">“CIBN”仅代表国广东方网络（北京）有限公司为集成播控方，具体版权责任由天津金麦客科技有限公司负责。</p>
+        <p class="qa">
+            <img src="../../img/ott/qa.png"/>
+        </p>
+        <p class="qa">
+            <span>
+                <font>金麦客官网</font>
+                <font style="font-size: .27rem"><i style="font-style: normal; color: #f95c2e">扫码了解- </i>更多产品信息</font>
+            </span>
+        </p>
+        <hr>
+        <p class="info">
+            <font>
+                官方网站：www.j-make.cn
+            </font>
+            <font>
+                客服电话：400-028-6969（早上09:00-晚上19:00）
+            </font>
+        </p>
+    </div>
+</div>
+</body>
+<script>
+  function setSize() {
+    var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var remSize;
+    // 默认为宽度十分之一
+    // if (ww >= 768) {
+    remSize = ww / 32;
+    // } else {
+    //     remSize = ww / 10;
+    // }
+    document.documentElement.style.fontSize = remSize + "px";
+  }
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(setSize, 300);
+  });
+  setSize();
+</script>
+</html>

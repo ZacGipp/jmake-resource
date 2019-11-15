@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+
+        .container {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .pointer {
+            top: 50%;
+            margin-top: -20px;
+            border: none;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0,0,0,.4);
+        }
+
+        .pointer img {
+            height: 100%;
+        }
+
+        .pointer.left {
+            left: 1%;
+        }
+
+        .pointer.right {
+            right: 33%;
+        }
+
+        .items-container {
+            top: 0;
+            left: 0;
+            height: 100%;
+            transition:all 1s ease;
+            position: absolute;
+            display: inline-flex;
+        }
+
+        .count-container {
+            left: 32.5%;
+            color: white;
+            bottom: 5%;
+            font-size: .6rem;
+            position: absolute;
+            text-shadow: 1px 1px 1px black;
+        }
+
+        .img-container {
+            height: 100%;
+            border: none;
+        }
+
+        .img-container img {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <button class="pointer left" onclick="handelSlide(1)"><img src="../../img/ott/tcl/arrow-left.png" alt=""></button>
+    <div class="items-container">
+        <div class="img-container">
+            <img src="../../img/ott/tcl/TCL1.png">
+        </div>
+        <div class="img-container">
+            <img src="../../img/ott/tcl/TCL2.png">
+        </div>
+        <div class="img-container">
+            <img src="../../img/ott/tcl/TCL1.png">
+        </div>
+    </div>
+    <button class="pointer right" onclick="handelSlide()"><img src="../../img/ott/tcl/arrow-right.png" alt=""></button>
+    <div class="count-container">
+
+    </div>
+</div>
+</body>
+<script>
+    var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    function setSize() {
+        var remSize;
+        // 默认为宽度十分之一
+        // if (ww >= 768) {
+        remSize = ww / 32;
+        // } else {
+        //     remSize = ww / 10;
+        // }
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+
+    var SLIDE_DURATION = 5;
+    var HANDEL_SLIDE_CIRCLE = true;
+    var slideTimeCount = 1;
+    var currentIndex = 0;
+    var itemsContainer = document.querySelector(".items-container");
+    var allItems = document.querySelectorAll(".img-container");
+    var countContainer = document.querySelector(".count-container");
+    var itemCount = allItems.length - 1;
+    function slideLeft(circle) {
+        if (currentIndex !== 0) {
+            currentIndex --;
+            itemsContainer.style.left = -currentIndex * ww + "px";
+        } else if (circle) {
+            currentIndex = allItems.length - 1;
+            itemsContainer.style.left = -itemCount * ww + "px";
+        }
+        countIndex();
+    }
+
+    function slideRight(circle) {
+        if (currentIndex < itemCount) {
+            currentIndex ++;
+            itemsContainer.style.left = -currentIndex * ww + "px";
+        } else if (circle) {
+            currentIndex = 0;
+            itemsContainer.style.left = "0px";
+        }
+        countIndex();
+    }
+
+    function slide() {
+        setInterval(function () {
+            if (slideTimeCount++ % SLIDE_DURATION === 0) {
+                slideRight(true);
+            }
+        }, 1000);
+    }
+
+    function countIndex() {
+        setTimeout(function () {
+            countContainer.innerHTML = currentIndex + 1 + " / " + (itemCount + 1);
+        }, 1000);
+    }
+    function handelSlide(way) {
+        if (way === 1) {
+            slideLeft(HANDEL_SLIDE_CIRCLE);
+        } else {
+            slideRight(HANDEL_SLIDE_CIRCLE);
+        }
+        slideTimeCount = 1;
+    }
+
+    countIndex();
+    slide();
+
+</script>
+</html>

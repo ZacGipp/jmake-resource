@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>支付回调</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+        }
+        p:not(.title){
+            font-size: .8rem;
+            width: 100%;
+            text-align: left;
+            text-indent: 31%;
+            margin: .1rem 0;
+        }
+        html {
+            background: url("../../../img/ott/chongqing/pay-call-back-bg.png") bottom;
+            background-size: cover;
+        }
+        .container{
+            display: flex;
+            justify-items: center;
+            width: 100%;
+            height: 100%;
+            flex-flow: column;
+            align-items: center;
+        }
+        .title{
+            width: 100%;
+            font-size: .6rem;
+            margin: 1rem 0 1.4rem 0;
+        }
+        .status{
+            width: 56%;
+            height: 40%;
+            background-size: auto 40%!important;
+        }
+        .status.cancel{
+            background: url("../../../img/ott/chongqing/cancel.png") no-repeat 10% center;
+        }
+        .status.fail{
+            background: url("../../../img/ott/chongqing/fail.png") no-repeat 10% center;
+        }
+        .status.success{
+            background: url("../../../img/ott/chongqing/success.png") no-repeat 10% center;
+        }
+        .status-info{
+            border-radius: 12px;
+            background-color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-flow: column;
+            text-align: left;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .hide{
+            display: none;
+        }
+        p.info font{
+            margin: 0 .4rem;
+        }
+        hr{
+            width: 56%;
+            margin: .4rem auto .2rem auto;
+            border: none;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="title"></p>
+        <div class="status">
+            <div class="status-info fail-info hide">
+                <p style="font-weight: bold;" class="fail-title">非常抱歉</p>
+                <p style="font-weight: bold;" class="fail-sub-title">会员服务购买失败</p>
+                <p class="error-code-box" style="font-size: .6rem; margin-top: .5rem;">错误编码：<font class="error-code"></font></p>
+            </div>
+            <div class="status-info success-info hide">
+                <p style="font-size: .96rem; text-shadow: -3px 0px 6px #d91800, 0px -3px 6px #d91800, 3px 1px 6px #d91800, 0 3px 6px #d91800; margin-bottom: .3rem;">恭喜您成为<font class="product-name"></font></p>
+                <p style="font-size: .6rem" class="payment hide">支付金额：￥<font ></font></p>
+                <p style="font-size: .6rem" class="end-time hide">会员有效期：<font></font></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 过期时间——expireDate，产品名—— productName，价格——price
+    // 状态码——status
+    var expireDate = decodeURI(getQueryString("expireDate"));
+    var productName = decodeURI(getQueryString("productName") || "金麦客VIP会员");
+    var price = getQueryString("price");
+    var status = getQueryString("status");
+
+    $(".error-code").innerHTML = status;
+    $(".payment font").innerHTML = price;
+    // $(".start-time").innerHTML = parseTime(new Date(), "{y}/{m}/{d}");
+    $(".end-time font").innerHTML = expireDate;
+    $(".product-name").innerHTML = productName;
+    if (status == 200) {
+        $(".title").innerHTML = "支付成功";
+        $(".status").classList.add("success");
+        $(".success-info").classList.remove("hide");
+        // if (price) {
+        //     $(".payment").classList.remove("hide");
+        // }
+        // if (expireDate) {
+        //     $(".end-time").classList.remove("hide");
+        // }
+    } else {
+        if (status == 500) {
+            $(".title").innerHTML = "支付取消";
+            $(".fail-title").innerHTML = "更多精彩";
+            $(".fail-sub-title").innerHTML = "欢迎随时再来看看";
+        		$(".status").classList.add("cancel");
+            $(".error-code-box").classList.add("hide");
+        } else {
+            $(".title").innerHTML = "支付失败";
+        		$(".status").classList.add("fail");
+        }
+        $(".fail-info").classList.remove("hide");
+
+    }
+
+    callOtt();
+
+    function callOtt() {
+        window.JSCampaign && window.JSCampaign.updateUser && window.JSCampaign.updateUser();
+    }
+
+    function setSize() {
+        var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        var remSize;
+        // 默认为宽度十分之一
+        // if (ww >= 768) {
+            remSize = ww / 32;
+        // } else {
+        //     remSize = ww / 10;
+        // }
+        document.documentElement.style.fontSize = remSize + "px";
+    }
+    var timer;
+    window.addEventListener('resize', function () {
+        clearTimeout(timer);
+        timer = setTimeout(setSize, 300);
+    });
+    setSize();
+
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r !== null) {
+            return /*unescape(*/r[2]/*)*/;
+        }
+        return "";
+    }
+
+    function $(id) {
+        return document.querySelector(id);
+    }
+</script>
+</html>
