@@ -45,13 +45,33 @@
 </div>
 <section class="msg hide">
     <header class="msg-title">标题</header>
-    <div class="msg-content">标题内容</div>
-    <button class="msg-btn btn-listening" onclick="msgClick()">立即订购</button>
-    <div class="msg-back"></div>
+    <div class="msg-content">
+        <div class="msg-prize-img"></div>
+        <div id="qrcode"></div>
+        <div class="msg-detail">登录后才能抽奖哦!</div>
+        <div class="msg-detail-qrcode">微信扫码领取</div>
+        <div class="msg-prize-type-no-chance-detail msg-prize-type-no-chance-detail-show">
+            <p>抽奖机会用完了^^</p>
+            <p>购买会员，再来一次</p>
+        </div>
+        <div class="msg-prize-type-device-detail">
+            <div class="msg-detail-code">XXXXXXXXXXXXXXXXXXXX</div>
+            <p class="msg-detail-1">请于50天内，凭以上提货码，联系客服进行奖品兑换！</p>
+            <p class="msg-detail-2">
+                <span><font>客服热线：</font>400-028-6969</span>
+                <span><font>客服微信：</font>y15882404890</span>
+            </p>
+            <p class="msg-detail-3">温馨提示：请牌照保存，便于核对提货人信息</p>
+        </div>
+        <button class="msg-btn btn-listening" onclick="msgClick()">按钮</button>
+        <button class="msg-btn msg-btn2 btn-listening" onclick="msgClick2()">现在使用</button>
+        <div class="msg-back"></div>
+    </div>
 </section>
 <div class="mask hide"></div>
 <img class="loading hide" src="./img/loading.gif"/>
 
+<script src="./dep/qrcode.min.js"></script>
 <script src="./js/utils.js"></script>
 <script src="./js/config.js"></script>
 <script src="./js/msg.js"></script>
@@ -62,7 +82,7 @@
 	if (CONFIG.ID) {
 		init();
 	} else {
-		MSG.showMsg('错误提示', '参数错误：没有id！');
+		MSG.error('缺少参数id');
 	}
 
 	function init() {
@@ -76,8 +96,6 @@
 		TURNTABLE.init(function () {
 			MSG.setLoading();
 		});
-		// 初始化按钮焦点状态监听
-		initBtnStatusListening();
 		// 轮播中奖名单
 		getRunData();
 	}
@@ -120,13 +138,6 @@
 					CONFIG.el_winnerList.style.top = styleTop + "px";
 				}
 			}, 1000);
-		}
-	}
-
-	// 初始化按钮焦点状态监听
-	function initBtnStatusListening() {
-		for (var i = 0; i < CONFIG.el_btnListening.length; i++) {
-			btnListening(CONFIG.el_btnListening[i]);
 		}
 	}
 

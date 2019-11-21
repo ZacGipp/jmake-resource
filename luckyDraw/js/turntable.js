@@ -6,8 +6,9 @@ var TURNTABLE = {
 	clock: null,
 	currentIndex: 0,
 	prizeList: [],
+	jackpot: {},
 	prizeUuid: null,
-	prizeName: '',
+	prizeData: '',
 	drawCount: 0,
 	prizeLength: 9,
 	/**
@@ -43,11 +44,9 @@ var TURNTABLE = {
 	},
 	/*抽奖*/
 	draw: function () {
-		if (TURNTABLE.drawCount > 0 && TURNTABLE.prizeList.length > 0) {
+		if (TURNTABLE.prizeList.length > 0) {
 			TURNTABLE.randomStartTime = Date.now();
 			run();
-		} else {
-			MSG.showMsg('抽奖结束', '没有机会了哦！')
 		}
 	}
 };
@@ -71,8 +70,8 @@ function run() {
 			TURNTABLE.clock = Date.now();
 			var prizeId = activeItem.dataset.id;
 
-			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid && TURNTABLE.prizeUuid === prizeId) {
-				TURNTABLE.prizeName = TURNTABLE.prizeUuid;
+			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid && TURNTABLE.prizeUuid.toString() === prizeId) {
+				TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
 				handleResult();
 			}
 		});
@@ -84,7 +83,61 @@ function handleResult() {
 		TURNTABLE.randomStartTime = 0;
 		clearInterval(TURNTABLE.runtimer);
 		TURNTABLE.runtimer = 0;
-		MSG.showMsg('抽奖结果', '恭喜抽到了奖品：' + TURNTABLE.prizeName);
+		var showMsgConfig = {};
+		switch (TURNTABLE.prizeData.type) {
+			case 0:
+				showMsgConfig = {
+					prizeType: 'not-won',
+					title: '再接再厉',
+					detail: '差一点就中奖啦，再接再厉',
+					btnLabel: '继续订购',
+					btnClick: goPayPage,
+				};
+				break;
+			case 1:
+				showMsgConfig = {
+					prizeType: 'days',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.prizeData.bigImgUrl,
+					detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime,
+					btnLabel: '确认',
+					btnClick: function () {
+						setHash('');
+					},
+				};
+				break;
+			case 2:
+				showMsgConfig = {
+					prizeType: 'device',
+					title: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+					img: TURNTABLE.prizeData.bigImgUrl,
+				};
+				break;
+			case 3:
+				showMsgConfig = {
+					prizeType: 'vip',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.prizeData.bigImgUrl,
+					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+					btnLabel: '以后使用',
+					btnClick: function () {
+						alert('此处跳转我的奖品');
+					},
+				};
+				break;
+			case 4:
+			case 5:
+				MSG.showMsg({
+					prizeType: 'qrcode',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.jackpot.url,
+					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+				});
+				break;
+			default:
+				break;
+		}
+		MSG.showMsg(showMsgConfig);
 		TURNTABLE.prizeUuid = '';
 	});
 }
@@ -94,7 +147,8 @@ function jackpot() {
 		url: CONFIG.API.JACKPOT,
 		data: {id: CONFIG.ID},
 		success: function (response) {
-			TURNTABLE.prizeUuid = response.data;
+			TURNTABLE.jackpot = response.data || {};
+			TURNTABLE.prizeUuid = TURNTABLE.jackpot.prizeId;
 		}
 	});
 }

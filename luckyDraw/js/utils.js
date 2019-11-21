@@ -36,7 +36,7 @@ function showElement(el) {
 	el.classList.remove("hide");
 }
 
-function setActivityStatus (bool) { // 设置活动状态
+function setActivityStatus(bool) { // 设置活动状态
 	if (bool) {
 		hideElement(CONFIG.el_processing);
 		showElement(CONFIG.el_ending);
@@ -81,7 +81,36 @@ function ajax(options) {
 				} catch (e) {
 					response = {};
 				}
-				if (response.status === 3014) CONFIG.ENDING = true;
+
+				switch (response.status) {
+					case 1:
+						break;
+					case 3104:
+						CONFIG.ENDING = true;
+						break;
+					case 3107:
+						MSG.noChance();
+						break;
+					case 3108:
+						MSG.notWon();
+						break;
+					case 4001:
+						MSG.showMsg({
+							msgType: 1,
+							detail: '登录之后才能抽奖哦!',
+							btnLabel: '立即登录',
+							btnClick: function () {
+								goOTTPage({
+									pageCode: "0009",
+									pageName: "登录页面"
+								})
+							}
+						});
+						break;
+					default:
+						MSG.error(response.msg);
+						break;
+				}
 				setActivityStatus(CONFIG.ENDING);
 				options.success && options.success(response);
 			} else {
@@ -101,12 +130,27 @@ function formatParams(data) {
 	return arr.join("&");
 }
 
-function btnListening(el, focusClass) {
-	if (!focusClass) focusClass = 'btn-focus';
-	el.onfocus = function (e) {
-		e.target.classList.add(focusClass);
-	};
-	el.onblur = function (e) {
-		e.target.classList.remove(focusClass);
-	};
+function goPayPage() {
+	goOTTPage({
+		pageCode: "0013",
+		pageName: "支付页面"
+	});
+}
+
+function goOTTPage(json) {
+	// type, targetJson, pageName
+	window.JSCampaign && window.JSCampaign.pageOpen && window.JSCampaign.pageOpen(
+		"pageOpen",
+		JSON.stringify(json),
+		""
+	);
+}
+
+function makeQrcodeCode(url) {
+
+	if (!url) {
+		return;
+	}
+
+	CONFIG.qrcode.makeCode(url);
 }
