@@ -9,12 +9,12 @@ function startDraw() {
 
 function activityRule() {
 	if (CONFIG.loading) return;
-	// MSG.showMsg('活动规则', 'lsjdlsjldjfsldjflsjdlfjlajsldjfalsdjlajsdlj');
+	MSG.showPopup('活动规则', 'rule-pop');
 }
 
 function prizeOrder() {
 	if (CONFIG.loading) return;
-	// MSG.showMsg('抽奖记录', 'lasjdljasldjfalsjdlasjdlfajsdlfjasldjflasjdflasj');
+	MSG.showPopup('活动中奖记录');
 }
 
 function msgClick() {

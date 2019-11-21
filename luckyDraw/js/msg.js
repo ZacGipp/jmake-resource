@@ -12,17 +12,36 @@ var MSG = {
 		if (config.btnLabel) CONFIG.el_msgBtn.textContent = config.btnLabel || '按钮';
 		if (config.btnClick) MSG.btnClick = config.btnClick;
 
-		showElement(CONFIG.el_msg);
-		this.setMask.call(MSG, true);
-		setHash("msg");
+		MSG.show(CONFIG.el_msg, 'msg');
 		focusElement(CONFIG.el_msgBtn);
 	},
 	hideMsg: function () {
-		this.setMask.call(MSG);
 		if (CONFIG.el_msg.classList.contains('msg-type2')) CONFIG.el_msg.className = 'msg';
 		if (CONFIG.el_msgContent.className.indexOf('msg-prize-type') > -1) CONFIG.el_msgContent.className = 'msg-content';
-		hideElement(CONFIG.el_msg);
 		CONFIG.qrcode.clear();
+		MSG.hide(CONFIG.el_msg);
+	},
+	showPopup: function (title, type) {
+		CONFIG.el_popupTitle.innerText = title;
+		type === 'rule-pop' ? showElement(CONFIG.el_rulePop) : showElement(CONFIG.el_jackpotRecord);
+		MSG.show(CONFIG.el_popup, 'popup');
+		focusElement(CONFIG.el_jackpotNav[0]);
+	},
+	hidePopup: function () {
+		hideElement(CONFIG.el_rulePop);
+		hideElement(CONFIG.el_jackpotRecord);
+		MSG.hide(CONFIG.el_popup);
+	},
+	show: function (el, hash) {
+		showElement(el);
+		MSG.setMainBtnsDisabled(true);
+		MSG.setMask(true);
+		setHash(hash);
+	},
+	hide: function (el) {
+		hideElement(el);
+		MSG.setMainBtnsDisabled();
+		MSG.setMask();
 		setHash("");
 	},
 	setLoading: function (bool) {
@@ -32,17 +51,14 @@ var MSG = {
 			? showElement(CONFIG.el_loading)
 			: hideElement(CONFIG.el_loading);
 	},
-
 	setMask: function (bool) {
 		bool
 			? showElement(CONFIG.el_mask)
 			: hideElement(CONFIG.el_mask);
 	},
-
 	btnClick: function () {
 		throw new Error('未定义按钮事件');
 	},
-
 	error: function (msg) {
 		MSG.showMsg({
 			detail: msg || '服务器错误！',
@@ -66,6 +82,12 @@ var MSG = {
 			btnLabel: '继续订购',
 			btnClick: goPayPage,
 		});
-	}
+	},
 
+	setMainBtnsDisabled: function (bool) {
+		CONFIG.el_drawBtn.disabled = bool;
+		for (var i = 0; i < CONFIG.el_bottomBtns.children.length; i++) {
+			CONFIG.el_bottomBtns.children[i].disabled = bool;
+		}
+	}
 };

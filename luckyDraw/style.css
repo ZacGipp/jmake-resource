@@ -567,6 +567,90 @@ html, body {
     display: none;
 }
 
+.popup {
+    position: absolute;
+    top: calc(50% - 346px);
+    left: calc(50% - 556px);
+    width: 1112px;
+    height: 692px;
+    background: url("./img/rule_bg.png") no-repeat center;
+    background-size: cover;
+    z-index: 10;
+}
+
+.popup-title {
+    margin: 48px 0 30px;
+    font-size: 36px;
+    color: #260847;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup .msg-back {
+    bottom: -60px;
+}
+
+.jackpot-record {
+    margin-left: 130px;
+    height: 520px;
+    overflow: auto;
+}
+.jackpot-item {
+    display: flex;
+    white-space: nowrap;
+}
+.jackpot-item-left {
+    flex: 0 0 10%;
+}
+
+.jackpot-nav {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #d2d2d2;
+}
+.jackpot-line {
+    margin-top: -5px;
+    margin-left: 13px;
+    width: 5px;
+    height: 103px;
+    background-color: #d2d2d2;
+}
+
+.jackpot-nav-active {
+    background-color: #f03141;
+}
+
+.jackpot-item-right {
+    flex: 0 0 80%;
+}
+.jackpot-date {
+    font-size: 16px;
+    color: #4c3560;
+    line-height: 30px;
+}
+
+.jackpot-detail {
+    padding-left: 25px;
+    width: 753px;
+    height: 80px;
+    border-radius: 8px;
+    background-color: #f8dece;
+    box-sizing: border-box;
+}
+
+.jackpot-detail-name {
+    line-height: 48px;
+    font-size: 24px;
+    color: #ff6832;
+    font-weight: bold;
+}
+
+.jackpot-expiretime {
+    font-size: 16px;
+    color: #ff6832;
+}
+
 .mask {
     left: 0;
     top: 0;

@@ -14,7 +14,13 @@ var CONFIG = {
 	el_msgDetail: document.querySelector('.msg-detail'),
 	el_msgBtn: document.querySelector('.msg-btn'),
 	el_msgPrizeImg: document.querySelector('.msg-prize-img'),
+	el_popup: document.querySelector('.popup'),
+	el_popupTitle: document.querySelector('.popup-title'),
+	el_jackpotNav: [],
+	el_jackpotRecord: document.querySelector('.jackpot-record'),
+	el_rulePop: document.querySelector('.rule-pop'),
 	el_drawCount: document.querySelector('.draw-count'),
+	el_bottomBtns: document.querySelector('.bottom-btns'),
 	el_winnerList: document.querySelector('.winner-list'),
 	el_turntable: document.querySelector('.turntable'),
 	el_loading: document.querySelector('.loading'),
@@ -25,7 +31,8 @@ var CONFIG = {
 	DOMAIN: 'http://bmstest.j-make.com.cn/owb',
 	// DOMAIN: 'http://portalmy.j-make.cn',
 	API: {
-		RUN_DATA: '/luckyspin/worldrecord',
+		// 用户信息
+		USER_INFO: '/user/info',
 		// 查询还有多少次 参数id
 		CHANCE: '/luckyspin/chance',
 		// 抽奖 参数id

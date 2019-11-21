@@ -85,7 +85,7 @@ function ajax(options) {
 				switch (response.status) {
 					case 1:
 						break;
-					case 3104:
+					case 3014:
 						CONFIG.ENDING = true;
 						break;
 					case 3107:
