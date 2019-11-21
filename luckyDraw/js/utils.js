@@ -88,11 +88,10 @@ function ajax(options) {
 					case 3014:
 						CONFIG.ENDING = true;
 						break;
-					case 3107:
+					case 3017:
 						MSG.noChance();
 						break;
-					case 3108:
-						MSG.notWon();
+					case 3018:
 						break;
 					case 4001:
 						MSG.showMsg({
@@ -128,6 +127,10 @@ function formatParams(data) {
 	}
 	// arr.push(("v=" + Math.random()).replace(".", ""));
 	return arr.join("&");
+}
+
+function pageBack() {
+	window.history.back();
 }
 
 function goPayPage() {

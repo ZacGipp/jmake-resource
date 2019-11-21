@@ -38,7 +38,7 @@ html, body {
 }
 
 .vip-headImg {
-    display: inline-block;
+    float: left;
     width: 62px;
     height: 62px;
     border-radius: 50%;
@@ -47,19 +47,23 @@ html, body {
 }
 
 .vip-content {
-    display: inline-block;
+    float: right;
     height: 62px;
     color: #fff4ff;
 }
 
-.vip-status {
+.vip-nickname {
     font-size: 31.5px;
     line-height: 38px;
 }
 
-.vip-status font {
-    position: absolute;
-    top: 4px;
+.vip-nickname-only {
+    line-height: 62px;
+}
+
+.vip-status {
+    position: relative;
+    top: -8px;
     display: inline-block;
     padding: 0 15px;
     margin-bottom: 5px;
@@ -321,7 +325,8 @@ html, body {
     margin-left: calc(50% - 224px);
     width: 448px;
     height: 180px;
-    background: url('./img/big_prize.png') no-repeat;
+    /*background: url('./img/big_prize.png') no-repeat;*/
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -342,7 +347,7 @@ html, body {
     bottom: -48px;
     left: calc(50% - 212.5px);
     width: 425px;
-    height: 83px;
+    height: 82px;
     font-size: 48px;
     line-height: 85px;
     color: #dd310c;
@@ -423,9 +428,11 @@ html, body {
 }
 
 .msg-prize-type-vip .msg-btn {
+    bottom: -58px;
     left: 0;
     width: 326px;
-    height: 101px;
+    height: 100px;
+    background-image: url("./img/msg_btn_short.png");
 }
 
 .msg-prize-type-vip .msg-btn2 {

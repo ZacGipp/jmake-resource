@@ -3,6 +3,11 @@ var CONFIG = {
 	loading: false,
 	ENDING: false, // 活动结束
 
+	el_vipNickname: document.querySelector('.vip-nickname'),
+	el_vipStatus: document.querySelector('.vip-status'),
+	el_vipDate: document.querySelector('.vip-date'),
+	el_vipDateTime: document.querySelector('.vip-date font'),
+	el_vipHeadImg: document.querySelector('.vip-headImg'),
 	el_btnListening: document.querySelectorAll('.btn-listening'),
 	el_drawBtn: document.querySelector('.draw-btn'),
 	el_processing: document.querySelector('.processing'),

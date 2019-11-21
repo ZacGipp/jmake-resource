@@ -15,8 +15,11 @@
         <header class="vip-headImg"></header>
         <div class="vip-crown"></div>
         <div class="vip-content">
-            <div class="vip-status">VIP会员<font>未激活</font></div>
-            <div class="vip-date">截止有效期 : <font>2019-11-08 14:24:52</font></div>
+            <div>
+                <font class="vip-nickname"></font>
+                <font class="vip-status hide"></font>
+            </div>
+            <div class="vip-date hide">截止有效期 : <font></font></div>
         </div>
     </div>
     <div class="turntable-container">
@@ -105,7 +108,43 @@
 		// 轮播中奖名单
 		getRunData();
 		getJackpotRecord();
+        getUserInfo();
 	}
+
+    /**
+     * 用户信息
+     */
+    function getUserInfo() {
+        ajax({
+            url: CONFIG.API.USER_INFO,
+            data: {id: CONFIG.ID},
+            success: function (response) {
+                var userInfo = response.data || {};
+                if (userInfo.headerImg) CONFIG.el_vipHeadImg.style.backgroundImage = 'url(' + userInfo.headerImg + ')';
+                var nickname = userInfo.nickname;
+                CONFIG.el_vipNickname.innerText = (nickname.length > 8 ? (nickname.slice(0, 4) + '****' + nickname.slice(-4)) : nickname) || '匿名';
+	            // vipStatus //VIP状态，-1从未激活，0已过期，1是VIP, -2重庆连续包月欠费
+                switch (userInfo.vipStatus) {
+                    case -1:
+                    	CONFIG.el_vipNickname.classList.add('vip-nickname-only');
+                        showElement(CONFIG.el_vipStatus);
+	                    CONFIG.el_vipStatus.innerText = '未激活';
+	                    break;
+	                case 0:
+                        CONFIG.el_vipNickname.classList.add('vip-nickname-only');
+                        showElement(CONFIG.el_vipStatus);
+                        CONFIG.el_vipStatus.innerText = '已过期';
+		                break;
+	                case 1:
+	                	showElement(CONFIG.el_vipDate);
+                        CONFIG.el_vipDateTime.innerText = userInfo.vipExpireTime;
+		                break;
+                    default:
+                  	    break;
+                }
+            }
+        });
+    }
 
 	/**
 	 * 个人中奖记录

@@ -1,4 +1,5 @@
 var TURNTABLE = {
+	STOP_UUID: 999999999,
 	runtimer: null,
 	RANDOM_COUNT: 10,
 	FAKE_RANDOM_SPEED: 500,
@@ -48,7 +49,7 @@ var TURNTABLE = {
 			TURNTABLE.randomStartTime = Date.now();
 			run();
 		}
-	}
+	},
 };
 
 function run() {
@@ -68,10 +69,10 @@ function run() {
 			var activeItem = document.querySelector(".item-" + inIndex);
 			activeItem.classList.add("active-prize");
 			TURNTABLE.clock = Date.now();
-			var prizeId = activeItem.dataset.id;
+			var prizeId = Number(activeItem.dataset.id || '');
 
-			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid && TURNTABLE.prizeUuid.toString() === prizeId) {
-				TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
+			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid && (TURNTABLE.prizeUuid === prizeId || TURNTABLE.prizeUuid === TURNTABLE.STOP_UUID)) {
+				if (TURNTABLE.prizeUuid !== TURNTABLE.STOP_UUID) TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
 				handleResult();
 			}
 		});
@@ -84,58 +85,69 @@ function handleResult() {
 		clearInterval(TURNTABLE.runtimer);
 		TURNTABLE.runtimer = 0;
 		var showMsgConfig = {};
-		switch (TURNTABLE.prizeData.type) {
-			case 0:
-				showMsgConfig = {
-					prizeType: 'not-won',
-					title: '再接再厉',
-					detail: '差一点就中奖啦，再接再厉',
-					btnLabel: '继续订购',
-					btnClick: goPayPage,
-				};
-				break;
-			case 1:
-				showMsgConfig = {
-					prizeType: 'days',
-					title: '恭喜您中奖啦！',
-					img: TURNTABLE.prizeData.bigImgUrl,
-					detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime,
-					btnLabel: '确认',
-					btnClick: function () {
-						setHash('');
-					},
-				};
-				break;
-			case 2:
-				showMsgConfig = {
-					prizeType: 'device',
-					title: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-					img: TURNTABLE.prizeData.bigImgUrl,
-				};
-				break;
-			case 3:
-				showMsgConfig = {
-					prizeType: 'vip',
-					title: '恭喜您中奖啦！',
-					img: TURNTABLE.prizeData.bigImgUrl,
-					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-					btnLabel: '以后使用',
-					btnClick: function () {
-						alert('此处跳转我的奖品');
-					},
-				};
-				break;
-			case 4:
-			case 5:
-				MSG.showMsg({
-					prizeType: 'qrcode',
-					title: '恭喜您中奖啦！',
-					img: TURNTABLE.jackpot.url,
-					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-				});
-				break;
-			default:
-				break;
+		if (TURNTABLE.prizeUuid !== TURNTABLE.STOP_UUID) {
+			switch (TURNTABLE.prizeData.type) {
+				case 0:
+					showMsgConfig = {
+						prizeType: 'not-won',
+						title: '再接再厉',
+						detail: '差一点就中奖啦，再接再厉',
+						btnLabel: TURNTABLE.drawCount > 0 ? '继续抽奖' : '继续订购',
+						btnClick: TURNTABLE.drawCount > 0 ? pageBack : goPayPage,
+					};
+					break;
+				case 1:
+					showMsgConfig = {
+						prizeType: 'days',
+						title: '恭喜您中奖啦！',
+						img: TURNTABLE.prizeData.bigImgUrl,
+						detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime,
+						btnLabel: '确认',
+						btnClick: pageBack,
+					};
+					break;
+				case 2:
+					showMsgConfig = {
+						prizeType: 'device',
+						title: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+						img: TURNTABLE.prizeData.bigImgUrl,
+					};
+					break;
+				case 3:
+					showMsgConfig = {
+						prizeType: 'vip',
+						title: '恭喜您中奖啦！',
+						img: TURNTABLE.prizeData.bigImgUrl,
+						detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+						btnLabel: '以后使用',
+						btnClick: function () {
+							alert('此处跳转我的奖品');
+						},
+					};
+					break;
+				case 4:
+				case 5:
+					showMsgConfig = {
+						prizeType: 'qrcode',
+						title: '恭喜您中奖啦！',
+						img: TURNTABLE.jackpot.url,
+						detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+					};
+					break;
+				default:
+					break;
+			}
+		} else {
+			var preActiveItem = document.querySelector(".active-prize");
+			if (preActiveItem) {
+				preActiveItem.classList.remove("active-prize");
+			}
+			showMsgConfig = {
+				msgType: 1,
+				detail: '奖品没有啦，稍后再试',
+				btnLabel: '继续抽奖',
+				btnClick: pageBack,
+			};
 		}
 		MSG.showMsg(showMsgConfig);
 		TURNTABLE.prizeUuid = '';
@@ -147,6 +159,10 @@ function jackpot() {
 		url: CONFIG.API.JACKPOT,
 		data: {id: CONFIG.ID},
 		success: function (response) {
+			if (response.status === 3018) {
+				TURNTABLE.prizeUuid = TURNTABLE.STOP_UUID;
+				return;
+			}
 			TURNTABLE.jackpot = response.data || {};
 			TURNTABLE.prizeUuid = TURNTABLE.jackpot.prizeId;
 		}
