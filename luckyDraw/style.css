@@ -660,6 +660,8 @@ html, body {
 
 .rule-pop {
     padding: 0 80px;
+    height: 520px;
+    overflow: auto;
     font-size: 20px;
     color: #260847;
     line-height: 48px;

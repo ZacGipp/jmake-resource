@@ -56,6 +56,12 @@ var MSG = {
 			? showElement(CONFIG.el_mask)
 			: hideElement(CONFIG.el_mask);
 	},
+	setMainBtnsDisabled: function (bool) {
+		CONFIG.el_drawBtn.disabled = bool;
+		for (var i = 0; i < CONFIG.el_bottomBtns.children.length; i++) {
+			CONFIG.el_bottomBtns.children[i].disabled = bool;
+		}
+	},
 	btnClick: function () {
 		throw new Error('未定义按钮事件');
 	},
@@ -83,11 +89,17 @@ var MSG = {
 			btnClick: goPayPage,
 		});
 	},
-
-	setMainBtnsDisabled: function (bool) {
-		CONFIG.el_drawBtn.disabled = bool;
-		for (var i = 0; i < CONFIG.el_bottomBtns.children.length; i++) {
-			CONFIG.el_bottomBtns.children[i].disabled = bool;
-		}
-	}
+	noLogin: function() {
+		MSG.showMsg({
+			msgType: 1,
+			detail: '登录之后才能抽奖哦!',
+			btnLabel: '立即登录',
+			btnClick: function () {
+				goOTTPage({
+					pageCode: "0009",
+					pageName: "登录页面"
+				})
+			}
+		});
+	},
 };

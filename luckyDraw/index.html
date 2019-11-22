@@ -130,7 +130,7 @@
                 }
                 CONFIG.el_rulePop.innerHTML = ruleStr;
                 // 大背景图
-                if (data.imgUrl) CONFIG.BG_IMG = data.imgUrl;
+                if (data.imgUrl) CONFIG.el_container.style.backgroundImage = 'url(' + data.imgUrl + ')';
                 // 初始化大转盘
                 TURNTABLE.prizeList = data.items || [];
                 for (var i = 0; i < TURNTABLE.prizeLength; i++) {

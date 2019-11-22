@@ -81,34 +81,14 @@ function ajax(options) {
 				} catch (e) {
 					response = {};
 				}
-
-				switch (response.status) {
-					case 1:
-						break;
-					case 3014:
-						CONFIG.ENDING = true;
-						break;
-					case 3017:
-						MSG.noChance();
-						break;
-					case 3018:
-						break;
-					case 4001:
-						MSG.showMsg({
-							msgType: 1,
-							detail: '登录之后才能抽奖哦!',
-							btnLabel: '立即登录',
-							btnClick: function () {
-								goOTTPage({
-									pageCode: "0009",
-									pageName: "登录页面"
-								})
-							}
-						});
-						break;
-					default:
+				var respStatus = response.status;
+				if (response === 3014) CONFIG.ENDING = true;
+				if (options.url.replace(CONFIG.DOMAIN, '') !== CONFIG.API.JACKPOT && respStatus !== 1) {
+					if (response === 4001) {
+						MSG.noLogin();
+					} else {
 						MSG.error(response.msg);
-						break;
+					}
 				}
 				setActivityStatus(CONFIG.ENDING);
 				options.success && options.success(response);

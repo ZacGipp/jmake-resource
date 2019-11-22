@@ -1,5 +1,6 @@
 var TURNTABLE = {
 	STOP_UUID: 999999999,
+	NOT_WON_UUID: 999999998,
 	runtimer: null,
 	RANDOM_COUNT: 10,
 	FAKE_RANDOM_SPEED: 500,
@@ -54,9 +55,11 @@ function run() {
 			TURNTABLE.clock = Date.now();
 			var prizeId = Number(activeItem.dataset.id || '');
 
-			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid && (TURNTABLE.prizeUuid === prizeId || TURNTABLE.prizeUuid === TURNTABLE.STOP_UUID)) {
-				if (TURNTABLE.prizeUuid !== TURNTABLE.STOP_UUID) TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
-				handleResult();
+			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid) {
+				TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
+				if (TURNTABLE.prizeUuid === TURNTABLE.STOP_UUID || TURNTABLE.prizeUuid === prizeId || (TURNTABLE.prizeUuid === TURNTABLE.NOT_WON_UUID && TURNTABLE.prizeData.type === 0)) {
+					handleResult();
+				}
 			}
 		});
 	}
@@ -120,19 +123,14 @@ function handleResult() {
 				default:
 					break;
 			}
+			MSG.showMsg(showMsgConfig);
 		} else {
 			var preActiveItem = document.querySelector(".active-prize");
 			if (preActiveItem) {
 				preActiveItem.classList.remove("active-prize");
 			}
-			showMsgConfig = {
-				msgType: 1,
-				detail: '奖品没有啦，稍后再试',
-				btnLabel: '继续抽奖',
-				btnClick: pageBack,
-			};
+			MSG.error('服务器错误!');
 		}
-		MSG.showMsg(showMsgConfig);
 		TURNTABLE.prizeUuid = '';
 	});
 }
@@ -143,6 +141,10 @@ function jackpot() {
 		data: {id: CONFIG.ID},
 		success: function (response) {
 			if (response.status === 3018) {
+				TURNTABLE.prizeUuid = TURNTABLE.NOT_WON_UUID;
+				return;
+			}
+			if (response.status !== 1) {
 				TURNTABLE.prizeUuid = TURNTABLE.STOP_UUID;
 				return;
 			}
