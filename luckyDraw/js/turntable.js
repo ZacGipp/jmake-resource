@@ -13,23 +13,6 @@ var TURNTABLE = {
 	drawCount: 0,
 	prizeLength: 9,
 	/**
-	 * 初始化大转盘
-	 */
-	init: function (succ) {
-		ajax({
-			url: CONFIG.API.PRIZE_LIST,
-			data: {id: CONFIG.ID},
-			success: function (response) {
-				TURNTABLE.prizeList = (response.data || {}).items || [];
-				for (var i = 0; i < TURNTABLE.prizeLength; i++) {
-					var item = createItem(i, TURNTABLE.prizeLength);
-					if (item) CONFIG.el_turntable.appendChild(item);
-				}
-				succ && succ(response);
-			}
-		});
-	},
-	/**
 	 * 刷新抽奖次数
 	 */
 	refreshDrawCount: function (succ) {

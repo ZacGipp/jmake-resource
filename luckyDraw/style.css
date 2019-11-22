@@ -658,6 +658,17 @@ html, body {
     color: #ff6832;
 }
 
+.rule-pop {
+    padding: 0 80px;
+    font-size: 20px;
+    color: #260847;
+    line-height: 48px;
+}
+
+.rule-pop font {
+    font-weight: bold;
+}
+
 .mask {
     left: 0;
     top: 0;

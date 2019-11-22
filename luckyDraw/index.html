@@ -102,14 +102,45 @@
 		// 抽奖按钮获取焦点
 		focusElement(CONFIG.el_drawBtn);
 		// 初始化大转盘
-		TURNTABLE.init(function () {
+        getConfigData(function () {
 			MSG.setLoading();
 		});
 		// 轮播中奖名单
 		getRunData();
+		// 个人中奖记录
 		getJackpotRecord();
+		// 用户信息
         getUserInfo();
 	}
+
+	function getConfigData(succ) {
+        ajax({
+            url: CONFIG.API.PRIZE_LIST,
+            data: {id: CONFIG.ID},
+            success: function (response) {
+                var data = response.data || {};
+                // 活动规则
+                var ruleArr = (data.description || '').split('\n');
+	            var ruleStr = '';
+                for (var j = 0; j < ruleArr.length; j++) {
+                	var ruleP = ruleArr[j];
+                	var ruleInd = ruleP.search('：') || ruleP.search(':');
+                	if (ruleInd > 1) ruleP = '<font>' + ruleP.slice(0, ruleInd + 1) + '</font>' + ruleP.slice(ruleInd + 1);
+                	ruleStr += '<p>' + ruleP + '</p>';
+                }
+                CONFIG.el_rulePop.innerHTML = ruleStr;
+                // 大背景图
+                if (data.imgUrl) CONFIG.BG_IMG = data.imgUrl;
+                // 初始化大转盘
+                TURNTABLE.prizeList = data.items || [];
+                for (var i = 0; i < TURNTABLE.prizeLength; i++) {
+                    var item = createItem(i, TURNTABLE.prizeLength);
+                    if (item) CONFIG.el_turntable.appendChild(item);
+                }
+                succ && succ(response);
+            }
+        });
+    }
 
     /**
      * 用户信息

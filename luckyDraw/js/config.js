@@ -2,6 +2,7 @@ var CONFIG = {
 	ID: getQueryString('id'),
 	loading: false,
 	ENDING: false, // 活动结束
+	BG_IMG: '', // 背景图
 
 	el_vipNickname: document.querySelector('.vip-nickname'),
 	el_vipStatus: document.querySelector('.vip-status'),
