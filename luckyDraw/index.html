@@ -1,81 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>大转盘抽奖</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="stylesheet" href="./style.css">
+  <meta charset="utf-8">
+  <title>大转盘抽奖</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 <div class="container">
-    <div class="vip-detail">
-        <header class="vip-headImg"></header>
-        <div class="vip-crown"></div>
-        <div class="vip-content">
-            <div>
-                <font class="vip-nickname"></font>
-                <font class="vip-status hide"></font>
-            </div>
-            <div class="vip-date hide">截止有效期 : <font></font></div>
-        </div>
+  <div class="vip-detail">
+    <header class="vip-headImg"></header>
+    <div class="vip-crown"></div>
+    <div class="vip-content">
+      <div>
+        <font class="vip-nickname"></font>
+        <font class="vip-status hide"></font>
+      </div>
+      <div class="vip-date hide">截止有效期 : <font></font></div>
     </div>
-    <div class="turntable-container">
-        <div class="turntable_bg"></div>
-        <div class="turntable"></div>
-        <button class="draw-btn btn-listening" onclick="startDraw()">
-            <div class="processing hide">
-                <div>抽奖</div>
-                <font>剩余<font style="font-size: 41px;" class="draw-count">0</font>次</font>
-            </div>
-            <div class="ending">
-                <p>活动</p>
-                <p>已结束</p>
-            </div>
-        </button>
+  </div>
+  <div class="turntable-container">
+    <div class="turntable_bg"></div>
+    <div class="turntable"></div>
+    <button class="draw-btn btn-listening" onclick="startDraw()">
+      <div class="processing hide">
+        <div>抽奖</div>
+        <font>剩余<font style="font-size: 41px;" class="draw-count">0</font>次</font>
+      </div>
+      <div class="ending">
+        <p>活动</p>
+        <p>已结束</p>
+      </div>
+    </button>
+  </div>
+  <div class="bottom-btns">
+    <button class="btn-listening" onclick="activityRule()">活动规则</button>
+    <button class="btn-listening" onclick="prizeOrder()">抽奖记录</button>
+  </div>
+  <div class="winner-container">
+    <div class="winner-list">
+      <!--<p>头像 昵称 奖品名字</p>-->
     </div>
-    <div class="bottom-btns">
-        <button class="btn-listening" onclick="activityRule()">活动规则</button>
-        <button class="btn-listening" onclick="prizeOrder()">抽奖记录</button>
-    </div>
-    <div class="winner-container">
-        <div class="winner-list">
-            <!--<p>头像 昵称 奖品名字</p>-->
-        </div>
-    </div>
+  </div>
 </div>
 <section class="msg hide">
-    <header class="msg-title">标题</header>
-    <div class="msg-content">
-        <div class="msg-prize-img"></div>
-        <div id="qrcode"></div>
-        <div class="msg-detail">登录后才能抽奖哦!</div>
-        <div class="msg-detail-qrcode">微信扫码领取</div>
-        <div class="msg-prize-type-no-chance-detail msg-prize-type-no-chance-detail-show">
-            <p>抽奖机会用完了^^</p>
-            <p>购买会员，再来一次</p>
-        </div>
-        <div class="msg-prize-type-device-detail">
-            <div class="msg-detail-code">XXXXXXXXXXXXXXXXXXXX</div>
-            <p class="msg-detail-1">请于50天内，凭以上提货码，联系客服进行奖品兑换！</p>
-            <p class="msg-detail-2">
-                <span><font>客服热线：</font>400-028-6969</span>
-                <span><font>客服微信：</font>y15882404890</span>
-            </p>
-            <p class="msg-detail-3">温馨提示：请牌照保存，便于核对提货人信息</p>
-        </div>
-        <button class="msg-btn btn-listening" onclick="msgClick()">按钮</button>
-        <button class="msg-btn msg-btn2 btn-listening" onclick="msgClick2()">现在使用</button>
-        <div class="msg-back"></div>
+  <header class="msg-title">标题</header>
+  <div class="msg-content">
+    <div class="msg-prize-img"></div>
+    <div id="qrcode"></div>
+    <div class="msg-detail">登录后才能抽奖哦!</div>
+    <div class="msg-detail-qrcode">微信扫码领取</div>
+    <div class="msg-prize-type-no-chance-detail msg-prize-type-no-chance-detail-show">
+      <p>抽奖机会用完了^^</p>
+      <p>购买会员，再来一次</p>
     </div>
+    <div class="msg-prize-type-device-detail">
+      <div class="msg-detail-code"></div>
+      <p class="msg-detail-1">请于30天内，凭以上提货码，联系客服进行奖品兑换！</p>
+      <p class="msg-detail-2">
+        <span><font>客服热线：</font>400-028-6969</span>
+        <span><font>客服微信：</font>y15882404890</span>
+      </p>
+      <p class="msg-detail-3">温馨提示：请拍照保存，便于核对提货人信息</p>
+    </div>
+    <button class="msg-btn btn-listening" onclick="msgClick()">按钮</button>
+    <button class="msg-btn msg-btn2 btn-listening" onclick="msgClick2()">现在使用</button>
+    <div class="msg-back"></div>
+  </div>
 </section>
 <div class="popup hide">
-    <header class="popup-title"></header>
-    <div class="jackpot-record hide"></div>
-    <div class="rule-pop hide"></div>
-    <div class="msg-back"></div>
+  <header class="popup-title"></header>
+  <div class="jackpot-record hide"></div>
+  <div class="rule-pop hide"></div>
+  <div class="msg-back"></div>
 </div>
 <div class="mask hide"></div>
 <img class="loading hide" src="./img/loading.gif"/>
@@ -88,32 +88,32 @@
 <script src="./js/btnClick.js"></script>
 <script type="text/javascript">
 
-	if (CONFIG.ID) {
-		init();
-	} else {
-		MSG.error('缺少参数id');
-	}
+    if (CONFIG.ID) {
+        init();
+    } else {
+        MSG.error('缺少参数id');
+    }
 
-	function init() {
-		MSG.setLoading(true);
-		window.onhashchange = hashChange;
-		// 刷新抽奖次数
-		TURNTABLE.refreshDrawCount();
-		// 抽奖按钮获取焦点
-		focusElement(CONFIG.el_drawBtn);
-		// 初始化大转盘
+    function init() {
+        MSG.setLoading(true);
+        window.onhashchange = hashChange;
+        // 刷新抽奖次数
+        TURNTABLE.refreshDrawCount();
+        // 抽奖按钮获取焦点
+        focusElement(CONFIG.el_drawBtn);
+        // 初始化大转盘
         getConfigData(function () {
-			MSG.setLoading();
-		});
-		// 轮播中奖名单
-		getRunData();
-		// 个人中奖记录
-		getJackpotRecord();
-		// 用户信息
+            MSG.setLoading();
+        });
+        // 轮播中奖名单
+        getRunData();
+        // 个人中奖记录
+        getJackpotRecord();
+        // 用户信息
         getUserInfo();
-	}
+    }
 
-	function getConfigData(succ) {
+    function getConfigData(succ) {
         ajax({
             url: CONFIG.API.PRIZE_LIST,
             data: {id: CONFIG.ID},
@@ -121,12 +121,12 @@
                 var data = response.data || {};
                 // 活动规则
                 var ruleArr = (data.description || '').split('\n');
-	            var ruleStr = '';
+                var ruleStr = '';
                 for (var j = 0; j < ruleArr.length; j++) {
-                	var ruleP = ruleArr[j];
-                	var ruleInd = ruleP.search('：') || ruleP.search(':');
-                	if (ruleInd > 1) ruleP = '<font>' + ruleP.slice(0, ruleInd + 1) + '</font>' + ruleP.slice(ruleInd + 1);
-                	ruleStr += '<p>' + ruleP + '</p>';
+                    var ruleP = ruleArr[j];
+                    var ruleInd = ruleP.search('：') || ruleP.search(':');
+                    if (ruleInd > 1) ruleP = '<font>' + ruleP.slice(0, ruleInd + 1) + '</font>' + ruleP.slice(ruleInd + 1);
+                    ruleStr += '<p>' + ruleP + '</p>';
                 }
                 CONFIG.el_rulePop.innerHTML = ruleStr;
                 // 大背景图
@@ -154,116 +154,82 @@
                 if (userInfo.headerImg) CONFIG.el_vipHeadImg.style.backgroundImage = 'url(' + userInfo.headerImg + ')';
                 var nickname = userInfo.nickname;
                 CONFIG.el_vipNickname.innerText = (nickname.length > 8 ? (nickname.slice(0, 4) + '****' + nickname.slice(-4)) : nickname) || '匿名';
-	            // vipStatus //VIP状态，-1从未激活，0已过期，1是VIP, -2重庆连续包月欠费
+                // vipStatus //VIP状态，-1从未激活，0已过期，1是VIP, -2重庆连续包月欠费
                 switch (userInfo.vipStatus) {
                     case -1:
-                    	CONFIG.el_vipNickname.classList.add('vip-nickname-only');
+                        CONFIG.el_vipNickname.classList.add('vip-nickname-only');
                         showElement(CONFIG.el_vipStatus);
-	                    CONFIG.el_vipStatus.innerText = '未激活';
-	                    break;
-	                case 0:
+                        CONFIG.el_vipStatus.innerText = '未激活';
+                        break;
+                    case 0:
                         CONFIG.el_vipNickname.classList.add('vip-nickname-only');
                         showElement(CONFIG.el_vipStatus);
                         CONFIG.el_vipStatus.innerText = '已过期';
-		                break;
-	                case 1:
-	                	showElement(CONFIG.el_vipDate);
+                        break;
+                    case 1:
+                        showElement(CONFIG.el_vipDate);
                         CONFIG.el_vipDateTime.innerText = userInfo.vipExpireTime;
-		                break;
+                        break;
                     default:
-                  	    break;
+                        break;
                 }
             }
         });
     }
 
-	/**
-	 * 个人中奖记录
-	 */
-	function getJackpotRecord() {
-		ajax({
-			url: CONFIG.API.PERSONAL_PRIZE_RECORD,
-			data: {id: CONFIG.ID, pageSize: 50},
-			success: function (response) {
-				var fakeData = (response.data || {}).result || [];
-				var fakeDataHtml = "";
-				for (var i = 0; i < fakeData.length; i++) {
-					var drawTime = fakeData[i].drawTime;
-					var prizeName = fakeData[i].prizeName;
-					var endTime = fakeData[i].endTime;
-					fakeDataHtml += '<div class="jackpot-item">' +
-                          '<div class="jackpot-item-left">' +
-                              '<button class="jackpot-nav"></button>' +
-                              '<div class="jackpot-line"></div>' +
-                          '</div>' +
-                          '<div class="jackpot-item-right">' +
-                              '<div class="jackpot-date">' + drawTime + '</div>' +
-                              '<div class="jackpot-detail">' +
-                                  '<div class="jackpot-detail-name">奖品：' + prizeName + '</div>' +
-                                  '<div class="jackpot-expiretime">有效期：' +  endTime + '</div>' +
-                              '</div>' +
-                          '</div>' +
-                      '</div>';
-				}
-				CONFIG.el_jackpotRecord.innerHTML = fakeDataHtml;
-				CONFIG.el_jackpotNav = document.querySelectorAll('.jackpot-nav');
-                for (var j = 0; j < CONFIG.el_jackpotNav.length; j++) {
-                    btnListening(CONFIG.el_jackpotNav[j], 'jackpot-nav-active');
+    /**
+     * 所有中奖记录
+     * */
+    function getRunData() {
+        ajax({
+            url: CONFIG.API.WORLD_RECORD,
+            data: {id: CONFIG.ID, pageSize: 20},
+            success: function (response) {
+                var fakeData = response.data || [];
+                var fakeDataHtml = "";
+                for (var i = 0; i < fakeData.length; i++) {
+                    var headerImg = fakeData[i].headerImg;
+                    var prizeName = fakeData[i].prizeName;
+                    var username = fakeData[i].nickName;
+                    fakeDataHtml += '<p><font style="background-image: url(' + headerImg + ')"></font><font>' + username + '</font><font>' + prizeName + '</font></p>';
                 }
+                CONFIG.el_winnerList.innerHTML = fakeDataHtml;
+                scrollRunData();
+            }
+        });
+    }
 
-			}
-		});
-	}
+    /**
+     * 中奖名单轮播
+     */
+    var scrollTimer = null;
+    var styleTop = 0;
 
-	/**
-	 * 所有中奖记录
-	 * */
-	function getRunData() {
-		ajax({
-			url: CONFIG.API.WORLD_RECORD,
-			data: {id: CONFIG.ID, pageSize: 20},
-			success: function (response) {
-				var fakeData = response.data || [];
-				var fakeDataHtml = "";
-				for (var i = 0; i < fakeData.length; i++) {
-					var prizeName = '硬件优惠券20元';
-					var username = fakeData[i].nickName;
-					fakeDataHtml += '<p><font><img src="./img/head.png" alt=""></font><font>' + username + '</font><font>' + prizeName + '</font></p>';
-				}
-				CONFIG.el_winnerList.innerHTML = fakeDataHtml;
-				scrollRunData();
-			}
-		});
-	}
+    function scrollRunData() {
+        if (!scrollTimer) {
+            scrollTimer = setInterval(function () {
+                styleTop -= 10;
+                if (Math.abs(styleTop) + 100 >= CONFIG.el_winnerList.scrollHeight) {
+                    CONFIG.el_winnerList.style.top = "0px";
+                    styleTop = 0;
+                } else {
+                    CONFIG.el_winnerList.style.top = styleTop + "px";
+                }
+            }, 1000);
+        }
+    }
 
-	/**
-	 * 中奖名单轮播
-	 */
-	var scrollTimer = null;
-	var styleTop = 0;
+    function hashChange() {
+        var hash = getHash();
+        if (!hash) {
+            MSG.hideMsg();
+            MSG.hidePopup();
+            focusElement(CONFIG.el_drawBtn);
 
-	function scrollRunData() {
-		if (!scrollTimer) {
-			scrollTimer = setInterval(function () {
-				styleTop -= 10;
-				if (Math.abs(styleTop) + 100 >= CONFIG.el_winnerList.scrollHeight) {
-					CONFIG.el_winnerList.style.top = "0px";
-					styleTop = 0;
-				} else {
-					CONFIG.el_winnerList.style.top = styleTop + "px";
-				}
-			}, 1000);
-		}
-	}
-
-	function hashChange() {
-		var hash = getHash();
-		if (!hash) {
-			MSG.hideMsg();
-			MSG.hidePopup();
-			focusElement(CONFIG.el_drawBtn);
-		}
-	}
+            getUserInfo();
+            TURNTABLE.refreshDrawCount();
+        }
+    }
 </script>
 </body>
 </html>

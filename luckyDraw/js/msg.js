@@ -9,6 +9,7 @@ var MSG = {
 		if (config.detail) CONFIG.el_msgDetail.textContent = config.detail;
 		if (config.img && config.prizeType !== 'qrcode') CONFIG.el_msgPrizeImg.style.backgroundImage = 'url(' + config.img + ')';
 		if (config.img && config.prizeType === 'qrcode') makeQrcodeCode(config.img);
+		if (config.code) CONFIG.el_msgDetailCode.innerText = config.code;
 		if (config.btnLabel) CONFIG.el_msgBtn.textContent = config.btnLabel || '按钮';
 		if (config.btnClick) MSG.btnClick = config.btnClick;
 
@@ -18,7 +19,7 @@ var MSG = {
 	hideMsg: function () {
 		if (CONFIG.el_msg.classList.contains('msg-type2')) CONFIG.el_msg.className = 'msg';
 		if (CONFIG.el_msgContent.className.indexOf('msg-prize-type') > -1) CONFIG.el_msgContent.className = 'msg-content';
-		CONFIG.qrcode.clear();
+		// CONFIG.qrcode.clear();
 		MSG.hide(CONFIG.el_msg);
 	},
 	showPopup: function (title, type) {

@@ -160,10 +160,10 @@ html, body {
 
 .item-prize {
     position: absolute;
-    top: calc(50% - 50px);
+    top: calc(50% - 45px);
     right: 90px;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     /*background-image: url("./img/prize.png");*/
     background-repeat: no-repeat;
     background-size: cover;
@@ -254,15 +254,17 @@ html, body {
 }
 
 .winner-list p font:first-child {
-    flex: 0 0 25%;
-}
-
-.winner-list p font:first-child img {
-    width: 60px;
+    display: block;
+    flex: 0 0 60px;
+    height: 60px;
+    background-position: center;
+    background-size: cover;
+    border-radius: 50%;
 }
 
 .winner-list p font:nth-child(2) {
-    flex: 0 0 45%;
+    margin-left: 10%;
+    flex: 0 0 40%;
     font-size: 21px;
     font-weight: bold;
     line-height: 60px;
@@ -492,7 +494,7 @@ html, body {
     margin-left: calc(50% - 156px);
     width: 312px;
     height: 312px;
-    background-image: url(./img/no_prize.png);
+    background-image: url(./img/no_prize.png) !important;
 }
 
 .msg-prize-type-not-won .msg-detail {
@@ -526,7 +528,7 @@ html, body {
     margin-left: calc(50% - 45px);
     width: 90px;
     height: 97px;
-    background-image: url("./img/log_smile.png");
+    background-image: url("./img/log_smile.png") !important;
 }
 
 .msg-type2 .msg-detail {
@@ -548,7 +550,7 @@ html, body {
 
 .msg-prize-type-no-chance .msg-prize-img {
     margin-top: -36px;
-    background-image: url("./img/pay_now_smile.png");
+    background-image: url("./img/pay_now_smile.png") !important;
 }
 
 .msg-prize-type-no-chance .msg-detail {
@@ -567,7 +569,7 @@ html, body {
 }
 
 .msg-prize-type-error .msg-prize-img {
-    background-image: url("./img/pay_now_smile.png");
+    background-image: url("./img/pay_now_smile.png") !important;
 }
 
 .msg-prize-type-error .msg-btn {

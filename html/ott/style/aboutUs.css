@@ -57,8 +57,15 @@ p.info font{
     border-radius: .2rem;
 }
 .qa span font{
-    font-size: .42rem;
+    font-size: .48rem;
     display: block
+}
+.qa span .qa-desc {
+    font-size: .32rem;
+}
+.qa-desc i {
+    font-style: normal;
+    color: #f95c2e;
 }
 hr{
     width: 56%;

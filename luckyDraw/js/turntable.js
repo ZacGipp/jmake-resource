@@ -1,6 +1,6 @@
 var TURNTABLE = {
-	STOP_UUID: 999999999,
-	NOT_WON_UUID: 999999998,
+	STOP_UUID: '999999999',
+	NOT_WON_UUID: '999999998',
 	runtimer: null,
 	RANDOM_COUNT: 10,
 	FAKE_RANDOM_SPEED: 500,
@@ -53,7 +53,7 @@ function run() {
 			var activeItem = document.querySelector(".item-" + inIndex);
 			activeItem.classList.add("active-prize");
 			TURNTABLE.clock = Date.now();
-			var prizeId = Number(activeItem.dataset.id || '');
+			var prizeId = activeItem.dataset.id || '';
 
 			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid) {
 				TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
@@ -87,9 +87,12 @@ function handleResult() {
 						prizeType: 'days',
 						title: '恭喜您中奖啦！',
 						img: TURNTABLE.prizeData.bigImgUrl,
-						detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime,
+						detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime.split(' ')[0],
 						btnLabel: '确认',
-						btnClick: pageBack,
+						btnClick: function () {
+							getUserInfo();
+							pageBack();
+						},
 					};
 					break;
 				case 2:
@@ -97,6 +100,7 @@ function handleResult() {
 						prizeType: 'device',
 						title: '恭喜获得' + TURNTABLE.prizeData.prizeName,
 						img: TURNTABLE.prizeData.bigImgUrl,
+						code: TURNTABLE.jackpot.recordId,
 					};
 					break;
 				case 3:
@@ -107,7 +111,11 @@ function handleResult() {
 						detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
 						btnLabel: '以后使用',
 						btnClick: function () {
-							alert('此处跳转我的奖品');
+							goOTTPage({
+								pageCode: "0040",
+								pageName: "我的奖品"
+							});
+							pageBack();
 						},
 					};
 					break;

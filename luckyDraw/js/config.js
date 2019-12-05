@@ -20,6 +20,7 @@ var CONFIG = {
 	el_msgDetail: document.querySelector('.msg-detail'),
 	el_msgBtn: document.querySelector('.msg-btn'),
 	el_msgPrizeImg: document.querySelector('.msg-prize-img'),
+	el_msgDetailCode: document.querySelector('.msg-detail-code'),
 	el_popup: document.querySelector('.popup'),
 	el_popupTitle: document.querySelector('.popup-title'),
 	el_jackpotNav: [],
