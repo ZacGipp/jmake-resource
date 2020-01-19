@@ -10,6 +10,8 @@ function startDraw() {
 function activityRule() {
 	if (CONFIG.loading) return;
 	MSG.showPopup('活动规则', 'rule-pop');
+
+	// MSG.showDebugMsg();
 }
 
 function prizeOrder() {
@@ -25,7 +27,15 @@ function msgClick() {
 }
 
 function msgClick2() {
-	goPayPage();
+	goOTTPage({
+		pageCode: "0040",
+		pageName: "我的奖品"
+	});
+	pageBack();
+}
+
+function debugMsgClick() {
+	CONFIG.el_debugMsgDetail.innerHTML = '';
 }
 
 /**
@@ -52,7 +62,7 @@ function getJackpotRecord() {
 					'<div class="jackpot-date">' + drawTime + '</div>' +
 					'<div class="jackpot-detail">' +
 					'<div class="jackpot-detail-name">' + (type === 0 ? '未中奖' : prizeName) + '</div>' +
-					((type !== 1 && type !== 0) ? '<div class="jackpot-expiretime">有效期：' +  endTime + '</div>' : '') +
+					((type !== 1 && type !== 0 && type !== 4 && type !== 5) ? '<div class="jackpot-expiretime">有效期：' +  endTime + '</div>' : '') +
 					'</div>' +
 					'</div>' +
 					'</div>';

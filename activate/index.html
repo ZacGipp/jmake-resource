@@ -37,10 +37,10 @@
 
   var btn = document.querySelector("#activityBtn");
   var clientWidth = document.body.clientWidth;
-  var btnWidth = (776 / 1920) * clientWidth;
+  var btnWidth = (859 / 1920) * clientWidth;
   btn.style.marginLeft = -(btnWidth / 2) + 'px';
   btn.style.width = btnWidth + 'px';
-  var height = btnWidth / (776 / 690);
+  var height = btnWidth / (859 / 850);
   btn.style.marginTop = -(height / 2) + 'px';
   btn.style.height = height + 'px';
 
@@ -59,6 +59,7 @@
             JSON.stringify(json),
             ""
     );
+    // window.JSCampaign && window.JSCampaign.close && window.JSCampaign.close();
   }
 
   function getQueryString(name) {

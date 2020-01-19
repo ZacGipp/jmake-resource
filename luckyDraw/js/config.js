@@ -2,7 +2,12 @@ var CONFIG = {
 	ID: getQueryString('id'),
 	loading: false,
 	ENDING: false, // 活动结束
+	NEED_REFRESH_USER_INFO: false, // 是否刷新用户信息
+	NEED_REFRESH_DRAW_COUNT: false, // 是否刷新抽奖次数
 
+	el_debugMsg: document.querySelector('.debug-msg'),
+	el_debugMsgBtn: document.querySelector('.debug-msg-btn'),
+	el_debugMsgDetail: document.querySelector('.debug-msg-detail'),
 	el_container: document.querySelector('.container'),
 	el_vipNickname: document.querySelector('.vip-nickname'),
 	el_vipStatus: document.querySelector('.vip-status'),
@@ -35,8 +40,13 @@ var CONFIG = {
 		width: 220,
 		height: 220,
 	}),
-	DOMAIN: 'http://bmstest.j-make.com.cn/owb',
-	// DOMAIN: 'http://portalmy.j-make.cn',
+	// DOMAIN: 'http://bmstest.j-make.com.cn/owb',
+	DOMAINS: {
+		0: 'http://portalmy.j-make.cn/owb',
+		1: 'http://portal.a086.ottcn.com/owb',
+		2: 'http://portal.jmake.cp57.ott.cibntv.net/owb',
+	},
+	DOMAIN: '',
 	API: {
 		// 用户信息
 		USER_INFO: '/user/info',

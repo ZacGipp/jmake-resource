@@ -81,6 +81,9 @@ function ajax(options) {
 				} catch (e) {
 					response = {};
 				}
+
+				// CONFIG.el_debugMsgDetail.innerHTML = '<p>==>==>==>==>==>==>==>' + options.url + '<br/>' + xhr.responseText + '</p>' + CONFIG.el_debugMsgDetail.innerHTML;
+
 				var respStatus = response.status;
 				if (respStatus === 3014) CONFIG.ENDING = true;
 				if (options.url.replace(CONFIG.DOMAIN, '') !== CONFIG.API.JACKPOT && respStatus !== 1) {
@@ -118,6 +121,10 @@ function goPayPage() {
 		pageCode: "0013",
 		pageName: "支付页面"
 	});
+}
+
+function refreshOTTUserInfo() {
+	window.JSCampaign && window.JSCampaign.updateUser && window.JSCampaign.updateUser();
 }
 
 function goOTTPage(json) {

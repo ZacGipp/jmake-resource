@@ -673,6 +673,24 @@ html, body {
     font-weight: bold;
 }
 
+.debug-msg-btn {
+    margin-left: 80px;
+    width: 100px;
+    line-height: 25px;
+    border-radius: 25px;
+    border: 5px solid #b904ff;
+    font-size: 20px;
+    color: #b904ff;
+    font-weight: bold;
+    background: white;
+}
+
+.debug-msg-detail {
+    padding: 0 80px;
+    height: 520px;
+    overflow: auto;
+}
+
 .mask {
     left: 0;
     top: 0;

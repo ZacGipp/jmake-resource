@@ -56,8 +56,11 @@ function run() {
 			var prizeId = activeItem.dataset.id || '';
 
 			if (Date.now() - TURNTABLE.randomStartTime > TURNTABLE.RANDOM_COUNT * 1000 && TURNTABLE.prizeUuid) {
-				TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
-				if (TURNTABLE.prizeUuid === TURNTABLE.STOP_UUID || TURNTABLE.prizeUuid === prizeId || (TURNTABLE.prizeUuid === TURNTABLE.NOT_WON_UUID && TURNTABLE.prizeData.type === 0)) {
+				if (TURNTABLE.prizeUuid === TURNTABLE.STOP_UUID) {
+					preActiveItem.classList.remove("active-prize");
+					MSG.error('服务器错误!');
+				} else if (TURNTABLE.prizeUuid === prizeId || (TURNTABLE.prizeUuid === TURNTABLE.NOT_WON_UUID && TURNTABLE.prizeData.type === 0)) {
+					TURNTABLE.prizeData = TURNTABLE.prizeList[inIndex];
 					handleResult();
 				}
 			}
@@ -71,79 +74,83 @@ function handleResult() {
 		clearInterval(TURNTABLE.runtimer);
 		TURNTABLE.runtimer = 0;
 		var showMsgConfig = {};
-		if (TURNTABLE.prizeUuid !== TURNTABLE.STOP_UUID) {
-			switch (TURNTABLE.prizeData.type) {
-				case 0:
-					showMsgConfig = {
-						prizeType: 'not-won',
-						title: '再接再厉',
-						detail: '差一点就中奖啦，再接再厉',
-						btnLabel: TURNTABLE.drawCount > 0 ? '继续抽奖' : '继续订购',
-						btnClick: TURNTABLE.drawCount > 0 ? pageBack : goPayPage,
-					};
-					break;
-				case 1:
-					showMsgConfig = {
-						prizeType: 'days',
-						title: '恭喜您中奖啦！',
-						img: TURNTABLE.prizeData.bigImgUrl,
-						detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime.split(' ')[0],
-						btnLabel: '确认',
-						btnClick: function () {
-							getUserInfo();
+		switch (TURNTABLE.prizeData.type) {
+			case 0:
+				showMsgConfig = {
+					prizeType: 'not-won',
+					title: '再接再厉',
+					detail: '差一点就中奖啦，再接再厉',
+					btnLabel: TURNTABLE.drawCount > 0 ? '继续抽奖' : '继续订购',
+					btnClick: function () {
+						if (TURNTABLE.drawCount > 0) {
 							pageBack();
-						},
-					};
-					break;
-				case 2:
-					showMsgConfig = {
-						prizeType: 'device',
-						title: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-						img: TURNTABLE.prizeData.bigImgUrl,
-						code: TURNTABLE.jackpot.recordId,
-					};
-					break;
-				case 3:
-					showMsgConfig = {
-						prizeType: 'vip',
-						title: '恭喜您中奖啦！',
-						img: TURNTABLE.prizeData.bigImgUrl,
-						detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-						btnLabel: '以后使用',
-						btnClick: function () {
-							goOTTPage({
-								pageCode: "0040",
-								pageName: "我的奖品"
-							});
-							pageBack();
-						},
-					};
-					break;
-				case 4:
-				case 5:
-					showMsgConfig = {
-						prizeType: 'qrcode',
-						title: '恭喜您中奖啦！',
-						img: TURNTABLE.jackpot.url,
-						detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
-					};
-					break;
-				default:
-					break;
+						} else {
+							CONFIG.NEED_REFRESH_DRAW_COUNT = true;
+							CONFIG.NEED_REFRESH_USER_INFO = true;
+							goPayPage();
+						}
+					},
+				};
+				break;
+			case 1: {
+				refreshOTTUserInfo();
+				showMsgConfig = {
+					prizeType: 'days',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.prizeData.bigImgUrl,
+					detail: '已累加至' + TURNTABLE.jackpot.vipExpireTime.split(' ')[0],
+					btnLabel: '确认',
+					btnClick: function () {
+						CONFIG.NEED_REFRESH_USER_INFO = true;
+						pageBack();
+					},
+				};
+				break;
 			}
-			MSG.showMsg(showMsgConfig);
-		} else {
-			var preActiveItem = document.querySelector(".active-prize");
-			if (preActiveItem) {
-				preActiveItem.classList.remove("active-prize");
+			case 2:
+				showMsgConfig = {
+					prizeType: 'device',
+					title: '恭喜获得大奖',
+					img: TURNTABLE.prizeData.bigImgUrl,
+					code: TURNTABLE.jackpot.recordId,
+				};
+				break;
+			case 3:
+				showMsgConfig = {
+					prizeType: 'vip',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.prizeData.bigImgUrl,
+					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+					btnLabel: '现在使用',
+					btnClick: function () {
+						CONFIG.NEED_REFRESH_DRAW_COUNT = true;
+						CONFIG.NEED_REFRESH_USER_INFO = true;
+						goPayPage();
+					},
+				};
+				break;
+			case 4:
+			case 5:
+				showMsgConfig = {
+					prizeType: 'qrcode',
+					title: '恭喜您中奖啦！',
+					img: TURNTABLE.jackpot.url,
+					detail: '恭喜获得' + TURNTABLE.prizeData.prizeName,
+				};
+				break;
+			default: {
+				MSG.setMainBtnsDisabled(false);
+				focusElement(CONFIG.el_drawBtn);
+				break;
 			}
-			MSG.error('服务器错误!');
 		}
+		MSG.showMsg(showMsgConfig);
 		TURNTABLE.prizeUuid = '';
 	});
 }
 
 function jackpot() {
+	MSG.setMainBtnsDisabled(true);
 	ajax({
 		url: CONFIG.API.JACKPOT,
 		data: {id: CONFIG.ID},
@@ -158,6 +165,9 @@ function jackpot() {
 			}
 			TURNTABLE.jackpot = response.data || {};
 			TURNTABLE.prizeUuid = TURNTABLE.jackpot.prizeId;
+		},
+		fail: function () {
+			TURNTABLE.prizeUuid = TURNTABLE.STOP_UUID;
 		}
 	});
 }

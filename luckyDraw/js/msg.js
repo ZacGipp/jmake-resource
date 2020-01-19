@@ -31,7 +31,16 @@ var MSG = {
 	hidePopup: function () {
 		hideElement(CONFIG.el_rulePop);
 		hideElement(CONFIG.el_jackpotRecord);
+		hideElement(CONFIG.el_debugMsg);
 		MSG.hide(CONFIG.el_popup);
+	},
+	showDebugMsg: function () {
+		CONFIG.el_popupTitle.innerText = '打印信息';
+		hideElement(CONFIG.el_rulePop);
+		hideElement(CONFIG.el_jackpotRecord);
+		showElement(CONFIG.el_debugMsg);
+		MSG.show(CONFIG.el_popup, 'popup');
+		// focusElement(CONFIG.el_debugMsgBtn);
 	},
 	show: function (el, hash) {
 		showElement(el);
@@ -78,7 +87,11 @@ var MSG = {
 			msgType: 1,
 			prizeType: 'no-chance',
 			btnLabel: '去订购',
-			btnClick: goPayPage,
+			btnClick: function () {
+				CONFIG.NEED_REFRESH_DRAW_COUNT = true;
+				CONFIG.NEED_REFRESH_USER_INFO = true;
+				goPayPage();
+			},
 		});
 	},
 	notWon: function () {
@@ -96,6 +109,8 @@ var MSG = {
 			detail: '登录之后才能抽奖哦!',
 			btnLabel: '立即登录',
 			btnClick: function () {
+				CONFIG.NEED_REFRESH_DRAW_COUNT = true;
+				CONFIG.NEED_REFRESH_USER_INFO = true;
 				goOTTPage({
 					pageCode: "0009",
 					pageName: "登录页面"

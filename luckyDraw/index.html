@@ -30,7 +30,7 @@
         <div>抽奖</div>
         <font>剩余<font style="font-size: 41px;" class="draw-count">0</font>次</font>
       </div>
-      <div class="ending">
+      <div class="ending hide">
         <p>活动</p>
         <p>已结束</p>
       </div>
@@ -67,7 +67,7 @@
       <p class="msg-detail-3">温馨提示：请拍照保存，便于核对提货人信息</p>
     </div>
     <button class="msg-btn btn-listening" onclick="msgClick()">按钮</button>
-    <button class="msg-btn msg-btn2 btn-listening" onclick="msgClick2()">现在使用</button>
+    <button class="msg-btn msg-btn2 btn-listening" onclick="msgClick2()">以后使用</button>
     <div class="msg-back"></div>
   </div>
 </section>
@@ -75,10 +75,15 @@
   <header class="popup-title"></header>
   <div class="jackpot-record hide"></div>
   <div class="rule-pop hide"></div>
+  <div class="debug-msg hide">
+    <button class="debug-msg-btn btn-listening" onclick="debugMsgClick()">清除</button>
+    <div class="debug-msg-detail"></div>
+  </div>
   <div class="msg-back"></div>
 </div>
 <div class="mask hide"></div>
 <img class="loading hide" src="./img/loading.gif"/>
+
 
 <script src="./dep/qrcode.min.js"></script>
 <script src="./js/utils.js"></script>
@@ -88,6 +93,19 @@
 <script src="./js/btnClick.js"></script>
 <script type="text/javascript">
 
+    // var documentClickCount = 0;
+    // var documentClickTimeout = null;
+    // document.onclick = function () {
+    //     if (documentClickTimeout) clearTimeout(documentClickTimeout);
+    //     documentClickCount++;
+    //     documentClickTimeout = setTimeout(function () {
+    //         documentClickCount = 0;
+    //     }, 500);
+    //     if (documentClickCount > 10) {
+    //         MSG.showDebugMsg();
+    //     }
+    // };
+
     if (CONFIG.ID) {
         init();
     } else {
@@ -95,6 +113,8 @@
     }
 
     function init() {
+        var auditor = getQueryString('auditor') || 0;
+        CONFIG.DOMAIN = CONFIG.DOMAINS[auditor] || CONFIG.DOMAINS[0];
         MSG.setLoading(true);
         window.onhashchange = hashChange;
         // 刷新抽奖次数
@@ -226,8 +246,14 @@
             MSG.hidePopup();
             focusElement(CONFIG.el_drawBtn);
 
-            getUserInfo();
-            TURNTABLE.refreshDrawCount();
+            if (CONFIG.NEED_REFRESH_USER_INFO) {
+                CONFIG.NEED_REFRESH_USER_INFO = false;
+                getUserInfo();
+            }
+            if (CONFIG.NEED_REFRESH_DRAW_COUNT) {
+                CONFIG.NEED_REFRESH_DRAW_COUNT = false;
+                TURNTABLE.refreshDrawCount();
+            }
         }
     }
 </script>
