@@ -42,7 +42,7 @@ var CONFIG = {
 	}),
 	// DOMAIN: 'http://bmstest.j-make.com.cn/owb',
 	DOMAINS: {
-		0: 'http://portalmy.j-make.cn/owb',
+		0: 'https://portalmy.j-make.cn/owb',
 		1: 'http://portal.a086.ottcn.com/owb',
 		2: 'http://portal.jmake.cp57.ott.cibntv.net/owb',
 	},
