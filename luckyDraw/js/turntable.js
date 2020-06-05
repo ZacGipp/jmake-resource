@@ -194,6 +194,13 @@ function createItem(index, count) {
 
 	var item_bg = document.createElement('div');
 	item_bg.className = 'item-bg';
+	// var borderWidth = (getTanDeg(angle / 2) * 324) / 192;
+	// item_bg.style.top = 'calc(50% - ' + borderWidth + 'rem)';
+	// item_bg.style.borderTop = borderWidth + 'rem solid transparent';
+	// item_bg.style.borderBottom = borderWidth + 'rem solid transparent';
+	// item.appendChild(item_bg);
+	// item.style.marginTop = -borderWidth + 'rem';
+
 	var borderWidth = getTanDeg(angle / 2) * 324;
 	item_bg.style.top = 'calc(50% - ' + borderWidth + 'px)';
 	item_bg.style.borderTop = borderWidth + 'px solid transparent';

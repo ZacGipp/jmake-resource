@@ -1,4 +1,5 @@
 var CONFIG = {
+	ENV: 'prod', // 环境变量 test为测试环境 prod为生产环境
 	ID: getQueryString('id'),
 	loading: false,
 	ENDING: false, // 活动结束
@@ -45,6 +46,7 @@ var CONFIG = {
 		0: 'https://portalmy.j-make.cn/owb',
 		1: 'http://portal.a086.ottcn.com/owb',
 		2: 'http://portal.jmake.cp57.ott.cibntv.net/owb',
+		test: 'http://bmstest.j-make.com.cn/owb',
 	},
 	DOMAIN: '',
 	API: {
@@ -81,3 +83,4 @@ function btnListening(el, focusClass) {
 		e.target.classList.remove(focusClass);
 	};
 }
+

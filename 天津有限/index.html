@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>天津有线电视营业厅-产品支付</title>
+  <script language="javascript" src="js/keyEvent1.0.js"></script>
+  <script language="javascript" src="js/ajax.js"></script>
+  <script language="javascript" src="js/iframeObj.js"></script>
+  <script language="javascript" src="config.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+      window.resizeTo(1280, 720), window.moveTo(0, 0);
+      var focusArea = 1, ifr_obj = null, currObj = null, showPayFlag = 0, itemLength = 0, hasLogin = !1, payFocus = 0,
+          allowPurchase = !1, focusInfo = [], _timeout = 0, _checkPayTimeout = -1, orderId = "", _numTimeout = -1,
+          _daojishi = 10, subscriberId = 0, resCode = 0, callback = "", payStatus = "nopay", globalUsercusId = null,
+          globalUsercusCode = null, globalUserName = null;
+
+      function init() {
+          $("js-btn").style.visibility = "hidden", iDebug("window.location.search=" + window.location.search);
+          var e = getUrlString("pid", decodeURIComponent(window.location.search));
+          callback = getUrlString("callback", decodeURIComponent(window.location.search)), null != e && (iDebug("get pid:" + e), getData(e))
+      }
+
+      function isBoughtBefore(a) {
+          iDebug("Querying isBoughtBefore:" + a);
+          var e = null;
+          ("undefined" != typeof CA && (e = CA.serialNumber), null != e && "" != e) ? ajax({
+              type: "GET",
+              url: "../platf/rest/dev/selfService/queryProductsByResCode?version=1.0&platf=hd&cusId=" + globalUsercusId + "&resCode=" + e,
+              onSuccess: function (e) {
+                  if (2e3 == e.statusCode) {
+                      for (var s = e.object.product, t = 0; t < s.length; t++) {
+                          var o = s[t];
+                          if (a == o.productCode.value) {
+                              iDebug("The Product Has Been Bought Before!"), $("js-btn").style.backgroundColor = "#b3b6b8", $("js-btn-text").innerText = "已订购", $("js-detail_tip").style.backgroundImage = "image/alert_select_detail2.png", allowPurchase = !1;
+                              break
+                          }
+                      }
+                      allowPurchase && showPay()
+                  } else 0 == e.statusCode || (iDebug(e.statusMsg), showMsg(e.statusMsg))
+              },
+              onError: function (e) {
+                  iDebug("error:" + e), showMsg(e.statusMsg)
+              },
+              onComplete: function () {
+              }
+          }) : iDebug("No CA Card!")
+      }
+
+      function getData(e) {
+          ajax({
+              type: "GET", url: "../platf/rest/dev/product/" + e + "?version=1.0&platf=hd", onSuccess: function (e) {
+                  if (iDebug(e), 2e3 == e.statusCode) {
+                      if (0 == e.object.length) return showMsg("对不起，产品ID不存在！"), void setTimeout(function () {
+                          callbackOthers()
+                      }, 3e3);
+                      currObj = e.object[0];
+                      _json.toStr(currObj);
+                      iDebug("getData currObj=" + currObj), $("js-title").innerText = currObj.name, $("js-info").innerHTML = currObj.intro.sub(1340);
+                      var s = getUrlString("domain", decodeURIComponent(window.location.search));
+                      if (null != s && "stb" == s) $("js-img").src = currObj.imageDetailUrl; else {
+                          var t = CONFIG_PARAMS.images_server;
+                          if (iDebug("imagesUrl=" + t), void 0 !== t && null != t && "" != t) {
+                              var o = currObj.imageDetailUrl.split("/images/");
+                              2 == o.length ? (iDebug("image src=" + t + "/images/" + o[1]), $("js-img").src = t + "/images/" + o[1]) : iDebug("url error:" + t)
+                          } else iDebug("url is null:" + t)
+                      }
+                      1 == currObj.allowPurchase ? (allowPurchase = !0, iDebug("1111allowPurchase=" + allowPurchase), $("js-btn").style.visibility = "visible", $("js-detail_tip").style.backgroundImage = "image/alert_select_detail.png", getUserAccount(currObj.pid)) : showMsg("该产品不可订购！")
+                  } else iDebug(e.statusMsg), showMsg(e.statusMsg)
+              }, onError: function (e) {
+                  iDebug("error:" + e), showMsg(e.statusMsg)
+              }, onComplete: function () {
+              }
+          })
+      }
+
+      function initData() {
+          var e = _cookie.getCookie("requestItem");
+          iDebug("str:" + e), currObj = _json.toJson(e), iDebug("currObj=" + currObj), $("js-title").innerText = currObj.name, $("js-info").innerHTML = currObj.intro.sub(1340), $("js-img").src = currObj.imageDetailUrl, 1 == currObj.allowPurchase && (allowPurchase = !0, $("js-btn").style.visibility = "visible", $("js-detail_tip").style.backgroundImage = "image/alert_select_detail.png", isBoughtBefore(currObj.pid))
+      }
+
+      function doBasicKey(e) {
+          var s = 0;
+          switch (e) {
+              case"up":
+                  showPayFocus(-1);
+                  break;
+              case"down":
+                  showPayFocus(1);
+                  break;
+              case"left":
+                  changeLeft(-1);
+                  break;
+              case"right":
+                  changeLeft(1);
+                  break;
+              case"enter":
+                  doSelect();
+                  break;
+              case"back":
+                  goBack();
+                  break;
+              case"menu":
+                  s = 0, goMenu();
+                  break;
+              case"portal":
+                  s = 1, goPortal();
+                  break;
+              case"volUp":
+              case"volDown":
+                  s = 1
+          }
+          return s
+      }
+
+      function doOtherKey(e, s) {
+          switch (e) {
+              case 5975:
+                  break;
+              case 339:
+                  0 < showPayFlag && hidePay()
+          }
+          return 1
+      }
+
+      function doSelect() {
+          iDebug("allowPurchase=" + allowPurchase + ",getUrlString=" + getUrlString("_") + ",flag=" + (!allowPurchase || null != getUrlString("_"))), allowPurchase && null == getUrlString("_") && ("fail" != payStatus ? showPayFlag ? 1 == showPayFlag ? (showPayFlag = 2.5, beforeGetQR()) : 2 == showPayFlag ? showMsg("处理中，请稍候...") : 3 == showPayFlag ? (reset(), setTimeout(function () {
+              payStatus = "success", callbackOthers()
+          }, 600)) : 4 == showPayFlag && reset() : showPay() : callbackOthers())
+      }
+
+      function reset() {
+          hidePay(), -1 != _checkPayTimeout && (clearTimeout(_checkPayTimeout), _checkPayTimeout = -1), clearTimeout(_numTimeout), _timeout = 0, $("js-content").style.display = "block", $("js-select-pay").style.display = "block", $("js-other").style.display = "none", $("js-success").style.display = "none", $("js-fail").style.display = "none", $("js-change").style.display = "none", _timeout = payFocus = showPayFlag = 0
+      }
+
+      function showPay() {
+          initPayData(), itemLength <= 0 ? showMsg("对不起，当前产品没有可用支付！") : (showPayFlag = 1, $("js-pay").style.display = "block", showPayFocus(0))
+      }
+
+      function hidePay() {
+          showPayFlag = 0, $("js-pay").style.display = "none"
+      }
+
+      function goBack() {
+          "fail" == payStatus ? callbackOthers() : 0 < showPayFlag ? reset() : callbackOthers()
+      }
+
+      function goMenu() {
+      }
+
+      function goPortal() {
+      }
+
+      function numeric(e) {
+      }
+
+      function changeLeft() {
+      }
+
+      function initPayData() {
+          var e = currObj, s = e.payType.split(","), t = "", o = [], a = 0;
+          -1 < s.indexOf("1") && (t = t + "<div class='item' id='js-item-" + a + "'> <img src='image/pay_0_1.png' id='js-img-" + a + "' alt=''><span id='js-tip-" + a + "'>支付宝</span> </div>", o.push({
+              _in: "#ebeff3",
+              _out: "#14b03c",
+              type: 1
+          }), a++), -1 < s.indexOf("5") && (t = t + "<div class='item' id='js-item-" + a + "'> <img src='image/pay_4_1.png' id='js-img-" + a + "' alt=''><span  id='js-tip-" + a + "'>银联云闪付</span> </div>", o.push({
+              _in: "#ebeff3",
+              _out: "#14b03c",
+              type: 5
+          }), a++), -1 < s.indexOf("2") && (t = t + "<div class='item' id='js-item-" + a + "'> <img src='image/pay_1_1.png' id='js-img-" + a + "' alt=''><span  id='js-tip-" + a + "'>微信支付</span> </div>", o.push({
+              _in: "#ebeff3",
+              _out: "#14b03c",
+              type: 2
+          }), a++), -1 < s.indexOf("4") && (t = t + "<div class='item' id='js-item-" + a + "'>\x3c!--img style='left: 0px;margin-top: -2px;' src='image/pay_3_1_0.png'--\x3e <img style='left: 100px;margin-top: 10px;' src='image/pay_3_1.png' id='js-img-" + a + "' alt=''><span  id='js-tip-" + a + "'></span> </div>", o.push({
+              _in: "#ebeff3",
+              _out: "#14b03c",
+              type: 4
+          }), a++), -1 < s.indexOf("3") && (t = t + "<div class='item' id='js-item-" + a + "'> <img src='image/pay_2_1.png' id='js-img-" + a + "' alt=''><span  id='js-tip-" + a + "'>数字电视账号余额</span> </div>", o.push({
+              _in: "#ebeff3",
+              _out: "#14b03c",
+              type: 3
+          }), a++), itemLength = (focusInfo = o).length, $("js-content").innerHTML = t, $("js-name").innerHTML = e.name, $("js-price").innerHTML = Number(e.price).toFixed(2), showPayFocus(0)
+      }
+
+      function showPayFocus(e) {
+          if (1 == showPayFlag) {
+              var s = focusInfo[payFocus];
+              $("js-item-" + payFocus).style.backgroundColor = s._in, $("js-img-" + payFocus).src = "image/pay_" + (s.type - 1) + "_1.png", $("js-tip-" + payFocus).style.color = "#000";
+              var t = focusInfo[payFocus = (payFocus + e + itemLength) % itemLength];
+              $("js-item-" + payFocus).style.backgroundColor = t._out, $("js-img-" + payFocus).src = "image/pay_" + (t.type - 1) + ".png", $("js-tip-" + payFocus).style.color = "#FFF"
+          }
+      }
+
+      function getQrData() {
+          $("js-content").style.display = "none", $("js-select-pay").style.display = "none", 3 == focusInfo[payFocus].type ? $("js-change-text").innerHTML = "正在支付中<br>请您稍等..." : $("js-change-text").innerHTML = "二维码正在生成中<br>请您稍等...", $("js-change").style.display = "block";
+          var e = globalUserName, s = globalUsercusCode, t = globalUsercusId;
+          iDebug("_name=" + e + ",_cuscode=" + s + ",_cusId=" + t), ajax({
+              type: "POST",
+              url: "../platf/rest/dev/order/preadd",
+              dataType: "html",
+              post: serialize({
+                  version: "1.0",
+                  platf: "hd",
+                  pid: currObj.pid,
+                  payType: focusInfo[payFocus].type,
+                  cusId: t,
+                  cusCode: s,
+                  cusName: e,
+                  subscriberId: subscriberId,
+                  resCode: resCode
+              }),
+              onSuccess: function (e) {
+                  if (iDebug(e), iDebug("res.statusCode=" + e.statusCode), 3e3 == e.statusCode) {
+                      if (2.5 != showPayFlag) return;
+                      showPayFlag = 2, $("js-change").style.display = "none", $("js-qrcode").src = e.object.qrCodeUrl, $("js-other").style.display = "block";
+                      var s = "";
+                      s = 1 == focusInfo[payFocus].type ? "支付宝扫一扫完成支付" : 2 == focusInfo[payFocus].type ? "微信扫一扫完成支付" : 3 == focusInfo[payFocus].type ? "请用电视帐号完成支付" : 5 == focusInfo[payFocus].type ? "银联云闪付扫一扫完成支付" : "用翼支付完成支付", $("js-tip").innerHTML = s, orderId = e.object.orderId, _checkPayTimeout = setTimeout(function () {
+                          _checkPayTimeout = -1, checkPay()
+                      }, 1e4)
+                  } else 0 == e.statusCode ? showLoginTip() : (showMsg(e.statusMsg), $("js-content").style.display = "block", $("js-select-pay").style.display = "block", $("js-change").style.display = "none", showPayFlag = 1, showPay())
+              },
+              onError: function (e) {
+                  iDebug("error:" + e), showMsg(e.statusMsg)
+              },
+              onComplete: function () {
+              }
+          })
+      }
+
+      function beforeGetQR() {
+          ajax({
+              type: "GET",
+              url: "../platf/rest/dev/selfService/querySubscribersOfCustomer?platf=hd&cusId=" + globalUsercusId,
+              onSuccess: function (e) {
+                  if (2e3 == e.statusCode) {
+                      "undefined" != typeof CA && (resCode = CA.serialNumber);
+                      for (var s = e.object.subscriber, t = 0; t < s.length; t++) {
+                          var o = s[t];
+                          if (resCode == o.serviceCode.value) {
+                              subscriberId = o.subscriberId.value, iDebug("--subscriberId=" + subscriberId);
+                              break
+                          }
+                      }
+                      iDebug("CA.serialNumber=" + resCode + ",subscriberId=" + subscriberId), getQrData()
+                  } else 0 == e.statusCode ? iDebug("用户未登陆!") : (iDebug(e.statusMsg), showMsg(e.statusMsg))
+              },
+              onError: function (e) {
+                  iDebug("error:" + e), showMsg(e.statusMsg)
+              },
+              onComplete: function () {
+              }
+          })
+      }
+
+      function checkPay() {
+          var e = serialize({
+              version: "1.0",
+              platf: "hd",
+              cusCode: globalUsercusCode,
+              cusName: globalUserName,
+              orderId: orderId
+          });
+          -1 != _checkPayTimeout && (clearTimeout(_checkPayTimeout), _checkPayTimeout = -1), ajax({
+              type: "GET",
+              url: "../platf/rest/dev/order/status?" + e,
+              dataType: "html",
+              onSuccess: function (e) {
+                  iDebug(e), 6e3 == e.statusCode ? showPaySuccess() : 6002 == e.statusCode || 6004 == e.statusCode ? _timeout < 120 ? (_timeout += 1, _checkPayTimeout = setTimeout(function () {
+                      _checkPayTimeout = -1, checkPay()
+                  }, 5e3)) : (showMsg("二维码已失效！"), reset()) : (e.statusCode, showPayFailed(e.statusMsg))
+              },
+              onError: function (e) {
+                  iDebug("error:" + e), showMsg(e.statusMsg)
+              },
+              onComplete: function () {
+              }
+          })
+      }
+
+      function showPaySuccess() {
+          $("js-other").style.display = "none", showPayFlag = 3, $("js-success").style.display = "block", showDaojishi()
+      }
+
+      function showDaojishi() {
+          clearTimeout(_numTimeout), 0 < ($("js-number").innerText = _daojishi) ? (_daojishi--, _numTimeout = setTimeout(function () {
+              showDaojishi()
+          }, 1e3)) : (reset(), setTimeout(function () {
+              payStatus = "success", callbackOthers()
+          }, 600))
+      }
+
+      function showPayFailed(e) {
+          $("js-other").style.display = "none", showPayFlag = 4, $("js-fail-tip").innerText = void 0 !== e ? e : "订购失败，详情请咨询96596[错误码未知]", $("js-fail").style.display = "block", payStatus = "fail"
+      }
+
+      function showLoginTip() {
+          iDebug("用户未登陆!")
+      }
+
+      function hideLoginTip() {
+      }
+
+      function loginCallback(e) {
+          hideLoginTip(), showPay()
+      }
+
+      function hideLoginAndBack() {
+          hideLoginTip(), showPay()
+      }
+
+      function getUserAccount(s) {
+          var e = 0;
+          "undefined" != typeof CA ? (e = CA.serialNumber, iDebug("[productDetail]caCardNum=" + e), void 0 !== e && null != e && "" != e && 0 != e && ajax({
+              type: "GET",
+              url: "../platf/rest/dev/selfService/queryDetailCustomerByResCode?platf=hd&version=1.0&resCode=" + e,
+              onSuccess: function (e) {
+                  iDebug("[productDetail]res:" + e.toString()), iDebug("[productDetail]cusCode:" + e.object.cusCode.value + ",cusName=" + e.object.cusName.value + ",cusId=" + e.object.cusId.value), 2e3 == e.statusCode ? "" != (globalUsercusCode = e.object.cusCode.value) && null != globalUsercusCode && "null" != globalUsercusCode ? (globalUsercusId = e.object.cusId.value, globalUserName = e.object.cusName.value, iDebug("[productDetail]userAccount:" + globalUsercusCode + ",globalUserName=" + globalUserName + ",globalUsercusId=" + globalUsercusId), isBoughtBefore(s)) : showMsg("查询智能卡信息出错了！") : (iDebug("[productDetail]get userAccount error!"), showMsg(e.statusMsg))
+              },
+              onError: function (e) {
+                  iDebug("[productDetail]error:" + e), showMsg(e.statusMsg)
+              },
+              onComplete: function () {
+              }
+          })) : iDebug("[productDetail] CA is not a Object!")
+      }
+
+      function callbackOthers() {
+          -1 < callback.indexOf("?") ? window.location.href = callback + "&status=" + payStatus + "&orderId=" + orderId : window.location.href = callback + "?status=" + payStatus + "&orderId=" + orderId
+      }
+
+      window.onload = init
+  </script>
+</head>
+<body style="background-image:url(image/bg_list.jpg);background-repeat:no-repeat" leftmargin="0" topmargin="0">
+<div class="detail">
+  <div class="header">
+    <div class="arrow"></div>
+    <div class="line"></div>
+    <div class="title" style="width:130px">最新推荐</div>
+  </div>
+  <div style="position:absolute;left:0;top:70px;font-size:32px;color:#fff;width:1280px;text-align:center" id="js-title">
+    金麦克
+  </div>
+  <div class="content"><img class="img" src="http://10.80.0.211:8090/files/userfiles/images/product2(2).jpg" id="js-img"
+                            alt="">
+    <div id="js-btn" class="btn" style="top: 445px; visibility: visible;"><img src="image/icon_buy.png" alt=""><span
+            class="line">|</span> <span id="js-btn-text" class="text">立即订购</span></div>
+    <div class="detail_text" style="width:790px;height:560px">
+      <div class="tips"></div>
+      <textarea disabled="disabled" class="info" id="js-info"
+                style="border:0;background-color:transparent;width:790px;height:490px;overflow:hidden">fdf</textarea>
+    </div>
+  </div>
+  <div class="detail_tip" id="js-detail_tip"></div>
+</div>
+<div class="pay" id="js-pay">
+  <div class="bg"></div>
+  <div class="tips" style="left:280px;width:719px;background:url(image/tip_pay_bg.png)">
+    <div class="titleInfo" style="color:#f87a00;font-weight:700">
+      <div class="text" id="js-name"></div>
+      <div class="price">￥<span id="js-price"></span>元</div>
+    </div>
+    <div id="js-select-pay" style="position:relative;text-align:center;font-size:32px;line-height:60px;font-weight:700">
+      请选择支付方式
+    </div>
+    <div class="content" id="js-content" style="top:-10px;margin-top:0"></div>
+    <div class="other" id="js-other">
+      <div class="qrcode"><img src="image/pic_ad_01.jpg" id="js-qrcode" alt="">
+        <div class="tip" id="js-tip"></div>
+      </div>
+      <div class="btn_complete" id="js-complete">完成支付</div>
+    </div>
+    <div class="qrChanging" id="js-change">
+      <div class="qrcode" style="color:grey">
+        <div class="tip" id="js-change-text">二维码正在生成中<br>请您稍等...</div>
+      </div>
+      <div class="btn_complete" id="js-complete" style="background-color:#ebeff3">完成支付</div>
+    </div>
+    <div class="success" id="js-success">
+      <div class="qrcode"><img src="image/icon_ok.png" alt="" style="width:94px;height:80px">
+        <div class="tip">支付成功，感谢您的信任</div>
+        <div class="subTip"><span id="js-number">10</span>秒后自动跳转到首页</div>
+      </div>
+      <div class="btn_complete">知道了</div>
+    </div>
+    <div class="success" id="js-fail">
+      <div class="qrcode"><img src="image/wrong.jpg" alt="" style="width:76px;height:76px">
+        <div class="tip">支付<span style="color:red">失败</span>，感谢您的信任</div>
+        <div class="subTip" id="js-fail-tip">请检查网络稍后再试。</div>
+      </div>
+      <div class="btn_complete">稍后再试</div>
+    </div>
+  </div>
+</div>
+<div class="errTip" id="js-msgTip" style="display: none;"></div>
+<div style="position:absolute;width:252px;height:30px;z-index:9;-webkit-transition-duration:.3s;color:red;left:916px;top:17px;background-color:#fff;visibility:hidden"
+     id="test"></div>
+</body>
+</html>

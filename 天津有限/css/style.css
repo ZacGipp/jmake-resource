@@ -1,0 +1,1352 @@
+body, html {
+    padding: 0;
+    margin: 0
+}
+
+.home .header .logo {
+    position: absolute;
+    left: 40px;
+    top: 25px;
+    width: 363px;
+    height: 50px;
+    background-image: url(../image/logo.png);
+    background-repeat: no-repeat
+}
+
+.home .header .user {
+    position: absolute;
+    left: 950px;
+    top: 40px;
+    color: #5a83a9;
+    font-size: 20px
+}
+
+.home .header .user .timearea {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px
+}
+
+.home .header .user .name {
+    position: absolute;
+    left: 70px;
+    width: 80px;
+    font-size: 20px
+}
+
+.home .header .user .focus {
+    position: absolute;
+    left: 0;
+    top: -30px;
+    width: 212px;
+    height: 87px;
+    background-image: url(../image/nav_bg.png);
+    background-repeat: no-repeat;
+    display: none
+}
+
+.home .header .times {
+    position: absolute;
+    left: 1125px;
+    top: 40px;
+    font-size: 14px;
+    color: #5a83a9
+}
+
+.home .header .times .currTime {
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #6b8c91;
+    font-size: 28px
+}
+
+.home .header .times .currDate {
+    position: absolute;
+    top: -3px;
+    left: 75px;
+    width: 70px
+}
+
+.home .header .times .currWeek {
+    position: absolute;
+    top: 15px;
+    left: 75px;
+    width: 70px
+}
+
+.home .nav {
+    position: absolute;
+    left: 285px;
+    top: 100px;
+    width: 820px;
+    height: 60px
+}
+
+.home .nav .item {
+    font-size: 26px;
+    color: #5a83a9;
+    padding: 15px 40px;
+    z-index: 2
+}
+
+.home .nav .line {
+    display: inline-block;
+    width: 1px;
+    height: 15px;
+    background-color: #5a83a9
+}
+
+.home .nav .focus {
+    position: absolute;
+    left: 71px;
+    top: -30px;
+    width: 212px;
+    height: 87px;
+    background-image: url(../image/nav_bg.png);
+    background-repeat: no-repeat
+}
+
+.home .home_content img {
+    position: absolute;
+    z-index: 1
+}
+
+.home .home_content .img1 {
+    left: 40px;
+    top: 160px;
+    width: 295px;
+    height: 447px
+}
+
+.home .home_content .img2 {
+    left: 340px;
+    top: 160px;
+    width: 447px;
+    height: 221px
+}
+
+.home .home_content .img3 {
+    left: 792px;
+    top: 160px;
+    width: 447px;
+    height: 221px
+}
+
+.home .home_content .img4 {
+    left: 340px;
+    top: 386px;
+    width: 447px;
+    height: 221px
+}
+
+.home .home_content .img5 {
+    left: 792px;
+    top: 386px;
+    width: 447px;
+    height: 221px
+}
+
+.home .product_content .list {
+    position: absolute;
+    width: 296px;
+    height: 455px
+}
+
+.home .product_content .list .icon, .home .product_content .list .items, .home .product_content .list .title {
+    margin: 10px 15px
+}
+
+.home .product_content .list .icon img {
+    display: inline-block;
+    padding: 0 0 5px 20px
+}
+
+.home .product_content .list .title span {
+    display: inline-block;
+    padding: 10px 0 20px 20px
+}
+
+.home .product_content .list .items {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    z-index: 2
+}
+
+.home .product_content .list .items .item {
+    font-size: 20px;
+    padding: 5px 0 10px 25px;
+    white-space: nowrap
+}
+
+.home .product_content .list .itemFocus {
+    z-index: 1;
+    position: absolute;
+    left: 15px;
+    top: 188px;
+    width: 266px;
+    height: 40px;
+    display: none
+}
+
+.home .product_content .list .itemFocus .bar {
+    width: 2px;
+    height: 100%
+}
+
+.home .product_content .list.list1 {
+    left: 40px;
+    top: 160px;
+    background-color: #2e8e11
+}
+
+.home .product_content .list.list1 .icon {
+    border-bottom: 1px solid #409332
+}
+
+.home .product_content .list.list1 .title {
+    border-bottom: 1px solid #409332;
+    font-size: 30px;
+    color: #7df86b
+}
+
+.home .product_content .list.list1 .item {
+    color: #e0f5dd
+}
+
+.home .product_content .list.list1 .itemFocus {
+    background-color: #135d07
+}
+
+.home .product_content .list.list1 .itemFocus .bar {
+    background-color: #d07260
+}
+
+.home .product_content .list.list2 {
+    left: 340px;
+    top: 160px;
+    background-color: #bc9715
+}
+
+.home .product_content .list.list2 .icon {
+    border-bottom: 1px solid #c3a22d
+}
+
+.home .product_content .list.list2 .title {
+    border-bottom: 1px solid #c3a22d;
+    font-size: 30px;
+    color: #fadf7d
+}
+
+.home .product_content .list.list2 .item {
+    color: #f6f1e1
+}
+
+.home .product_content .list.list2 .itemFocus {
+    background-color: #96780d
+}
+
+.home .product_content .list.list2 .itemFocus .bar {
+    background-color: #f6de88
+}
+
+.home .product_content .list.list3 {
+    left: 640px;
+    top: 160px;
+    background-color: #245cb0
+}
+
+.home .product_content .list.list3 .icon {
+    border-bottom: 1px solid #3a6db9
+}
+
+.home .product_content .list.list3 .title {
+    border-bottom: 1px solid #3a6db9;
+    font-size: 30px;
+    color: #a0c4fa
+}
+
+.home .product_content .list.list3 .item {
+    color: #b3cff8
+}
+
+.home .product_content .list.list3 .itemFocus {
+    background-color: #14438a
+}
+
+.home .product_content .list.list3 .itemFocus .bar {
+    background-color: #81acec
+}
+
+.home .product_content .list.list4 {
+    left: 940px;
+    top: 160px;
+    background-color: #117883
+}
+
+.home .product_content .list.list4 .icon {
+    border-bottom: 1px solid #409332
+}
+
+.home .product_content .list.list4 .title {
+    border-bottom: 1px solid #409332;
+    font-size: 30px;
+    color: #98e8f1
+}
+
+.home .product_content .list.list4 .item {
+    color: #e0f5dd
+}
+
+.home .product_content .list.list4 .itemFocus {
+    background-color: #0a545c
+}
+
+.home .product_content .list.list4 .itemFocus .bar {
+    background-color: #59c5d1
+}
+
+.home .service_content {
+    position: relative
+}
+
+.home .service_content .service-list {
+    position: absolute;
+    width: 300px;
+    height: 220px;
+    background-color: #245cb0;
+    border: 1px solid #3a6db9
+}
+
+.home .service_content .service-list .icon {
+    position: relative;
+    width: 100%;
+    text-align: center
+}
+
+.home .service_content .service-list .icon img {
+    display: inline-block;
+    margin: 50px 0 30px
+}
+
+.home .service_content .service-list .title {
+    text-align: center;
+    font-size: 24px;
+    color: #e0f5dd
+}
+
+.home .service_content .service-list.list1 {
+    left: 40px;
+    top: 160px
+}
+
+.home .service_content .service-list.list2 {
+    left: 340px;
+    top: 160px
+}
+
+.home .service_content .service-list.list3 {
+    left: 640px;
+    top: 160px
+}
+
+.home .service_content .service-list.list4 {
+    left: 940px;
+    top: 160px
+}
+
+.home .service_content .service-list.list5 {
+    left: 40px;
+    top: 380px
+}
+
+.home .service_content .service-list.list6 {
+    left: 340px;
+    top: 380px
+}
+
+.home .service_content .service-list.list7 {
+    left: 640px;
+    top: 380px
+}
+
+.home .service_content .service-list.list8 {
+    left: 940px;
+    top: 380px
+}
+
+.home .help_content {
+    position: relative
+}
+
+.home .help_content .list {
+    position: absolute;
+    width: 600px;
+    height: 220px
+}
+
+.home .help_content .list .icon {
+    position: absolute;
+    left: 100px;
+    top: 50px
+}
+
+.home .help_content .list .title {
+    position: absolute;
+    left: 220px;
+    top: 85px;
+    font-size: 28px
+}
+
+.home .help_content .list.list1 {
+    background-color: #639613;
+    left: 40px;
+    top: 160px
+}
+
+.home .help_content .list.list1 .title {
+    color: #e5f4cf
+}
+
+.home .help_content .list.list2 {
+    background-color: #c1922e;
+    left: 645px;
+    top: 160px
+}
+
+.home .help_content .list.list2 .title {
+    color: #e5f4cf
+}
+
+.home .help_content .list.list3 {
+    background-color: #c07248;
+    left: 40px;
+    top: 385px
+}
+
+.home .help_content .list.list3 .title {
+    color: #e5f4cf
+}
+
+.home .help_content .list.list4 {
+    background-color: #be49ad;
+    left: 645px;
+    top: 385px
+}
+
+.home .help_content .list.list4 .title {
+    color: #e5f4cf
+}
+
+.home .home_tip {
+    position: absolute;
+    left: 429px;
+    top: 642px;
+    width: 422px;
+    height: 28px;
+    background: url(../image/alert_select.png) no-repeat
+}
+
+.detail .header {
+    position: absolute;
+    left: 40px;
+    top: 25px;
+    width: 315px
+}
+
+.detail .header .arrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 36px;
+    color: #fff;
+    background: url(../image/icon_back.png) no-repeat;
+    width: 24px;
+    height: 34px
+}
+
+.detail .header .line {
+    position: absolute;
+    left: 30px;
+    top: 0;
+    width: 1px;
+    height: 40px;
+    background-color: #5a83a9
+}
+
+.detail .header .title {
+    position: absolute;
+    left: 40px;
+    top: 3px;
+    font-size: 30px;
+    color: #efecec
+}
+
+.detail .header .subTitle {
+    position: absolute;
+    left: 170px;
+    top: 8px;
+    font-size: 28px;
+    color: #7db0e0;
+    font-weight: 700;
+    width: 220px
+}
+
+.detail .title {
+    position: absolute;
+    left: 0;
+    top: 90px;
+    width: 100%;
+    height: 40px;
+    font-size: 26px;
+    border-bottom: 1px solid #5a83a9;
+    color: #fff
+}
+
+.detail .content {
+    position: absolute;
+    left: 54px;
+    top: 110px
+}
+
+.detail .content .img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 350px;
+    height: 447px
+}
+
+.detail .content .btn {
+    position: absolute;
+    left: 0;
+    top: 427px;
+    width: 348px;
+    height: 53px;
+    background-color: #ed7d0f;
+    border: 1px solid #54a1e6;
+    color: #fff;
+    text-align: center;
+    font-size: 26px;
+    visibility: hidden
+}
+
+.detail .content .btn img {
+    display: inline-block;
+    padding-top: 8px
+}
+
+.detail .content .btn .line {
+    color: #63a8e8;
+    display: inline-block;
+    margin: 0 20px
+}
+
+.detail .content .detail_text {
+    position: absolute;
+    top: 0;
+    left: 400px;
+    width: 700px;
+    height: 470px;
+    overflow: hidden
+}
+
+.detail .content .detail_text .tips {
+    margin: 20px 0;
+    color: #5a83a9;
+    font-size: 20px;
+    position: relative
+}
+
+.detail .content .detail_text .info {
+    font-size: 18px;
+    color: #fff;
+    line-height: 24px
+}
+
+.detail .content_2 {
+    position: absolute;
+    left: 160px;
+    top: 100px;
+    width: 960px;
+    height: 540px
+}
+
+.detail .content_2 .title {
+    position: relative;
+    width: 100%;
+    text-align: center
+}
+
+.detail .content_2 .title .main {
+    font-size: 26px;
+    color: #fff
+}
+
+.detail .content_2 .title .sub {
+    display: inline-block;
+    margin: 20px;
+    font-size: 20px;
+    color: #5a83a9
+}
+
+.detail .content_2 .btn {
+    position: absolute;
+    left: 360px;
+    top: 465px;
+    width: 240px;
+    height: 53px;
+    background-color: #ed7d0f;
+    border: 1px solid #54a1e6;
+    color: #fff;
+    text-align: center;
+    font-size: 26px;
+    visibility: hidden
+}
+
+.detail .content_2 .btn img {
+    display: inline-block;
+    padding-top: 8px
+}
+
+.detail .content_2 .btn .line {
+    color: #63a8e8;
+    display: inline-block;
+    margin: 0 20px
+}
+
+.detail .help_info {
+    position: absolute;
+    left: 80px;
+    top: 160px;
+    width: 1100px;
+    height: 450px;
+    background-color: #1774c8;
+    overflow: hidden
+}
+
+.detail .help_info .content {
+    position: absolute;
+    left: 2%;
+    top: 0;
+    width: 96%;
+    height: auto
+}
+
+.detail .recharge {
+    position: absolute;
+    left: 88px;
+    top: 160px;
+    width: 1104px;
+    height: 447px;
+    background-color: #255db1
+}
+
+.detail .recharge .lists {
+    position: relative;
+    margin: 70px 250px 0
+}
+
+.detail .recharge .lists .list {
+    height: 50px;
+    position: relative;
+    width: 100%;
+    font-size: 26px;
+    color: #d0e0f7;
+    margin-top: 50px
+}
+
+.detail .recharge .lists .list .key {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50px;
+    width: 150px;
+    font-weight: 700
+}
+
+.detail .recharge .lists .list .value {
+    position: absolute;
+    left: 140px;
+    top: 0;
+    height: 40px;
+    width: 500px;
+    border-bottom: 1px solid #5a83a9
+}
+
+.detail .recharge .lists .list .value input {
+    position: relative;
+    width: 100%;
+    height: 33px;
+    border: none;
+    background-color: transparent;
+    font-size: 26px;
+    color: #fff
+}
+
+.detail .recharge .lists .list .value .selectVlue {
+    display: inline-block;
+    width: 90%;
+    color: #fff;
+    font-size: 26px;
+    padding-left: 2%
+}
+
+.detail .recharge .lists .list .value .triangle-down {
+    display: inline-block;
+    margin-top: 10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #487ac7
+}
+
+.detail .recharge .lists .btns {
+    margin: 0 auto;
+    width: 100%
+}
+
+.detail .recharge .lists .btns .btn {
+    position: relative;
+    width: 195px;
+    height: 55px;
+    line-height: 55px;
+    color: #fff;
+    text-align: center;
+    background-color: #b3b6b8;
+    float: left;
+    margin: 30px 50px;
+    font-size: 26px
+}
+
+.detail .recharge .pwd {
+    margin-top: 50px
+}
+
+.detail .recharge .pwd .list {
+    margin-top: 25px
+}
+
+.detail .infoQuery {
+    position: absolute;
+    left: 88px;
+    top: 130px;
+    width: 1104px;
+    height: 490px;
+    background-color: #255db1;
+    overflow: hidden
+}
+
+.detail .infoQuery table {
+    width: 100%;
+    height: auto
+}
+
+.detail .infoQuery table tr {
+    width: 100%;
+    height: 70px
+}
+
+.detail .infoQuery table tr td {
+    color: #d0e0f7;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    border-bottom: 1px solid #5a83a9
+}
+
+.detail .infoQuery table tr.fir td {
+    font-size: 26px
+}
+
+.detail .paymentQuery {
+    position: absolute;
+    left: 88px;
+    top: 160px;
+    width: 1104px;
+    height: 447px;
+    background-color: #255db1
+}
+
+.detail .paymentQuery .left {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 312px;
+    background-color: #1e4e97
+}
+
+.detail .paymentQuery .left .focus {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    height: 72px;
+    background-color: #184488
+}
+
+.detail .paymentQuery .left .focus .bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 100%;
+    background-color: #e6ad32
+}
+
+.detail .paymentQuery .left .focus .triangle-right {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-left: 8px solid #fff;
+    border-bottom: 10px solid transparent;
+    right: 10px;
+    top: 25px
+}
+
+.detail .paymentQuery .left .focus_noFocus {
+    position: absolute;
+    top: 30px;
+    display: none;
+    width: 100%;
+    height: 72px;
+    background-color: #1e4fa9
+}
+
+.detail .paymentQuery .left .lists {
+    position: relative;
+    width: 100%;
+    margin-top: 30px
+}
+
+.detail .paymentQuery .left .lists .list {
+    position: relative;
+    width: 100%;
+    height: 72px;
+    text-align: center;
+    font-size: 26px;
+    color: #fff;
+    line-height: 72px
+}
+
+.detail .detail_tip {
+    position: absolute;
+    left: 429px;
+    top: 662px;
+    width: 422px;
+    height: 28px;
+    background: url(../image/alert_select_detail2.png) no-repeat
+}
+
+.right {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 790px;
+    height: 447px
+}
+
+.right .info {
+    position: relative;
+    width: 100%;
+    height: 100%
+}
+
+.right .info .lists {
+    position: relative;
+    margin: 60px 80px 0
+}
+
+.right .info .lists .list {
+    height: 50px;
+    position: relative;
+    width: 100%;
+    font-size: 26px;
+    color: #d0e0f7;
+    margin-top: 25px
+}
+
+.right .info .lists .list .key {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 50px;
+    width: 150px;
+    font-weight: 700
+}
+
+.right .info .lists .list .value {
+    position: absolute;
+    left: 140px;
+    top: 0;
+    height: 40px;
+    width: 490px;
+    border-bottom: 1px solid #5a83a9
+}
+
+.right .info .lists .list .value input {
+    position: relative;
+    width: 100%;
+    height: 33px;
+    border: none;
+    background-color: transparent;
+    font-size: 26px;
+    color: #d0e0f7
+}
+
+.right .info .lists .list .value .selectVlue {
+    display: inline-block;
+    width: 90%;
+    color: #d0e0f7;
+    font-size: 26px;
+    padding-left: 2%
+}
+
+.right .info .lists .list .value .triangle-down {
+    display: inline-block;
+    margin-top: 10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 20px solid #487ac7
+}
+
+.right .info .lists .btns {
+    margin: 0 auto;
+    width: 100%
+}
+
+.right .info .lists .btns .btn {
+    position: relative;
+    width: 195px;
+    height: 55px;
+    line-height: 55px;
+    color: #fff;
+    text-align: center;
+    background-color: #b3b6b8;
+    float: left;
+    margin: 30px 50px;
+    font-size: 26px
+}
+
+.right .info .tableInfo {
+    position: relative;
+    margin: 25px auto;
+    width: 740px
+}
+
+.right .info .tableInfo .tableTitle {
+    font-size: 26px;
+    color: #7db0e0;
+    font-weight: 700;
+    height: 60px;
+    line-height: 60px
+}
+
+.right .info .tableInfo .orderUp {
+    width: 100%;
+    height: 108px;
+    position: relative;
+    background-color: #184488
+}
+
+.right .info .tableInfo .orderUp .left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%
+}
+
+.right .info .tableInfo .orderUp .left .text {
+    height: 54px;
+    line-height: 54px
+}
+
+.right .info .tableInfo .orderUp .left .text span {
+    display: inline-block;
+    color: #d0e0f7;
+    font-size: 20px
+}
+
+.right .info .tableInfo .orderUp .left .text span.key {
+    margin-right: 10px;
+    margin-left: 20px
+}
+
+.right .info .tableInfo .orderUp .right {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 50%;
+    height: 100%
+}
+
+.right .info .tableInfo .orderUp .right .text {
+    height: 54px;
+    line-height: 54px
+}
+
+.right .info .tableInfo .orderUp .right .text span {
+    display: inline-block;
+    color: #d0e0f7;
+    font-size: 20px
+}
+
+.right .info .tableInfo .orderUp .right .text span.key {
+    margin-right: 10px
+}
+
+.right .info .tableInfo table {
+    z-index: 10;
+    width: 100%;
+    height: auto
+}
+
+.right .info .tableInfo table tr {
+    width: 100%;
+    height: 70px
+}
+
+.right .info .tableInfo table tr td {
+    color: #d0e0f7;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+    border-bottom: 1px solid #5a83a9
+}
+
+.right .info .tableInfo table tr.fir td {
+    font-size: 26px
+}
+
+.right .info .tableInfo .mainItem {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 30px
+}
+
+.right .info .tableInfo .mainItem .itemFocus {
+    position: absolute;
+    left: 25px;
+    top: 10px;
+    width: 100px;
+    height: 50px;
+    background-color: #0a2e65;
+    z-index: 1
+}
+
+.right .info .tableInfo .mainItem .itemFocus .triangle-down {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #0a2e65;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    margin-left: -2.5px
+}
+
+.right .info .tableInfo .mainItem .mainTable {
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    z-index: 2
+}
+
+.right .info .tableInfo .mainItem .mainTable table td {
+    border: none
+}
+
+.pay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+    z-index: 10
+}
+
+.pay .bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1280px;
+    height: 720px;
+    background: url(../image/bg_2.png)
+}
+
+.pay .tips {
+    position: absolute;
+    left: 326px;
+    top: 113px;
+    width: 628px;
+    height: 494px;
+    background: url(../image/tip_bg.png)
+}
+
+.pay .tips .titleInfo {
+    position: relative;
+    height: 96px;
+    border-bottom: 1px solid #d7dfdc;
+    margin: 0 25px
+}
+
+.pay .tips .titleInfo .text {
+    position: absolute;
+    left: 20px;
+    top: 40px;
+    font-size: 28px;
+    font-weight: 700
+}
+
+.pay .tips .titleInfo .price {
+    position: absolute;
+    right: 0;
+    top: 44px;
+    font-size: 24px;
+    color: #ffa628
+}
+
+.pay .tips .content {
+    position: relative;
+    margin-top: -10px
+}
+
+.pay .tips .content .item {
+    position: relative;
+    margin: 8px auto;
+    text-align: center;
+    width: 325px;
+    height: 56px;
+    background-color: #ebeff3
+}
+
+.pay .tips .content .item img {
+    position: absolute;
+    left: 30px;
+    top: 2px
+}
+
+.pay .tips .content .item span {
+    position: absolute;
+    left: 100px;
+    top: 15px;
+    font-size: 26px;
+    color: #000
+}
+
+.pay .tips .content .list {
+    position: relative;
+    margin: 40px auto;
+    width: 325px;
+    height: 56px;
+    background-color: #ebeff3
+}
+
+.pay .tips .content .list span {
+    font-size: 24px;
+    line-height: 56px;
+    padding-left: 20px
+}
+
+.pay .tips .other, .pay .tips .qrChanging, .pay .tips .success {
+    position: relative;
+    display: none
+}
+
+.pay .tips .other .qrcode, .pay .tips .qrChanging .qrcode, .pay .tips .success .qrcode {
+    margin: 20px 25px;
+    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d7dfdc
+}
+
+.pay .tips .other .qrcode img, .pay .tips .qrChanging .qrcode img, .pay .tips .success .qrcode img {
+    display: inline-block;
+    width: 247px;
+    height: 224px
+}
+
+.pay .tips .other .qrcode .tip, .pay .tips .qrChanging .qrcode .tip, .pay .tips .success .qrcode .tip {
+    text-align: center;
+    font-size: 24px;
+    margin: 10px 0
+}
+
+.pay .tips .other .qrcode .subTip, .pay .tips .qrChanging .qrcode .subTip, .pay .tips .success .qrcode .subTip {
+    margin-bottom: 50px;
+    font-size: 20px
+}
+
+.pay .tips .other .btn_complete, .pay .tips .qrChanging .btn_complete, .pay .tips .success .btn_complete {
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    background-color: #1774c8;
+    color: #fff;
+    margin: 20px auto;
+    font-size: 24px;
+    line-height: 50px
+}
+
+.pay .loginInfo {
+    position: absolute;
+    left: 326px;
+    top: 113px;
+    width: 628px;
+    height: 494px;
+    background: url(../image/tip_bg.png);
+    display: none
+}
+
+.pay .loginInfo .text {
+    position: relative;
+    height: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: #1774c8;
+    margin: 50px 0 50px
+}
+
+.pay .loginInfo .item {
+    position: relative;
+    height: 90px;
+    width: 90%;
+    margin-top: 20px;
+    margin-left: 30px;
+    border-bottom: 1px solid #d7dfdc
+}
+
+.pay .loginInfo .item .key {
+    position: absolute;
+    width: 150px;
+    height: 45px;
+    top: 30px;
+    left: 10px;
+    color: #000;
+    font-weight: 700;
+    font-size: 24px
+}
+
+.pay .loginInfo .item .value {
+    position: absolute;
+    width: 415px;
+    height: 45px;
+    top: 30px;
+    left: 110px
+}
+
+.pay .loginInfo .item .value input {
+    width: 100%;
+    height: 23px;
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    color: #000
+}
+
+.pay .loginInfo .btns {
+    position: relative;
+    margin-top: 55px
+}
+
+.pay .loginInfo .btns .btn {
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    top: 0;
+    border: 1px solid #d7dfdc;
+    font-size: 20px;
+    color: #fff;
+    background-color: #b3b6b8
+}
+
+.pay .loginInfo .btns .btn.fir {
+    left: 50px
+}
+
+.pay .loginInfo .btns .btn.sec {
+    left: 375px
+}
+
+.pay .loginInfo .warning {
+    position: relative;
+    color: red;
+    text-align: center;
+    left: 25px;
+    top: 50px;
+    width: 580px
+}
+
+.pay .loginout {
+    position: absolute;
+    left: 326px;
+    top: 200px;
+    width: 628px;
+    height: 250px;
+    background-color: #fff;
+    display: none
+}
+
+.pay .loginout .text {
+    position: relative;
+    height: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: #1774c8;
+    margin: 50px 0 110px
+}
+
+.pay .loginout .btns {
+    position: relative;
+    margin-top: 55px
+}
+
+.pay .loginout .btns .btn {
+    position: absolute;
+    width: 200px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    top: 0;
+    border: 1px solid #d7dfdc;
+    font-size: 20px;
+    color: #fff;
+    background-color: #b3b6b8
+}
+
+.pay .loginout .btns .btn.fir {
+    left: 50px;
+    background-color: #0e61ac;
+    color: #fff
+}
+
+.pay .loginout .btns .btn.sec {
+    left: 375px
+}
+
+.errTip {
+    position: relative;
+    display: none;
+    min-height: 50px;
+    line-height: 50px;
+    font-size: 22px;
+    color: #fff;
+    padding: 5px 10px;
+    background-image: url(../image/bg_2.png);
+    z-index: 999;
+    margin: 350px auto;
+    width: 350px;
+    text-align: center;
+    overflow: hidden
+}

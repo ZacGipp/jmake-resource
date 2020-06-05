@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="page-view-size" content="1280*720">
+  <title>portal</title>
+  <script language="javascript" src="./js/keyEvent1.0.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+    }
+  </style>
+  <script>
+    iDebug("=================index enter=========");
+
+    function iDebug(e) {
+        "undefined" != typeof Utility ? Utility.println(e) : console.log(e);
+        // alert('debug: ' + e);
+    }
+
+    function backToHome() {
+        var commandStr = "monkey -p cn.jmake.karaoke.box 1";
+        "undefined" != typeof Utility ? Utility.ioctlWrite("EXECUTE_COMMAND", commandStr) : null;
+    }
+  </script>
+</head>
+<body onload="backToHome()">
+<div class="container">
+</div>
+</body>
+</html>

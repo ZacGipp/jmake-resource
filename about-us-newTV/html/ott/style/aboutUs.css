@@ -1,0 +1,75 @@
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    text-align: center;
+}
+
+html {
+    background-image: url("../../../img/ott/about-us.jpg");
+    background-size: cover;
+}
+.container{
+    display: flex;
+    justify-items: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+p.content {
+    padding: 0 12%;
+    margin: .2rem 0;
+    text-indent: 1.4rem;
+    font-size: .66rem;
+    text-align: left;
+}
+p.title {
+    font-size: .7rem;
+    margin: .5rem 0;
+}
+p.info {
+    font-size: .42rem;
+    margin: .2rem 0 1rem 0;
+}
+p.info font{
+    margin: 0 .4rem;
+}
+.qa{
+    text-align: center;
+}
+.qa img{
+    margin-top: .5rem;
+    width: 3rem;
+}
+.qa span{
+    display: block;
+    width: 4rem;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: .2rem;
+    border-radius: .2rem;
+}
+.qa span font{
+    font-size: .48rem;
+    display: block
+}
+.qa span .qa-desc {
+    font-size: .32rem;
+}
+.qa-desc i {
+    font-style: normal;
+    color: #f95c2e;
+}
+hr{
+    width: 56%;
+    margin: .4rem auto .2rem auto;
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}

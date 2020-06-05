@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>活动弹窗</title>
+  <title>中秋活动</title>
   <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -13,15 +13,15 @@
       margin: 0;
       position: relative;
       overflow: hidden;
-      background: rgba(0, 0, 0, .2);
+      background-color: black;
     }
 
     #activityBtn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      width: 100%;
+      height: 100%;
       border: none;
-      background: url("./img.png") no-repeat;
+      position: absolute;
+      background: url("./img.jpg") no-repeat;
       background-size: cover;
     }
 
@@ -35,30 +35,21 @@
 </body>
 <script>
 
-  var btn = document.querySelector("#activityBtn");
-  var clientWidth = document.body.clientWidth;
-  var btnWidth = (629 / 1280) * clientWidth;
-  btn.style.marginLeft = -(btnWidth / 2) + 'px';
-  btn.style.width = btnWidth + 'px';
-  var height = btnWidth / (629 / 526);
-  btn.style.marginTop = -(height / 2) + 'px';
-  btn.style.height = height + 'px';
-
   document.querySelector("#activityBtn").focus();
 
   function activityClick(e) {
 
-    var json = {
-      pageCode: "0013",
-      pageName: "支付页面"
-    };
+    // var json = {
+    //   pageCode: "0013",
+    //   pageName: "支付页面"
+    // };
 
     // type, targetJson, pageName
-    window.JSCampaign && window.JSCampaign.pageOpen && window.JSCampaign.pageOpen(
-            "pageOpen",
-            JSON.stringify(json),
-            ""
-    );
+    // window.JSCampaign && window.JSCampaign.pageOpen && window.JSCampaign.pageOpen(
+    //         "pageOpen",
+    //         JSON.stringify(json),
+    //         ""
+    // );
     // window.JSCampaign && window.JSCampaign.close && window.JSCampaign.close();
   }
 

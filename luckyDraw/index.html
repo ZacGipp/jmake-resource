@@ -3,16 +3,29 @@
 <head>
   <meta charset="utf-8">
   <title>大转盘抽奖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+  <!--  <meta name="referrer" content="no-referrer">-->
+  <!--  <meta name="flexible" content="initial-dpr=2"/>-->
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">-->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="style/style.css">
+  <!--  <script src="./dep/flexible.js"></script>-->
 </head>
 <body>
 <div class="container">
   <div class="vip-detail">
-    <header class="vip-headImg"></header>
+    <header class="vip-headImg">
+      <img src='./img/head.png' alt="" onerror="headImgError()">
+      <script>
+          function headImgError() {
+              // console.log(123);
+              var img = event.srcElement;
+              img.src = './img/head.png';
+              img.onerror = null;
+          }
+      </script>
+    </header>
     <div class="vip-crown"></div>
     <div class="vip-content">
       <div>
@@ -28,7 +41,7 @@
     <button class="draw-btn btn-listening" onclick="startDraw()">
       <div class="processing hide">
         <div>抽奖</div>
-        <font>剩余<font style="font-size: 41px;" class="draw-count">0</font>次</font>
+        <font class="draw-text">剩余<font class="draw-count">0</font>次</font>
       </div>
       <div class="ending hide">
         <p>活动</p>
@@ -93,18 +106,17 @@
 <script src="./js/btnClick.js"></script>
 <script type="text/javascript">
 
-    // var documentClickCount = 0;
-    // var documentClickTimeout = null;
-    // document.onclick = function () {
-    //     if (documentClickTimeout) clearTimeout(documentClickTimeout);
-    //     documentClickCount++;
-    //     documentClickTimeout = setTimeout(function () {
-    //         documentClickCount = 0;
-    //     }, 500);
-    //     if (documentClickCount > 10) {
-    //         MSG.showDebugMsg();
-    //     }
-    // };
+
+//    MSG.showMsg({
+//        prizeType: 'vip',
+//        title: '恭喜您中奖啦！',
+//        img: '',
+//        detail: '恭喜获得' + 123,
+//        btnLabel: '现在使用',
+//        btnClick: function () {
+//
+//        },
+//    });
 
     if (CONFIG.ID) {
         init();
@@ -113,8 +125,12 @@
     }
 
     function init() {
-        var auditor = getQueryString('auditor') || 0;
-        CONFIG.DOMAIN = CONFIG.DOMAINS[auditor] || CONFIG.DOMAINS[0];
+        if (CONFIG.ENV === 'test') {
+            CONFIG.DOMAIN = CONFIG.DOMAINS.test;
+        } else {
+            var auditor = getQueryString('auditor') || 0;
+            CONFIG.DOMAIN = CONFIG.DOMAINS[auditor] || CONFIG.DOMAINS[0];
+        }
         MSG.setLoading(true);
         window.onhashchange = hashChange;
         // 刷新抽奖次数
@@ -151,6 +167,7 @@
                 CONFIG.el_rulePop.innerHTML = ruleStr;
                 // 大背景图
                 if (data.imgUrl) CONFIG.el_container.style.backgroundImage = 'url(' + data.imgUrl + ')';
+                if (data.bgColor) CONFIG.el_container.style.backgroundColor = data.bgColor;
                 // 初始化大转盘
                 TURNTABLE.prizeList = data.items || [];
                 for (var i = 0; i < TURNTABLE.prizeLength; i++) {
@@ -171,9 +188,9 @@
             data: {id: CONFIG.ID},
             success: function (response) {
                 var userInfo = response.data || {};
-                if (userInfo.headerImg) CONFIG.el_vipHeadImg.style.backgroundImage = 'url(' + userInfo.headerImg + ')';
-                var nickname = userInfo.nickname;
-                CONFIG.el_vipNickname.innerText = (nickname.length > 8 ? (nickname.slice(0, 4) + '****' + nickname.slice(-4)) : nickname) || '匿名';
+                CONFIG.el_vipHeadImg.children[0].src = userInfo.headerImg;
+                var nickname = userInfo.nickname || '';
+                CONFIG.el_vipNickname.innerText = (nickname.length > 8 ? (nickname.slice(0, 4) + '****' + nickname.slice(-4)) : nickname) || '';
                 // vipStatus //VIP状态，-1从未激活，0已过期，1是VIP, -2重庆连续包月欠费
                 switch (userInfo.vipStatus) {
                     case -1:
@@ -211,7 +228,7 @@
                     var headerImg = fakeData[i].headerImg;
                     var prizeName = fakeData[i].prizeName;
                     var username = fakeData[i].nickName;
-                    fakeDataHtml += '<p><font style="background-image: url(' + headerImg + ')"></font><font>' + username + '</font><font>' + prizeName + '</font></p>';
+                    fakeDataHtml += '<p><img src="' + headerImg + '" onerror="headImgError()" /><font>' + username + '</font><font>' + prizeName + '</font></p>';
                 }
                 CONFIG.el_winnerList.innerHTML = fakeDataHtml;
                 scrollRunData();

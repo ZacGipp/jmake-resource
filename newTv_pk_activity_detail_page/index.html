@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>未来K歌活动</title>
+  <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    #activityBtn {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      background: url("./img.jpg") no-repeat;
+      background-size: cover;
+    }
+
+    #activityBtn:focus {
+      outline: none;
+    }
+
+    .detail {
+      padding: 20px;
+      position: absolute;
+      left: 70px;
+      bottom: 126px;
+      width: calc(100% - 140px);
+      height: 328px;
+      background: rgba(255, 255, 255, .2);
+      box-sizing: border-box;
+    }
+
+    .content {
+      padding: 22px 16px;
+      width: 100%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    .content:focus {
+      outline: none;
+    }
+
+    .content p {
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+      line-height: 36px;
+      color: #fff;
+    }
+
+    .scrollContainer {
+      position: absolute;
+      width: 20px;
+      height: calc(100% - 32px);
+      top: 16px;
+      right: 16px;
+      background: rgba(255, 255, 255, .2);
+      /*border: 1px solid #ddd;*/
+      border-radius: 20px;
+    }
+
+    .scrollTarget {
+      position: absolute;
+      top: 8px;
+      left: 4px;
+      width: 12px;
+      height: 0;
+      background: rgba(255, 255, 255, .7);
+      border-radius: 6px;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div id="activityBtn"></div>
+<div class="detail">
+  <div class="scrollContainer hide">
+    <div class="scrollTarget"></div>
+  </div>
+  <div class="content">
+    <p>活动时间：5月1日—5月31日</p>
+    <p>活动参与对象：“NewTV金麦客”所有用户</p>
+    <p>活动参与方式：</p>
+    <p>用户录制使用“NewTV金麦客”进行K歌的视频，通过“未来拍客”手机APP上传视频到任务【K歌赢豪礼 秀出你的好嗓音】下参与活动。</p>
+
+    <p>活动说明：</p>
+    <p>1、用户需使用“未来拍客”APP上传视频到本次活动的任务【K歌赢豪礼 秀出你的好嗓音】下。</p>
+    <p>2、用户需按照活动要求拍摄视频，上传的视频经审核通过后，即为有效作品，将在“NewTV金麦客”电视端的活动专区进行展示，展示即表示成功参加活动。（审核通过的视频将在1天内完成展示）</p>
+    <p>有效作品：横屏拍摄，视频中能够直接体现用户正在使用NewTV金麦客进行K歌。</p>
+    <p>3、用户可在“NewTV金麦客”电视端查看作品，为作品点赞，也可以通过分享等方式，邀请朋友为自己的作品点赞打榜。</p>
+    <p>4、查找作品：用户可以在“NewTV金麦客”电视端活动专区通过手机号码最后四位搜索，找到自己的作品；可通过榜单及作品详情查看作品排名。</p>
+    <p>5、每个用户每天可对单个作品点赞1次，点赞作品数不限制。</p>
+
+    <p>奖项设置：</p>
+    <p>特等奖：1名 奖品：张钧甯同款阿玛尼AR1926满天星手表1块(价值3999元)</p>
+    <p>一等奖：4名 奖品：美的VR05F5-TY扫地机器人1台（价值1299元）</p>
+    <p>二等奖：10名  奖品：水星家纺兰叙系列四件套1套（价值738元）</p>
+    <p>三等奖：15名  奖品：司顿陶晶不粘锅1套（价值529元）</p>
+    <p>参与奖：若干 ，金麦客专业K歌月卡1张（价值39元）</p>
+
+    <p>评奖规则：</p>
+    <p>1、活动结束（截止2020年5月31日24点）后，我们将按照单个作品点赞数进行从高到低排名，第一名获得特等奖，第2-5名获得一等奖，6-15名获得二等奖，16-30名获得三等奖。不设并列奖，如出现并列的情况，则按用户上传视频的时间先后进行排名。同一用户仅限获奖一次，以最高奖为准，并依次顺延。</p>
+    <p>2、所有参加活动上传视频且视频审核通过的未获奖用户均可获得参与奖一份，每位用户限获奖一次。</p>
+
+    <p>奖品发放与公布：</p>
+    <p>活动结束后1天内，我们将在“NewTV金麦客”电视端的活动入口公布获奖名单，并在当周“金麦客专业K歌”微信公众号发布中奖名单。</p>
+    <p>我们的客服将在名单公布后，联系用户进行实物奖品发放，请务必保持电话畅通。实物奖品我们将通过邮寄的方式发放。</p>
+    <p> K歌会员月卡将通过电子码的形式发放。</p>
+
+    <p>【参与资格、获奖资格的取消】</p>
+    <p>请用户理性参与活动，如用户存在违反法律、法规或违反包括但不限于《金麦客用户协议》《未来拍客用户协议》，包括但不限于以作弊等非正当方式获取奖品、会员时长等行为，金麦客及未来拍客均有权单独按照其平台用户服务协议规定进行处理（如取消您的中奖资格，撤销违规交易，收回您非法获得的全部礼品或权益等）。</p>
+    <p>同时，您若有下列任何一种行为或情况的，活动方（NewTV金麦客、未来拍客）有权单方面取消您的参与资格、获奖资格等权益：（1）不符合参与资格的；（2）提供虚假信息的；（3）虚假交易或恶意破坏活动的；（4）以任何机器人软件、蜘蛛软件、爬虫软件、刷奖软件或其它任何自动方式、不正当手段等参与本活动的；（5）有任何违反诚实信用、公序良俗、公平、公正等原则行为的；（6）其他违反相关法规、本规则行为的。</p>
+    <p>【温馨提示】</p>
+    <p>用户知悉互联网存在诸多不确定性因素，因此理解并同意，如因不可抗力、网络、通讯线路故障、计算机大规模瘫痪及活动中存在大面积作弊行为等非活动方原因致使本活动出现异常情况或难以继续开展的，活动方均有权采取包括但不限于通过各种方式消除异常情况或调整、暂停、取消本活动等措施。</p>
+    <p>如对本活动有任何咨询或疑问，可在“金麦客专业K歌”公众号中咨询或拨打客服电话：028-87410132（客服时间：9:30-17:30）。</p>
+  </div>
+</div>
+</body>
+<script>
+    var scrollContainer = document.querySelector('.scrollContainer');
+    var scrollTarget = document.querySelector('.scrollTarget');
+    var content = document.querySelector('.content');
+    var detailOffsetHeight = content.offsetHeight;
+    var detailScrollHeight = content.scrollHeight;
+
+    if (detailScrollHeight > detailOffsetHeight) {
+        scrollContainer.classList.remove('hide');
+        scrollTarget.style.height = (detailOffsetHeight / detailScrollHeight) * (scrollContainer.offsetHeight - 16) + 'px';
+
+        content.onscroll = function (e) {
+            var rate = e.target.scrollTop / detailScrollHeight;
+            scrollTarget.style.top = ((scrollContainer.offsetHeight - 16) * rate) + 8 + 'px';
+        }
+
+    }
+
+</script>
+</html>

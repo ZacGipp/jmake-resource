@@ -87,7 +87,7 @@ function ajax(options) {
 				var respStatus = response.status;
 				if (respStatus === 3014) CONFIG.ENDING = true;
 				if (options.url.replace(CONFIG.DOMAIN, '') !== CONFIG.API.JACKPOT && respStatus !== 1) {
-					if (response === 4001) {
+					if (respStatus === 4001) {
 						MSG.noLogin();
 					} else {
 						MSG.error(response.msg);

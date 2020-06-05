@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>使用帮助</title>
+  <meta content="target-densitydpi=device-dpi,width=1920,user-scalable=no" name="viewport">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      position: relative;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    .container {
+      width: 100%;
+      height: 100%;
+      border: none;
+      position: absolute;
+      background: url("img/bg.jpg") no-repeat;
+      background-size: cover;
+    }
+
+    .header {
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      line-height: 200px;
+      font-size: 50px;
+      color: #f0f0f0;
+      font-weight: bold;
+    }
+
+    .left {
+      float: left;
+      width: 276px;
+      height: calc(100% - 200px);
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .aside_btn {
+      display: block;
+      width: 100%;
+      height: 90px;
+      font-size: 36px;
+      color: #f0f0f0;
+      background: none;
+      border: none;
+    }
+
+    .aside_btn_selected {
+      background: rgba(255, 255, 255, .1);
+    }
+
+    .aside_btn:focus {
+      outline: none;
+      background: #ff6832;
+    }
+
+    .right {
+      position: relative;
+      float: left;
+      padding: 38px 100px 0 82px;
+      width: calc(100% - 276px);
+      height: calc(100% - 200px);
+      font-size: 28px;
+      background: rgba(255, 255, 255, .1);
+      box-sizing: border-box;
+    }
+
+    .content {
+      width: 1378px;
+      height: 700px;
+    }
+
+    .scrollContainer {
+      position: absolute;
+      width: 30px;
+      height: 700px;
+      top: 38px;
+      right: 70px;
+      background: rgba(255, 255, 255, .2);
+      /*border: 1px solid #ddd;*/
+      border-radius: 30px;
+    }
+
+    .scrollTarget {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      width: 18px;
+      height: 0;
+      background: rgba(255, 255, 255, .7);
+      border-radius: 18px;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 34px;
+      left: calc(50% - 64px);
+      width: 128px;
+      height: 66px;
+      background: url("img/down_default.png") no-repeat;
+      background-size: cover;
+    }
+
+    .footer_selected {
+      background-image: url("img/down_selected.png");
+    }
+
+    /*.down {*/
+    /*  margin-left: calc(50% - 16px);*/
+    /*  margin-top: 13px;*/
+    /*  width: 32px;*/
+    /*  height: 28px;*/
+    /*  background: url("img/down.png") no-repeat;*/
+    /*  background-size: cover;*/
+    /*}*/
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">使用帮助</div>
+  <aside class="left">
+    <button class="aside_btn">微信点歌</button>
+    <button class="aside_btn">曲库更新</button>
+    <button class="aside_btn">会员问题</button>
+  </aside>
+  <main class="right">
+    <div class="article"></div>
+    <div class="scrollContainer hide">
+      <div class="scrollTarget"></div>
+    </div>
+    <div class="footer">
+<!--      <div>上下键翻页</div>-->
+<!--      <div class="down"></div>-->
+    </div>
+  </main>
+</div>
+</body>
+<script>
+
+    var articleDom = document.querySelector('.article');
+    var scrollContainer = document.querySelector('.scrollContainer');
+    var scrollTarget = document.querySelector('.scrollTarget');
+    var footerDom = document.querySelector('.footer');
+    var versionStr = 1; // 0为专业K歌，1为随时随地
+    var btns = !versionStr
+        ? [
+            {title: '微信点歌', url: './problems/zykg/chooseSong.html'},
+            {title: '歌曲播放', url: './problems/zykg/play.html'},
+            {title: '曲库更新', url: './problems/zykg/qk.html'},
+            {title: '购买会员', url: './problems/zykg/vip.html'},
+        ]
+        : [
+            {title: '微信点歌', url: './problems/sssd/chooseSong.html'},
+            {title: '曲库更新', url: './problems/sssd/qk.html'},
+            {title: '会员问题', url: './problems/sssd/vip.html'},
+        ];
+
+    window.onload = function () {
+        var iframeStr = '';
+        for (var i = 0; i < btns.length; i++) {
+            var btn = btns[i];
+            iframeStr += '<iframe class="content hide" src="' + btn.url + '" frameborder="0" onload="frameLoad(event)"></iframe>';
+        }
+
+        articleDom.innerHTML = iframeStr;
+    };
+
+    function createBtns() {
+        var leftDom = document.querySelector('.left');
+        var btnStr = '';
+        for (var i = 0; i < btns.length; i++) {
+            var btn = btns[i];
+            btnStr += '<button class="aside_btn" onfocus="btnFocus(event)" data-index="' + i + '">' + btn.title + '</button>';
+        }
+
+        leftDom.innerHTML = btnStr;
+        document.querySelector(".aside_btn").focus();
+    }
+
+    function btnFocus(e) {
+        var target = e.target;
+        var p = target.parentNode.children; //获取父级的所有子节点
+        for (var i = 0; i < p.length; i++) {  //循环
+            if (p[i] !== target) {
+                p[i].classList.remove('aside_btn_selected');
+            } else {
+                p[i].classList.add('aside_btn_selected');
+            }
+        }
+
+        var iframeDoms = document.querySelectorAll('iframe');
+        for (var j = 0; j < iframeDoms.length; j++) {  //循环
+            if (j != target.dataset.index) {
+                iframeDoms[j].classList.add('hide');
+            } else {
+                iframeDoms[j].classList.remove('hide');
+                showScroll(iframeDoms[j]);
+            }
+        }
+    }
+
+    function showScroll(iframeDom) {
+        var content = iframeDom.contentDocument.getElementById('box');
+        if (content) {
+            var detailOffsetHeight = iframeDom.contentWindow.innerHeight;
+            var detailScrollHeight = content.scrollHeight;
+            if (detailScrollHeight > detailOffsetHeight) {
+                scrollContainer.classList.remove('hide');
+                scrollTarget.style.height = (detailOffsetHeight / detailScrollHeight) * (scrollContainer.offsetHeight - 12) + 'px';
+                var rate = content.scrollTop / detailScrollHeight;
+                scrollTarget.style.top = ((scrollContainer.offsetHeight - 12) * rate) + 6 + 'px';
+
+                content.onscroll = function (e) {
+                    rate = e.target.scrollTop / detailScrollHeight;
+                    scrollTarget.style.top = ((scrollContainer.offsetHeight - 12) * rate) + 6 + 'px';
+                }
+
+            } else {
+                scrollContainer.classList.add('hide');
+            }
+        }
+    }
+
+    function frameLoad(event) {
+        createBtns();
+        var iframeDom = event.target;
+        var content = iframeDom.contentDocument.getElementById('box');
+
+        content.onfocus = function () {
+            // console.log(footerDom);
+            footerDom.classList.add('footer_selected');
+        };
+        content.onblur = function () {
+            footerDom.classList.remove('footer_selected');
+        }
+    }
+
+</script>
+</html>

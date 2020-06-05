@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="page-view-size" content="1280*720">
+  <title>portal</title>
+  <script language="javascript" src="./js/keyEvent1.0.js"></script>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      color: #fff;
+      text-align: center;
+    }
+
+    body {
+      background-image:url('img/pay-call-back-bg.jpg');
+      background-repeat: no-repeat;
+    }
+
+    p:not(.title) {
+      margin: 6px 0;
+      font-size: 48px;
+      width: 100%;
+      text-align: left;
+      text-indent: 31%;
+    }
+
+    .title {
+      padding: 60px 0 84px 0;
+      width: 100%;
+      font-size: 28px;
+    }
+
+    .status {
+      position: relative;
+      margin-left: 282px;
+      width: 716px;
+      height: 288px;
+      background-color: #704d75;
+      background-repeat: no-repeat;
+      background-position: 10% center;
+    }
+
+    .status.fail {
+      background-image: url("./img/fail.png");
+    }
+
+    .status.success {
+      background-image: url("./img/success.png");
+    }
+
+    .status-info {
+      padding-top: 68px;
+      height: 100%;
+    }
+
+    .hide {
+      display: none;
+    }
+  </style>
+  <script>
+    iDebug("=================index enter=========");
+
+    function iDebug(e) {
+        "undefined" != typeof Utility ? Utility.println(e) : console.log(e);
+        // alert('debug: ' + e);
+    }
+
+    function backToHome() {
+        var commandStr = "monkey -p cn.jmake.karaoke.box 1";
+        // $("debug").innerHTML += '----' + commandStr;
+        //var commandStr = "monkey -p com.common.setting 1";
+        "undefined" != typeof Utility ? Utility.ioctlWrite("EXECUTE_COMMAND", commandStr) : null;
+    }
+
+    function doBasicKey(e) {
+        // $("debug").innerHTML += '----' + e;
+        var s = 0;
+        switch (e) {
+            case"up":
+                showPayFocus(-1);
+                break;
+            case"down":
+                showPayFocus(1);
+                break;
+            case"left":
+                changeLeft(-1);
+                break;
+            case"right":
+                changeLeft(1);
+                break;
+            case"enter":
+                doSelect();
+                break;
+            case"menu":
+                s = 0, goMenu();
+                break;
+            case"portal":
+                s = 1, goPortal();
+                break;
+            case"volUp":
+            case"volDown":
+                s = 1;
+                break;
+            case"back":
+            default:
+                backToHome();
+                break;
+        }
+        return s
+    }
+    function doOtherKey(e, s) {
+        // $("debug").innerHTML += '----' + e;
+        backToHome();
+    }
+    function showPayFocus() {
+    }
+
+    function doSelect() {
+    }
+
+    function goMenu() {
+    }
+
+    function goPortal() {
+    }
+
+    function numeric(e) {
+    }
+
+    function changeLeft() {
+    }
+
+    function init() {
+        var status = getUrlString("status", decodeURIComponent(window.location.search));
+        var titleDom = $('title');
+        var statusDom = $('status');
+        var successInfoDom = $('success-info');
+        var failInfoDom = $('fail-info');
+        var failTitleDom = $('fail-title');
+        var failSubTitleDom = $('fail-sub-title');
+
+        if (status === 'success') {
+            titleDom.innerHTML = "支付成功";
+            statusDom.className += ' success';
+            successInfoDom.className = successInfoDom.className.replace(' hide', '');
+            // statusDom.classList.add("success");
+            // successInfoDom.classList.remove("hide");
+        } else {
+            if (status === 'fail') {
+                titleDom.innerHTML = "支付失败";
+            } else {
+                titleDom.innerHTML = "支付取消";
+                failTitleDom.innerHTML = "更多精彩";
+                failSubTitleDom.innerHTML = "欢迎随时再来看看";
+            }
+            statusDom.className += ' fail';
+            failInfoDom.className = failInfoDom.className.replace(' hide', '');
+        }
+
+    }
+    window.onload = init;
+  </script>
+</head>
+<body>
+<p id="title" class="title"></p>
+<div id="status" class="status">
+  <div id="fail-info" class="status-info hide">
+    <p id="fail-title" class="fail-title">非常抱歉</p>
+    <p id="fail-sub-title" class="fail-sub-title">会员服务购买失败</p>
+  </div>
+  <div id="success-info" class="status-info hide">
+    <p>恭喜</p>
+    <p>您已成为金麦客会员</p>
+  </div>
+</div>
+</body>
+</html>

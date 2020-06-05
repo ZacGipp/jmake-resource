@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ABOUT US</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="./style/aboutUs.css">
+</head>
+<body>
+<div class="container">
+    <div>
+        <p class="title">ABOUT US</p>
+        <p class="content">J-MAKE is an Internet singing application on home large-screen that integrates singing, watching and listening. We have over 300,000 rightful music video resources stored in cloud.</p>
+        <p class="content">With J-MAKE's professional singing equipment set, we are able to immediately turn your living room into KTV, send the new audio-visual feasts to millions of families.</p>
+        <p class="content">"CIBN" only Guo Guang dong Fang network (Beijing) Co., Ltd. as the integrated broadcast controller, and the specific copyright responsibility is in the charge of Tianjin J-MAKE Technology Co., Ltd.</p>
+        <p class="qa">
+            <img src="../../img/ott/qa.png"/>
+        </p>
+        <p class="qa">
+            <span>
+                <font>J-MAKE website</font>
+            </span>
+        </p>
+    </div>
+</div>
+</body>
+<script>
+  function setSize() {
+    var ww = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var remSize;
+    // 默认为宽度十分之一
+    // if (ww >= 768) {
+    remSize = ww / 32;
+    // } else {
+    //     remSize = ww / 10;
+    // }
+    document.documentElement.style.fontSize = remSize + "px";
+  }
+  var timer;
+  window.addEventListener('resize', function () {
+    clearTimeout(timer);
+    timer = setTimeout(setSize, 300);
+  });
+  setSize();
+</script>
+</html>
