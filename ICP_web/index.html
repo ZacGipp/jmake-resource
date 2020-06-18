@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>咨讯（收费）</title>
+    <link
+      rel="stylesheet"
+      href="https://at.alicdn.com/t/font_1815575_b09n8yzakp.css"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .easy {
+        padding: 0 4%;
+      }
+      .easy h2 {
+        color: #ff5f38;
+        padding: 20px 0;
+      }
+      .easy .easy-item {
+        height: 23px;
+        padding: 5px 0;
+        border-bottom: 1px dashed #ccc;
+        font-size: 14px;
+      }
+      .easy a {
+        color: #666;
+        text-decoration: none;
+      }
+
+      .easy .easy-item {
+        display: flex;
+        justify-content: space-between;
+      }
+      .easy .easy-item .time {
+        margin-left: 20px;
+      }
+      .easy .easy-item .title {
+        display: flex;
+      }
+      .easy .easy-item .pay {
+        display: inline-block;
+        padding: 0 5px;
+        background: #ff5f38;
+        color: #fff;
+        font-size: 12px;
+        border-radius: 3px;
+        height: 20px;
+      }
+      .footer {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: rgb(17, 17, 17);
+        width: 100%;
+      }
+      .footer .f-body {
+        padding: 80px 30px;
+        border-top: 12px solid rgb(63, 63, 63);
+        background: rgb(30, 30, 30);
+      }
+      .footer .f-body .f-main {
+        padding: 0 4%;
+        display: flex;
+        justify-content: space-between;
+      }
+      .main-item p {
+        font-size: 14px;
+        line-height: 30px;
+        color: #747474;
+      }
+      .main-item h4 {
+        color: #ff5f38;
+        font-size: 15px;
+        padding: 20px 0;
+      }
+      .f-footer {
+        padding: 16px 30px;
+        background: rgb(17, 17, 17);
+        color: #545454;
+        font-size: 11px;
+      }
+      .f-footer p {
+        padding-left: 4%;
+      }
+      #mask {
+        position: fixed;
+        background: rgba(0, 0, 0, 0.5);
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+      }
+      #mask .wrap {
+        position: absolute;
+        width: 400px;
+        height: 150px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        box-shadow: 0 0 5px 0 #000;
+        padding: 20px;
+        box-sizing: border-box;
+        border-radius: 3px;
+      }
+      #mask .wrap .mask-footer {
+        position: absolute;
+        bottom: 0;
+        padding: 20px 0;
+        text-align: right;
+        width: calc(100% - 40px);
+      }
+      #mask .wrap .mask-title {
+        font-size: 14px;
+        color: #666;
+      }
+      #mask .wrap .mask-footer button {
+        color: #fff;
+        background-color: #409eff;
+        border-color: #409eff;
+        padding: 9px 15px;
+        font-size: 12px;
+        border-radius: 3px;
+        display: inline-block;
+        line-height: 1;
+        white-space: nowrap;
+        cursor: pointer;
+        -webkit-appearance: none;
+        text-align: center;
+        box-sizing: border-box;
+        outline: none;
+        margin: 0;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="easy">
+      <h2>付费文档</h2>
+      <div id="easy-wrap"></div>
+    </div>
+    <div class="footer">
+      <div class="f-body">
+        <div class="f-main">
+          <div class="main-item">
+            <img
+              src="https://site.j-make.cn/wp-content/uploads/2019/08/logo-2.png"
+              width="200"
+              height="70"
+              alt=""
+            />
+          </div>
+          <div class="main-item">
+            <h4>联系方式</h4>
+            <p><i class="iconfont icon-dianhua"></i> 028-87410132</p>
+            <p><i class="iconfont icon-ziyuan"></i> service@j-make.cn</p>
+          </div>
+          <div class="main-item">
+            <h4>公司地址</h4>
+            <p>
+              <i class="iconfont icon-fangzi01-copy"></i>
+              成都市高新区天府三街腾讯大厦B座301-304
+            </p>
+            <p>
+              <i class="iconfont icon-shizhong"></i> 周一至周五: 9:00 – 18:00
+            </p>
+          </div>
+          <div class="main-item">
+            <img
+              width="190"
+              height="120"
+              src="https://site.j-make.cn/wp-content/uploads/2019/08/qrcode_for_gh_929f5e032c10_1280.png"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="f-footer">
+        <p class="text">Ⓒ 成都金麦客科技有限公司 蜀ICP备20006445号</p>
+      </div>
+    </div>
+    <div id="mask">
+      <div class="wrap">
+        <div class="mask-title">
+          查看付费文档需要支付2元，支付成功即可获得1天浏览权限
+        </div>
+        <div class="mask-footer">
+          <button>确定</button> <button>取消</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    var easy = document.querySelector("#easy-wrap");
+    var arr = [
+      {
+        title: "感恩母亲节，十首歌曲推荐，用歌声表达爱！",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484814&idx=1&sn=7541863341285881e4fa7d507ad665fb&chksm=ea790fc7dd0e86d1f03c787dea4a7775e895b6f643122dc4bc7342e6301f82dcd0f5e1d98cc2&token=702373085&lang=zh_CN#rd",
+        time: "2020/05/08",
+      },
+      {
+        title: "好唱又好听的十首歌曲，你确定都会唱么？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484780&idx=2&sn=36ff81b1000c7d7cd52ea744276699d7&chksm=ea790f25dd0e86335749b6916cfed1a19737fd804ff286f37f580d9212536ab6627cc82a9cea&token=702373085&lang=zh_CN#rd",
+        time: "2020/04/29",
+      },
+      {
+        title: "当红歌手消失十年？归来新作仍红遍大江南北！",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484780&idx=3&sn=95df83b9b393a63e765508d4b492ae47&chksm=ea790f25dd0e8633e7300065cd7552e01fce4f4723934232753d52b5bbc7dda80333b0dd1c50&token=702373085&lang=zh_CN#rd",
+        time: "2020/04/29",
+      },
+      {
+        title: "连原唱都不敢轻易唱的十大高难度歌曲，你敢来挑战一下么？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484754&idx=1&sn=941e5860748c338c2cee543c3ab57e92&chksm=ea790f1bdd0e860da60b0c003505f72de0338d6e218a4dddd1f75cfdc9c53c7cbb9ecc99f4cd&token=702373085&lang=zh_CN#rd",
+        time: "2020/04/17",
+      },
+      {
+        title: "那些年电视彩铃广告的洗脑神曲，你有发短信订购吗？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484748&idx=1&sn=4815d01347f1430d310aaf641f9276a3&chksm=ea790f05dd0e8613f9709504d72280cab57c5877238a8e95ad7afbedff9ff9c0e49a6405dd1f&token=702373085&lang=zh_CN#rd",
+        time: "2020/04/10",
+      },
+      {
+        title: "缅怀经典，张国荣十大经典歌曲你都会唱么？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484737&idx=1&sn=226166b3a9b375468b0d044fcb4c4a9e&chksm=ea790f08dd0e861ee498ec8727215908ee0a985d810f906fa2e12bad054b3c533dc8bc9b07c2&token=702373085&lang=zh_CN#rd",
+        time: "2020/03/27",
+      },
+      {
+        title: "春分至，燕归来，这十首应景的歌曲你都会唱么？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484729&idx=1&sn=9aca3b4203319294da044d0a332d3414&chksm=ea790f70dd0e866608c5ce41e0c1d96feb0c9e3f7c00753fe211b1683ce0153d9eeb649f6e78&token=702373085&lang=zh_CN#rd",
+        time: "2020/03/20",
+      },
+      {
+        title: "315唱这些歌，一身正气，再也不踩“坑”！",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484723&idx=1&sn=129fc3ece959156b410e012f61400525&chksm=ea790f7add0e866cbaa518e6c358662b6d3d769f49f2b689bbdf2ddf8869325b4a28edd2249d&token=702373085&lang=zh_CN#rd",
+        time: "2020/03/13",
+      },
+      {
+        title: "女神节唱这些歌，盛世美颜提升100%！",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484715&idx=1&sn=f5a59d614bfd53c316f8d923ced70d2a&chksm=ea790f62dd0e86748943449b2a7139fefd7df8756fffe47242aa5bef4b8536a46b9e5ba8c313&token=702373085&lang=zh_CN#rd",
+        time: "2020/03/06",
+      },
+      {
+        title: "《歌手》节目中那些经典的歌曲，你会唱几首？",
+        url:
+          "https://mp.weixin.qq.com/s?__biz=MzI1OTQ4MTM4Mg==&mid=2247484709&idx=1&sn=3d4559662abd800bcfb4a2c6612a905d&chksm=ea790f6cdd0e867a01f27fdf8bea175146b8395526bdfcfe2f12802affbbd19ed21a2cf959b0&token=702373085&lang=zh_CN#rd",
+        time: "2020/02/28",
+      },
+    ];
+    for (let i = 0; i < arr.length; i++) {
+      easy.innerHTML += `
+    <a href="${arr[i].url}">
+        <div class="easy-item">
+          <div class="title">${arr[i].title}<div class="pay">付费</div></div>
+          <div class="time">${arr[i].time}</div>
+        </div>
+    </a>
+        `;
+    }
+    window.onload = function () {
+      var mask = document.querySelector("#mask");
+      var button = document.querySelectorAll("#mask .mask-footer button");
+      var pay = document.querySelectorAll(".pay");
+      var search = window.location.search;
+      var searchObj = {};
+      var cookieObj = {};
+
+      if (search) {
+        search
+          .slice(1)
+          .split("&")
+          .forEach((item) => {
+            searchObj[item.split("=")[0]] = item.split("=")[1];
+          });
+        var data = new Date().getTime() + 24 * 3600 * 1000;
+        if (searchObj.isPay) {
+          document.cookie =
+            `isPay = ${searchObj.isPay};expires=` +
+            new Date(data).toGMTString();
+        }
+      }
+      document.cookie.split(";").forEach((item) => {
+        cookieObj[item.split("=")[0]] = item.split("=")[1];
+      });
+      if (cookieObj.isPay) {
+        mask.style.display = "none";
+        for (let i = 0; i < pay.length; i++) {
+          pay[i].innerHTML = "已支付";
+        }
+      }
+      button[0].onclick = function () {
+        var baseUrl = window.location.origin + window.location.pathname;
+        var returnUrl = encodeURI(`${baseUrl}?isPay=true`);
+        window.location.href = `http://bosstest.j-make.com.cn/admin/order/alipay?returnUrl=${returnUrl}`;
+      };
+      button[1].onclick = function () {
+        window.history.back(-1);
+      };
+    };
+  </script>
+</html>
