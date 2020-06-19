@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: transparent url(../images/tongyong_bodyBackgroundImg.png) no-repeat 0 0;
+ }
+.pos_abs{
+    position: absolute;
+    left:0;
+    top:0;
+}
+
+#rollingDiv{
+    width: 842px;
+    height: 666px;
+    left: 27px;
+    top: 27px;
+    overflow: hidden;
+}
+#rollingDiv img{
+    width: 100%;
+    display: block;
+    border: none;
+}
+
+#goodsDetail{
+    position: absolute;
+    top: 27px;
+    right: 27px;
+    width: 380px;
+    height: 666px;
+}
+
+.backImg{
+    width: 100%;
+    height: 100%;
+}
+
+/*滑动div相关样式*/
+.content {
+    width:690px;
+    height:594px;
+    overflow: hidden;
+}
+.scroll {
+    display: none;
+    position: absolute;
+    top: 27px;
+    left: 815px;
+    width: 13px;
+    height: 666px;
+    visibility: hidden;
+    background-color: #676966;
+    z-index:-1;
+}
+.scroll-bar{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    height: 74px;
+    width: 13px;
+}
+.scroll .scroll-bar img {
+    width: 13px;
+    top: 0px;
+    position: absolute;
+}
+.scroll-bar-focus {
+    border: none;
+    background: #FCDF00;
+}
