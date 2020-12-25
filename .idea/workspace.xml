@@ -19,39 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79a4a252-3a05-45a5-94a4-a8344f4f85e7" name="Default" comment="大转盘抽奖 二维码生成插件https调整">
-      <change afterPath="$PROJECT_DIR$/about-us-cibn/img/ott/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-general-en/img/ott/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-general/img/ott/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-liantong/html/ott/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-liantong/html/ott/style/aboutUs.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-liantong/img/ott/qa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/about-us-newTV/img/ott/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/h5_single_img_page/img.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/h5_single_img_page/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/underConstruction/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usingHelp/img/bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wx_auth/index.html" afterDir="false" />
+    <list default="true" id="79a4a252-3a05-45a5-94a4-a8344f4f85e7" name="Default" comment="关于我们/授权中间页">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-cibn/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-cibn/html/ott/style/aboutUs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-cibn/img/ott/about-us.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-liantong/img/ott/about-us.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general-en/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general-en/html/ott/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general-en/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general-en/html/ott/style/aboutUs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general-en/img/ott/about-us.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general/html/ott/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general/html/ott/style/aboutUs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-general/img/ott/about-us.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-newTV/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-newTV/html/ott/style/aboutUs.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/about-us-newTV/img/ott/about-us.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/activate/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/activate/img.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/activate/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/activate/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/luckyDraw/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/luckyDraw/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/js/config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_page/img.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/single_page/img.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/single_page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/single_page/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usingHelp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/usingHelp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wx_auth/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wx_auth/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +218,8 @@
       <workItem from="1608618608167" duration="12000" />
       <workItem from="1608618717086" duration="477000" />
       <workItem from="1608621601555" duration="2338000" />
-      <workItem from="1608860201113" duration="516000" />
+      <workItem from="1608860201113" duration="830000" />
+      <workItem from="1608875764920" duration="210000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1573806506103</created>
@@ -334,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1592464334003</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="关于我们/授权中间页">
+      <created>1608875425025</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1608875425025</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,17 +337,26 @@
     <MESSAGE value="大转盘抽奖" />
     <MESSAGE value="大转盘抽奖 接口https调整" />
     <MESSAGE value="大转盘抽奖 二维码生成插件https调整" />
-    <option name="LAST_COMMIT_MESSAGE" value="大转盘抽奖 二维码生成插件https调整" />
+    <MESSAGE value="关于我们/授权中间页" />
+    <option name="LAST_COMMIT_MESSAGE" value="关于我们/授权中间页" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600932526746">
       <screen x="1280" y="0" width="1600" height="900" />
     </state>
     <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1600932526746" />
+    <state x="1680" y="190" key="Vcs.Push.Dialog.v2" timestamp="1608875427711">
+      <screen x="1280" y="0" width="1600" height="900" />
+    </state>
+    <state x="1680" y="190" key="Vcs.Push.Dialog.v2/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608875427711" />
     <state x="1746" y="168" width="710" height="566" key="find.popup" timestamp="1608623035797">
       <screen x="1280" y="0" width="1600" height="900" />
     </state>
     <state x="1746" y="168" width="710" height="566" key="find.popup/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608623035797" />
+    <state x="1885" y="346" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608875372079">
+      <screen x="1280" y="0" width="1600" height="900" />
+    </state>
+    <state x="1885" y="346" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608875372079" />
     <state x="1745" y="210" key="run.anything.popup" timestamp="1608526619495">
       <screen x="1280" y="0" width="1600" height="900" />
     </state>
