@@ -1,5 +1,5 @@
 var CONFIG = {
-	ENV: 'prod', // 环境变量 test为测试环境 prod为生产环境
+	ENV: 'test', // 环境变量 test为测试环境 prod为生产环境
 	ID: getQueryString('id'),
 	loading: false,
 	ENDING: false, // 活动结束

@@ -1,8 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="79a4a252-3a05-45a5-94a4-a8344f4f85e7" name="Default" comment="大转盘抽奖 二维码生成插件https调整">
+      <change afterPath="$PROJECT_DIR$/about-us-cibn/img/ott/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-general-en/img/ott/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-general/img/ott/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-liantong/html/ott/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-liantong/html/ott/style/aboutUs.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-liantong/img/ott/qa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/about-us-newTV/img/ott/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5_single_img_page/img.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5_single_img_page/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/underConstruction/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usingHelp/img/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wx_auth/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-cibn/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-cibn/html/ott/style/aboutUs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-cibn/img/ott/about-us.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-liantong/img/ott/about-us.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general-en/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general-en/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general-en/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general-en/html/ott/style/aboutUs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general-en/img/ott/about-us.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general/html/ott/style/aboutUs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general/img/ott/about-us.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-newTV/html/ott/style/aboutUs.css" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-newTV/html/ott/style/aboutUs.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-newTV/img/ott/about-us.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/activate/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/activate/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/activate/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/activate/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckyDraw/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckyDraw/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/single_page/img.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/single_page/img.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/single_page/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/single_page/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usingHelp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/usingHelp/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,20 +67,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaScript File" />
-        <option value="HTML File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IgnoredFileRootStore">
-    <option name="generatedRoots">
-      <set>
-        <option value="C:\myProject\jmake-resource\.idea" />
-      </set>
-    </option>
   </component>
   <component name="ProjectId" id="1QaqAtq2S3V5Qj7DSviWzSLPjqR" />
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -53,53 +95,42 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editorconfig.notification" value="null# tab | space" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/TJYX_payback/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/single_page" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.scopes" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\myProject\jmake-resource\TJYX_payback\img" />
-      <recent name="C:\myProject\jmake-resource\TJYX_payback" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\img" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\problems\sssd" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\problems\zykg" />
+      <recent name="$PROJECT_DIR$/single_page" />
+      <recent name="$PROJECT_DIR$/h5_single_img_page" />
+      <recent name="$PROJECT_DIR$/activate" />
+      <recent name="$PROJECT_DIR$/about-us-general-en/img/ott" />
+      <recent name="$PROJECT_DIR$/about-us-newTV/img/ott" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/activate" />
       <recent name="C:\myProject\jmake-resource\usingHelp\img" />
       <recent name="C:\myProject\jmake-resource\usingHelp" />
       <recent name="C:\myProject\jmake-resource\usingHelp\problems\zykg" />
       <recent name="C:\myProject\jmake-resource\usingHelp\problems\img" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\problems" />
     </key>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -189,6 +220,35 @@
       <workItem from="1591325949654" duration="3327000" />
       <workItem from="1591784213988" duration="154000" />
       <workItem from="1592464260272" duration="947000" />
+      <workItem from="1592982167553" duration="174000" />
+      <workItem from="1592987081751" duration="1115000" />
+      <workItem from="1594974520016" duration="684000" />
+      <workItem from="1595225431364" duration="910000" />
+      <workItem from="1595381858851" duration="489000" />
+      <workItem from="1596593194890" duration="577000" />
+      <workItem from="1596594019776" duration="28000" />
+      <workItem from="1598326938154" duration="853000" />
+      <workItem from="1598508482456" duration="114000" />
+      <workItem from="1599184281207" duration="6000" />
+      <workItem from="1599184289591" duration="1000" />
+      <workItem from="1600161349700" duration="3562000" />
+      <workItem from="1600396384359" duration="98000" />
+      <workItem from="1600910725845" duration="2442000" />
+      <workItem from="1600931819215" duration="3840000" />
+      <workItem from="1602557875555" duration="305000" />
+      <workItem from="1604398761234" duration="631000" />
+      <workItem from="1604476583629" duration="1964000" />
+      <workItem from="1605063277677" duration="211000" />
+      <workItem from="1605237991269" duration="652000" />
+      <workItem from="1605489910003" duration="442000" />
+      <workItem from="1605685117452" duration="449000" />
+      <workItem from="1605769407301" duration="1011000" />
+      <workItem from="1608083884436" duration="6915000" />
+      <workItem from="1608515508047" duration="1895000" />
+      <workItem from="1608618608167" duration="12000" />
+      <workItem from="1608618717086" duration="477000" />
+      <workItem from="1608621601555" duration="2338000" />
+      <workItem from="1608860201113" duration="516000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1573806506103</created>
@@ -278,20 +338,19 @@
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="123" />
@@ -303,38 +362,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="大转盘抽奖 二维码生成插件https调整" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="123" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1585115881429">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600932526746">
+      <screen x="1280" y="0" width="1600" height="900" />
     </state>
-    <state x="549" y="123" key="#com.intellij.ide.macro.MacrosDialog/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1585115881429" />
-    <state x="359" y="7" key="CommitChangelistDialog2" timestamp="1592464332560">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1600932526746" />
+    <state x="1746" y="168" width="710" height="566" key="find.popup" timestamp="1608623035797">
+      <screen x="1280" y="0" width="1600" height="900" />
     </state>
-    <state x="359" y="7" key="CommitChangelistDialog2/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1592464332560" />
-    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog" timestamp="1592464290837">
-      <screen x="0" y="0" width="1536" height="834" />
+    <state x="1746" y="168" width="710" height="566" key="find.popup/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608623035797" />
+    <state x="1745" y="210" key="run.anything.popup" timestamp="1608526619495">
+      <screen x="1280" y="0" width="1600" height="900" />
     </state>
-    <state x="93" y="93" width="1350" height="648" key="DiffContextDialog/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1592464290837" />
-    <state x="372" y="194" key="EditFileWatcherDialog" timestamp="1585115892606">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="372" y="194" key="EditFileWatcherDialog/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1585115892606" />
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2" timestamp="1592464335588">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="361" y="150" key="Vcs.Push.Dialog.v2/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1592464335588" />
-    <state x="447" y="155" width="642" height="524" key="find.popup" timestamp="1590655575683">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="447" y="155" width="642" height="524" key="find.popup/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1590655575683" />
-    <state x="468" y="208" key="git4idea.merge.GitPullDialog" timestamp="1585106392171">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="468" y="208" key="git4idea.merge.GitPullDialog/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1585106392171" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1586921760160">
-      <screen x="0" y="0" width="1536" height="834" />
-    </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834/1920.0.1600.870@0.0.1536.834" timestamp="1586921760160" />
+    <state x="1745" y="210" key="run.anything.popup/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608526619495" />
   </component>
   <component name="masterDetails">
     <states>

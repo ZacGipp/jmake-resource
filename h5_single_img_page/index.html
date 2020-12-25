@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>歌唱祖国红歌大赛</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            overflow: auto;
+            background: #fc5838;
+            /*background: rgba(0, 0, 0, .2);*/
+        }
+
+        #activityBtn {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+<img id="activityBtn" src="./img.jpg" onclick="activityClick()" />
+<div style="display: none">歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍</div>
+<div style="display: none">歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍</div>
+<div style="display: none">歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍歌唱祖国红歌大赛介绍</div>
+</body>
+<script>
+
+	var btn = document.querySelector("#activityBtn");
+
+	var onlineVersion = getQueryString('type');
+	var host = !onlineVersion ? 'wechat' : 'wechat1';
+
+	function activityClick(e) {
+        window.location.href = 'http://' + host + '.j-make.cn/song/category/songs?logId=1600741572127&name=%E6%AD%8C%E5%94%B1%E7%A5%96%E5%9B%BD%E7%BA%A2%E6%AD%8C%E5%A4%A7%E8%B5%9B&image=https%3A%2F%2Fportal-resource-global.j-make.cn%2Fdownload%2Fcontent%2Fwx%2F20200925092436_1040.jpg';
+	}
+
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r !== null) {
+			return /*unescape(*/r[2]/*)*/;
+		}
+		return "";
+	}
+
+</script>
+</html>
