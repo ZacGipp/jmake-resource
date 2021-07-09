@@ -44,9 +44,11 @@ var CONFIG = {
 	// DOMAIN: 'http://bmstest.j-make.com.cn/owb',
 	DOMAINS: {
 		0: 'https://portalmy.j-make.cn/owb',
-		1: 'http://portal.a086.ottcn.com/owb',
-		2: 'http://portal.jmake.cp57.ott.cibntv.net/owb',
-		test: 'http://bmstest.j-make.com.cn/owb',
+		1: 'https://portalmy.j-make.cn/owb',
+		2: 'https://portalmy.j-make.cn/owb',
+		// 1: 'http://portal.a086.ottcn.com/owb',
+		// 2: 'http://portal.jmake.cp57.ott.cibntv.net/owb',
+		test: 'https://bmstest.j-make.com.cn/owb',
 	},
 	DOMAIN: '',
 	API: {

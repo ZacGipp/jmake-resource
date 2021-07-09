@@ -20,8 +20,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79a4a252-3a05-45a5-94a4-a8344f4f85e7" name="Default" comment="关于我们/授权中间页">
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/nst/afterSaleService.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/nst/nst_after_sale_service_qa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/open/inviteNew/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/open/miniprogram/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/protocol/account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/protocol/bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/protocol/pay.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/protocol/privacy.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/h5-open-miniprogram/protocol/user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inviteNew/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inviteNew/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inviteNew/qrcode.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usingHelp/problems/public/account.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usingHelp/problems/public/privacy.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wx_auth/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/wx_auth/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-cibn/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-general/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-general/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/about-us-newTV/html/ott/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/ott/aboutUs.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ott/aboutUs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/ott/aboutUsCIBN.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ott/aboutUsCIBN.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/html/ott/aboutUsNewTV.html" beforeDir="false" afterPath="$PROJECT_DIR$/html/ott/aboutUsNewTV.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckyDraw/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/luckyDraw/js/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/luckyDraw/js/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usingHelp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/usingHelp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usingHelp/微信公众号.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +98,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="editorconfig.notification" value="null# tab | space" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/single_page" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/h5-open-miniprogram/protocol" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
@@ -87,19 +110,19 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/single_page" />
-      <recent name="$PROJECT_DIR$/h5_single_img_page" />
-      <recent name="$PROJECT_DIR$/activate" />
-      <recent name="$PROJECT_DIR$/about-us-general-en/img/ott" />
-      <recent name="$PROJECT_DIR$/about-us-newTV/img/ott" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/h5-open-miniprogram/open/miniprogram" />
+      <recent name="$PROJECT_DIR$/h5-open-miniprogram/open" />
+      <recent name="$PROJECT_DIR$/weddingPostpone" />
+      <recent name="$PROJECT_DIR$/inviteNew" />
       <recent name="$PROJECT_DIR$/activate" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\img" />
-      <recent name="C:\myProject\jmake-resource\usingHelp" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\problems\zykg" />
-      <recent name="C:\myProject\jmake-resource\usingHelp\problems\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/h5-open-miniprogram/protocol" />
+      <recent name="$PROJECT_DIR$/usingHelp/problems/public" />
+      <recent name="$PROJECT_DIR$/h5-open-miniprogram/nst" />
+      <recent name="$PROJECT_DIR$/h5-open-miniprogram/inviteNew" />
+      <recent name="$PROJECT_DIR$/weddingPostpone" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -219,7 +242,26 @@
       <workItem from="1608618717086" duration="477000" />
       <workItem from="1608621601555" duration="2338000" />
       <workItem from="1608860201113" duration="830000" />
-      <workItem from="1608875764920" duration="210000" />
+      <workItem from="1608875764920" duration="3836000" />
+      <workItem from="1609224748245" duration="367000" />
+      <workItem from="1610359465591" duration="12051000" />
+      <workItem from="1611565317658" duration="448000" />
+      <workItem from="1611738901449" duration="6407000" />
+      <workItem from="1612418370741" duration="5327000" />
+      <workItem from="1612429801805" duration="1097000" />
+      <workItem from="1612514306974" duration="940000" />
+      <workItem from="1612540140036" duration="43000" />
+      <workItem from="1614739345361" duration="1339000" />
+      <workItem from="1620628546657" duration="4516000" />
+      <workItem from="1623231774060" duration="77000" />
+      <workItem from="1623317216142" duration="1254000" />
+      <workItem from="1623398363445" duration="1652000" />
+      <workItem from="1623828269588" duration="7104000" />
+      <workItem from="1623908335840" duration="2470000" />
+      <workItem from="1624244312721" duration="11324000" />
+      <workItem from="1624415557671" duration="10731000" />
+      <workItem from="1624602967788" duration="5000" />
+      <workItem from="1625465224583" duration="1356000" />
     </task>
     <task id="LOCAL-00001" summary="123">
       <created>1573806506103</created>
@@ -312,7 +354,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608875425025</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="关于我们/授权中间页">
+      <created>1608876185984</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1608876185984</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,26 +390,12 @@
     <option name="LAST_COMMIT_MESSAGE" value="关于我们/授权中间页" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1600932526746">
-      <screen x="1280" y="0" width="1600" height="900" />
+    <state x="-1174" y="210" width="748" height="552" key="find.popup" timestamp="1624411098398">
+      <screen x="-1600" y="36" width="1600" height="900" />
     </state>
-    <state x="1818" y="204" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1600932526746" />
-    <state x="1680" y="190" key="Vcs.Push.Dialog.v2" timestamp="1608875427711">
-      <screen x="1280" y="0" width="1600" height="900" />
-    </state>
-    <state x="1680" y="190" key="Vcs.Push.Dialog.v2/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608875427711" />
-    <state x="1746" y="168" width="710" height="566" key="find.popup" timestamp="1608623035797">
-      <screen x="1280" y="0" width="1600" height="900" />
-    </state>
-    <state x="1746" y="168" width="710" height="566" key="find.popup/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608623035797" />
-    <state x="1885" y="346" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1608875372079">
-      <screen x="1280" y="0" width="1600" height="900" />
-    </state>
-    <state x="1885" y="346" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608875372079" />
-    <state x="1745" y="210" key="run.anything.popup" timestamp="1608526619495">
-      <screen x="1280" y="0" width="1600" height="900" />
-    </state>
-    <state x="1745" y="210" key="run.anything.popup/0.0.1280.800/1280.0.1600.900@1280.0.1600.900" timestamp="1608526619495" />
+    <state x="341" y="142" width="598" height="490" key="find.popup/0.0.1280.731/-1600.36.1600.900@0.0.1280.731" timestamp="1623317258843" />
+    <state x="-1174" y="210" width="748" height="552" key="find.popup/0.0.1280.800/-1600.36.1600.900@-1600.36.1600.900" timestamp="1624411098398" />
+    <state x="341" y="155" width="598" height="490" key="find.popup/0.0.1280.800/-1600.36.1600.900@0.0.1280.800" timestamp="1623317386350" />
   </component>
   <component name="masterDetails">
     <states>
